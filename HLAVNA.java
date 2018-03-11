@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 // Program, ktory nacita udaje zo suboru PrestaID, ktory vygeneruje platforma Prestashop
 // PrestaID obsahuje teda aktualny stav stranok. Jednotlive XML obsahuju to, ako by to malo vyzerat. Aktualizacia je rozdiel.
-//1.3.
+//2.3.gfhfgh
 
 
 
