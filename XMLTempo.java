@@ -97,6 +97,7 @@ public class XMLTempo {
                 nameUpravene = Met_Name.zistiNazov(name, "Tempo-Kondela", farba);
                 if (!code.equals("0000192487")) {
                     ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
+//                    System.out.println("kod: "+code);
                     sirka = rozmery.get(0).getSirka();
                     vyska = rozmery.get(0).getVyska();
                     hlbka = rozmery.get(0).getHlbka();

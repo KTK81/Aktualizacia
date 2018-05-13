@@ -86,24 +86,7 @@ public class KompletALL {
                         if ((!(XMLCena.contains(prestaMOC)) && (XMLAktivita.contains("1")))) {
 //ak doslo k zmene ceny, spravi zmenu ceny, ale ak doslo k zmene pevne zadanej ceny /CENAOFF/, tak to zapise, ako "Zmena OFF ceny"
                             if (!(codeOFF.equals(prestaNase.get(p).getKod()))) {
-                                System.out.println(prestaNase.get(p).getKod()+";"+prestaMOC+";"+produktyALL.get(s).getMOC());
-
-//                                if (produktyALL.get(s).getKod().equals("C24877")) {
-////                                    docasnyArrayList.add(prestaNase.get(p).getVysledokInput("cena", Premenne.featureMesiac, XMLCena));
-//                                    System.out.println("code C24877; XML Price " + XMLCena + " Presta price " + prestaMOC);
-//                                }
-//                                if (produktyALL.get(s).getKod().equals("C47651")) {
-//                                    String prestaID = produktyALL.get(s).getPrestaID();
-//                                    String kod = produktyALL.get(s).getKod();
-//                                    String nazov = produktyALL.get(s).getNazov();
-//                                    String skupina = produktyALL.get(s).getSkupina();
-//                                    String vyrobca = produktyALL.get(s).getVyrobca();
-//                                    String MOC = produktyALL.get(s).getMOC();
-//
-//                                    System.out.println("code C47651; "+prestaID+";"+kod+";"+nazov+";"+skupina+";"+vyrobca+";"+MOC);
-//
-//                                }
-
+                                System.out.println(prestaNase.get(p).getKod()+";"+prestaMOC+";"+produktyALL.get(s).getMOC()+";"+produktyALL.get(s).getVyrobca());
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("cena", Premenne.featureMesiac, prestaMOC));
 
                             }
@@ -135,8 +118,8 @@ public class KompletALL {
 
 //vyhodenie produktov, deaktivacia. Ak ich mame v ponuke, ale nenaslo ich, tak im hodim Aktivitu = 0, no a nabuduce uz nebudu v PrestaID
                     if ((pomocnyAktivity.equals("0")) && (prestaNase.get(p).getAktivita().contains("1"))) {
-                    docasnyArrayList.add(prestaNase.get(p).getVysledokInput("vyhodene", "", ""));
-                }
+                        docasnyArrayList.add(prestaNase.get(p).getVysledokInput("vyhodene", "", ""));
+                    }
             }
         }
 
@@ -147,7 +130,7 @@ public class KompletALL {
             }
         }
         for (int i = 0; i < docasnyArrayList.size(); i++) {
-            if (docasnyArrayList.get(i).get(0).getVyrobca().contains("Drevona")) {
+            if (docasnyArrayList.get(i).get(0).getVyrobca().contains("DREVONA")) {
                 writerVysledokPublicNew.println(docasnyArrayList.get(i).get(0).getVysledokOutput());
             }
         }
