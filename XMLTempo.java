@@ -92,6 +92,7 @@ public class XMLTempo {
 
 
 //mam trochu problemy s par produktami, hadze mi error, sa tu nebudem kaslat s 10 produktami, hodil som ich do active=9 a spravim to len pre aktivne...
+                System.out.println(code+"; active:"+active);
                 farba = Met_Color.zistiFarbu(name, vyrobca);
                 description = Met_Description.zistiPopis(description, "Tempo-Kondela");
                 nameUpravene = Met_Name.zistiNazov(name, "Tempo-Kondela", farba);
@@ -103,6 +104,7 @@ public class XMLTempo {
                     hlbka = rozmery.get(0).getHlbka();
                     dlzka = rozmery.get(0).getDlzka();
                 }
+
 
 
                 tempoProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", price, name, nameUpravene, vyrobca, active, description,
