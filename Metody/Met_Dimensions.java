@@ -96,19 +96,19 @@ public class Met_Dimensions {
         }
 
 
-//        if (vyrobca.contains("Tempo-Kondela")) {
-//            try {
-//                System.out.println();
-//                if (description.contains("ŠxH")) {
-//                    //vycucnem text v okoli rozmerov, zacne slovom rozmer, konci bud znakom "<br />" alebo slovom "priestoru", podla potreby
-//                    Pattern p = Pattern.compile("ŠxH(.*?)(cm| , )");
-//                    Matcher m = p.matcher(description);
-//                    while (m.find()) {
-//                        rozmer = m.group();
-//                    }
-//
-//                    sirka = rozmer;
-//                }
+        if (vyrobca.contains("Tempo-Kondela")) {
+            try {
+                System.out.println();
+                if (description.contains("ŠxH")) {
+                    //vycucnem text v okoli rozmerov, zacne slovom rozmer, konci bud znakom "<br />" alebo slovom "priestoru", podla potreby
+                    Pattern p = Pattern.compile("ŠxH(.*?)(cm| , )");
+                    Matcher m = p.matcher(description);
+                    while (m.find()) {
+                        rozmer = m.group();
+                    }
+
+                    sirka = rozmer;
+                }
 //                if (description.contains("ŠxHxV")) {
 //                    //vycucnem text v okoli rozmerov
 //                    Pattern p = Pattern.compile("ŠxHxV(.*?)(cm| , )");
@@ -137,44 +137,44 @@ public class Met_Dimensions {
 //                        vyska += m.group(1) + " cm";
 //                    }
 //                }
-//                if (description.contains("ŠxV")) {
-//                    //vycucnem text v okoli rozmerov
-//                    Pattern p = Pattern.compile("ŠxV(.*?)(cm| , )");
-////                Pattern p = Pattern.compile("ŠxHxV(.*)");
-//                    Matcher m = p.matcher(description);
-//                    while (m.find()) {
-//                        rozmer = m.group();
-//                    }
-//
-//                    //vycucnem jednolive rozmery
-//                    p = Pattern.compile("(\\s|:)(\\d+((\\.|\\,)\\d+)?)x");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
-//                        sirka += m.group(2) + " cm";
-//                    }
-//
-//                    p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)(\\s|c)");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
-//                        vyska += m.group(1) + " cm";
-//                    }
-//                }
-//
-//                //pri zostavach je problem s vycucnutim udajov, treba riesit rucne
-//                if (description.contains("zostava")) {
-//                    sirka = "rucne";
-//                    vyska = "rucne";
-//                    hlbka = "rucne";
-//                }
-//
-//                dlzka = rozmer;
-////            }
-//
-//            } catch (Exception e) {
-//                System.out.println("nenasloooo  " + description);
-//                e.printStackTrace();
+                if (description.contains("ŠxV")) {
+                    //vycucnem text v okoli rozmerov
+                    Pattern p = Pattern.compile("ŠxV(.*?)(cm| , )");
+//                Pattern p = Pattern.compile("ŠxHxV(.*)");
+                    Matcher m = p.matcher(description);
+                    while (m.find()) {
+                        rozmer = m.group();
+                    }
+
+                    //vycucnem jednolive rozmery
+                    p = Pattern.compile("(\\s|:)(\\d+((\\.|\\,)\\d+)?)x");
+                    m = p.matcher(rozmer);
+                    while (m.find()) {
+                        sirka += m.group(2) + " cm";
+                    }
+
+                    p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)(\\s|c)");
+                    m = p.matcher(rozmer);
+                    while (m.find()) {
+                        vyska += m.group(1) + " cm";
+                    }
+                }
+
+                //pri zostavach je problem s vycucnutim udajov, treba riesit rucne
+                if (description.contains("zostava")) {
+                    sirka = "rucne";
+                    vyska = "rucne";
+                    hlbka = "rucne";
+                }
+
+                dlzka = rozmer;
 //            }
-//        }
+
+            } catch (Exception e) {
+                System.out.println("nenasloooo  " + description);
+                e.printStackTrace();
+            }
+        }
 
 //        System.out.println(sirka+";"+vyska+";"+hlbka);
             if (sirka.contains(",")) sirka = sirka.replaceAll(",", ".");
