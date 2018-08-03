@@ -23,9 +23,9 @@ public class DownPicDrevona {
         ArrayList<String> zoznamKodov = new ArrayList<String>();
         produktyDrevona = XMLDrevona2017.zapisProduktov();
 //        produktyAutronic = XMLAutronic.zapisProduktov();
-//        produktyTempo = XMLTempo.zapisProduktov();
+        produktyTempo = XMLTempo.zapisProduktov();
 //        produktyALL.addAll(produktyDrevona);
-//        produktyALL.addAll(produktyTempo);
+
         produktyALL.addAll(produktyDrevona);
 
      File fileImport = new File(Premenne.cesta+"stiahniObrazok.txt");
