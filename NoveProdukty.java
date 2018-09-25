@@ -18,33 +18,33 @@ public class NoveProdukty {
 		PrintWriter writerVysledok = new PrintWriter(Premenne.cesta + "noveVyrobky.csv", "UTF-8");
 
 		prestaSubor = Premenne.prestaIDPremenne;
-		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
+//		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
 		vyrobkyTempo = XMLTempo.zapisProduktov();
-		vyrobkyAutronic = XMLAutronic.zapisProduktov();
+//		vyrobkyAutronic = XMLAutronic.zapisProduktov();
 
 	  writerVysledok.println("Kod;Nazov;Nazov upraveny;Popis;URL;Kategoria;Obrazok;Vyrobca;Cena;Short;Activ;Feature;Farba;Šírka;Hĺbka;Výška;Dĺžka;Výška sedu;Rozkladanie;Materiál;Nosnosť;Čalúnenie");
 
-//DREVONA
-	  for(s=0; s < vyrobkyDrevona.size(); s++) {
-//Selekcia produktov, ktore nechcem
-		  if (!(vyrobkyDrevona.get(s).getNazov().contains("REA ALFA") || vyrobkyDrevona.get(s).getNazov().contains("REA PLAY") ||
-				  vyrobkyDrevona.get(s).getNazov().contains("REA REBECCA") || vyrobkyDrevona.get(s).getNazov().contains("REA FLAT") ||
-				  vyrobkyDrevona.get(s).getNazov().contains("ČIELKO") || vyrobkyDrevona.get(s).getNazov().contains("ČELO") ||
-				  vyrobkyDrevona.get(s).getNazov().contains("SEDAK") ||
-				  vyrobkyDrevona.get(s).getPopis().contains("navyše do ") ||(vyrobkyDrevona.get(s).getAktivita().contains("9")))) {
-			  pomocnyHladanie = "0";
-			  for (p = 0; p < prestaSubor.size(); p++) {
-				  if (prestaSubor.get(p).getKod().equals(vyrobkyDrevona.get(s).getKod())) {  //ak najdem zhodny kod v sucasnych vyrobkoch, ide sa dalej
-					  pomocnyHladanie = "2";
-					  break;
-				  }
-			  }
-			  if (pomocnyHladanie.equals("0")) {
-				  writerVysledok.println(vyrobkyDrevona.get(s).getVysledokNove());
-			  }
-		  }
-	  }
-		System.out.println("DREVONA hotovo");
+////DREVONA
+//	  for(s=0; s < vyrobkyDrevona.size(); s++) {
+////Selekcia produktov, ktore nechcem
+//		  if (!(vyrobkyDrevona.get(s).getNazov().contains("REA ALFA") || vyrobkyDrevona.get(s).getNazov().contains("REA PLAY") ||
+//				  vyrobkyDrevona.get(s).getNazov().contains("REA REBECCA") || vyrobkyDrevona.get(s).getNazov().contains("REA FLAT") ||
+//				  vyrobkyDrevona.get(s).getNazov().contains("ČIELKO") || vyrobkyDrevona.get(s).getNazov().contains("ČELO") ||
+//				  vyrobkyDrevona.get(s).getNazov().contains("SEDAK") ||
+//				  vyrobkyDrevona.get(s).getPopis().contains("navyše do ") ||(vyrobkyDrevona.get(s).getAktivita().contains("9")))) {
+//			  pomocnyHladanie = "0";
+//			  for (p = 0; p < prestaSubor.size(); p++) {
+//				  if (prestaSubor.get(p).getKod().equals(vyrobkyDrevona.get(s).getKod())) {  //ak najdem zhodny kod v sucasnych vyrobkoch, ide sa dalej
+//					  pomocnyHladanie = "2";
+//					  break;
+//				  }
+//			  }
+//			  if (pomocnyHladanie.equals("0")) {
+//				  writerVysledok.println(vyrobkyDrevona.get(s).getVysledokNove());
+//			  }
+//		  }
+//	  }
+//		System.out.println("DREVONA hotovo");
 ////TEMPO
 	  for(s=0; s < vyrobkyTempo.size(); s++) {
 		  if (!(vyrobkyTempo.get(s).getAktivita().contains("9"))) {

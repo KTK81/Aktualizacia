@@ -100,11 +100,12 @@ public class HLAVNA {
         System.out.println("Vyber programu :");
 //		System.out.println("a = HelloWorld - vypise text");
 //		System.out.println("b = HelloWorld - pevne zadany text - static method");
-        System.out.println("0 = VSETKY zasoby");
+        System.out.println("Ako sa aktivuje ||| Co robi ||| Subor odkial nacita udaje ||| Subor s vysledkom");
+        System.out.println("0 = KOMPLET aktualizacia ||| *** ||| Google - JAVA - subory - aktualizacia_new.csv");
 //		System.out.println("1 = Tempo zasoby");
 //		System.out.println("2 = Drevona zasoby");
 //		System.out.println("3 = Autronic zasoby, pou��va� NOTEPAD PLUS, nie oby�ajn�");
-        System.out.println("5 = ZistiPrestaID - priradi ku KOD-u nase PrestaIDcko");
+        System.out.println("5 = ZistiPrestaID - priradi ku KOD-u nase PrestaIDcko ||| Google - JAVA - subory - zistiIDckaImport.txt ||| Google - JAVA - subory - zistiIDckaPrestaVysledok.txt");
         System.out.println("n = Najdi nove produkty");
         System.out.println("s = Stiahni obrazky z Drevony");
         System.out.println("do = Stiahni VSETKY obrazky z Tempa - aktivne produkty");

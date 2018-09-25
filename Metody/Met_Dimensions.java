@@ -96,83 +96,139 @@ public class Met_Dimensions {
         }
 
 
-//        if (vyrobca.contains("Tempo-Kondela")) {
-//            try {
-////                System.out.println();
-//                if (description.contains("ŠxH")) {
-//                    //vycucnem text v okoli rozmerov, zacne slovom rozmer, konci bud znakom "<br />" alebo slovom "priestoru", podla potreby
-//                    Pattern p = Pattern.compile("ŠxH(.*?)(cm| , )");
-//                    Matcher m = p.matcher(description);
-//                    while (m.find()) {
-//                        rozmer = m.group();
-//                    }
-//                }
-//
-//                if (description.contains("ŠxHxV")) {
-//                    //vycucnem text v okoli rozmerov
-//                    Pattern p = Pattern.compile("ŠxHxV(.*?)(cm| , )");
-////                Pattern p = Pattern.compile("ŠxHxV(.*)");
-//                    Matcher m = p.matcher(description);
-//                    while (m.find()) {
-//                        rozmer = m.group();
-//                    }
-//
-//                    //vycucnem jednolive rozmery
-//                    p = Pattern.compile("(\\s|:)(\\d+((\\.|\\,)\\d+)?)x");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
+        if (vyrobca.contains("Tempo-Kondela")) {
+            try {
+                if (description.contains("ŠxHxV")) {
+                    //vycucnem text v okoli rozmerov
+                    Pattern p = Pattern.compile("ŠxHxV(.*?)(cm| , )");
+//                Pattern p = Pattern.compile("ŠxHxV(.*)");
+                    Matcher m = p.matcher(description);
+                    while (m.find()) {
+                        rozmer = m.group();
+                    }
+
+                    //vycucnem jednolive rozmery
+// !!!!! TO DO OPRAVIT - neviem vycucnut iba prve cislo z napr. : (ŠxHxV): 80x3x62 - medzera pred 80 nie je medzera, ale akysi shit !!!!!
+// tak \s nefunguje na odlisenie prveho a druheho cisla, tak mi vzdy najde aj druhe cislo medzi x-kami
+// tak som to poriesil cez repeateed integer, ktory navysim a zadam tam len prvu occurence, len ked je nenavyseny ten repeated
+// neviem ako spravit, aby ak najde x pred cislom, tak to nebralo, ale len ak najde cisto cislo samotne, s x za cislom
+//                    p = Pattern.compile("(\\d+((\\.|\\,)?\\d+))x");
+                    p = Pattern.compile("(\\s|:)?(\\d+((\\.|\\,)\\d+)?)x");
+                    m = p.matcher(rozmer);
+                    int repeated = 0; //sluzi na odlisenie prvej occurence, od druhej
+                    while (m.find()) {
+                        if (repeated == 0) { //vid vyssie - sluzi na odlisenie prvej occurence, od druhej
+                        sirka += m.group(2) + " cm";
 //                        sirka += m.group(2) + " cm";
-//                    }
-//
-//                    p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)x");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
-//                        hlbka += m.group(1) + " cm";
-//                    }
-//
-//                    p = Pattern.compile("x(\\d+((\\.|\\,|\\-)\\d+)?)(\\s|c)");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
-//                        vyska += m.group(1) + " cm";
-//                    }
-////                }
-//                if (description.contains("ŠxV")) {
-//                    //vycucnem text v okoli rozmerov
-//                    p = Pattern.compile("ŠxV(.*?)(cm| , )");
-//                    m = p.matcher(description);
-//                    while (m.find()) {
-//                        rozmer = m.group();
-//                    }
-//
-//                    //vycucnem jednolive rozmery
-//                    p = Pattern.compile("(\\s|:)(\\d+((\\.|\\,)\\d+)?)x");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
-//                        sirka += m.group(2) + " cm";
-//                    }
-//
-//                    p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)(\\s|c)");
-//                    m = p.matcher(rozmer);
-//                    while (m.find()) {
-//                        vyska += m.group(1) + " cm";
-//                    }
-//                }
-//
-//                //pri zostavach je problem s vycucnutim udajov, treba riesit rucne
-//                if (description.contains("zostava")) {
-//                    sirka = "rucne";
-//                    vyska = "rucne";
-//                    hlbka = "rucne";
-//                }
-//
-//                dlzka = rozmer;
+                        }
+                        repeated = 1;  // vid este vyssie - sluzi na odlisenie prvej occurence, od druhej
+                    }
+
+                    p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)x");
+                    m = p.matcher(rozmer);
+                    while (m.find()) {
+                        hlbka += m.group(1) + " cm";
+                    }
+
+                    p = Pattern.compile("x(\\d+((\\.|\\,|\\-)\\d+)?)(\\s|c|,)");
+                    m = p.matcher(rozmer);
+                    while (m.find()) {
+                        vyska += m.group(1) + " cm";
+
+                    }
+                }
+
+                else if (description.contains("ŠxH")) {
+                    //vycucnem text v okoli rozmerov, zacne slovom rozmer, konci bud znakom "<br />" alebo slovom "priestoru", podla potreby
+                    Pattern p = Pattern.compile("ŠxH(.*?)(cm| , )");
+                    Matcher m = p.matcher(description);
+                    while (m.find()) {
+                        rozmer = m.group();
+                    }
+                }
+
+
+
+
+
+                if (description.contains("ŠxV")) {
+                    //vycucnem text v okoli rozmerov
+                    Pattern p = Pattern.compile("ŠxV(.*?)(cm| , )");
+                    Matcher m = p.matcher(description);
+                    while (m.find()) {
+                        rozmer = m.group();
+                    }
+
+                    //vycucnem jednolive rozmery
+                    p = Pattern.compile("(\\s|:)(\\d+((\\.|\\,)\\d+)?)x");
+                    m = p.matcher(rozmer);
+                    while (m.find()) {
+                        sirka += m.group(2) + " cm";
+                    }
+
+                    p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)(\\s|c)");
+                    m = p.matcher(rozmer);
+                    while (m.find()) {
+                        vyska += m.group(1) + " cm";
+                    }
+                }
+
+                    if (description.contains("Rozmery (ŠxD)")) {
+//                        if (description.contains("PEBBLE")) {
+//                            System.out.println(description);
+//                        }
+                        //vycucnem text v okoli rozmerov
+                        Pattern p = Pattern.compile("ŠxD(.*?)(cm| , )");
+                        Matcher m = p.matcher(description);
+                        while (m.find()) {
+                            rozmer = m.group();
+                            if (description.contains("PEBBLE")) {
+                                System.out.println("PEBBLE "+rozmer);
+                            }
+                        }
+
+                        //vycucnem jednolive rozmery
+                        p = Pattern.compile("(\\s|:)(\\d+((\\.|\\,)\\d+)?)x");
+                        m = p.matcher(rozmer);
+                        while (m.find()) {
+                            sirka += m.group(2) + " cm";
+                            if (description.contains("PEBBLE")) {
+                                System.out.println("sirka "+sirka);
+                                System.out.println(m.group(1));
+                                System.out.println(m.group(2));
+                            }
+                        }
+
+                        p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)(\\s|c)");
+                        m = p.matcher(rozmer);
+                        while (m.find()) {
+                            vyska += m.group(1) + " cm";
+                            if (description.contains("PEBBLE")) {
+                                System.out.println("dlzka "+m.group(1));
+                            }
+                        }
+                    }
+
+                //pri zostavach je problem s vycucnutim udajov, treba riesit rucne
+                if (description.contains("zostava")) {
+                    sirka = "rucne";
+                    vyska = "rucne";
+                    hlbka = "rucne";
+                }
+                dlzka = rozmer;
 //            }
-//
-//            } catch (Exception e) {
-//                System.out.println("nenasloooo  " + description);
-//                e.printStackTrace();
-//            }
-//        }
+
+            }
+            catch (NullPointerException e) {
+                System.out.println("nenasloooo  " + description);
+            }
+
+            catch (Exception e) {
+                System.out.println("nenasloooo  " + description);
+                e.printStackTrace();
+            }
+
+        }
 
 //        System.out.println(sirka+";"+vyska+";"+hlbka);
 //        System.out.println("sirka:"+sirka+"*** vyska:"+vyska+"*** hlbka:"+hlbka);
