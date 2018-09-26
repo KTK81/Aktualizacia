@@ -22,7 +22,7 @@ public class NoveProdukty {
 		vyrobkyTempo = XMLTempo.zapisProduktov();
 //		vyrobkyAutronic = XMLAutronic.zapisProduktov();
 
-	  writerVysledok.println("Kod;Nazov;Nazov upraveny;Popis;URL;Kategoria;Obrazok;Vyrobca;Cena;Short;Activ;Feature;Farba;Šírka;Hĺbka;Výška;Dĺžka;Výška sedu;Rozkladanie;Materiál;Nosnosť;Čalúnenie");
+	  writerVysledok.println("Kod;Nazov;Nazov upraveny;Popis;Kategoria;Obrazok;Vyrobca;CenaNakup;CenaPredaj;Vaha;Short;Activ;Feature;Farba;Šírka;Hĺbka;Výška;Dĺžka;Výška sedu;Rozkladanie;Materiál;Nosnosť;Čalúnenie");
 
 ////DREVONA
 //	  for(s=0; s < vyrobkyDrevona.size(); s++) {

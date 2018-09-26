@@ -22,7 +22,7 @@ import java.util.ArrayList;
 		int i, s, p, vahaInt = 1;
 		String vyrobca = "AUTRONIC";
 		String pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null,active,
-				size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null;
+				size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null, priceVOC = null;
 
 
 //		prestaIDlist = PrestaIDRead.filePresta();
@@ -153,7 +153,7 @@ import java.util.ArrayList;
 				color = Met_Color.zistiFarbu(name, vyrobca);  //z nazvu zisti farbu
 //				color = Premenne.complexReplace (Premenne.cesta+"Zoznam_farba.csv");
 
-				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, name, "novyNazov",vyrobca, active, "popissss",
+				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, "novyNazov",vyrobca, active, "popissss",
 						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, "sirka","vyska","hlbka","dlzka"));
 // Zapis produktov z XML do suboru
 				writerSubor.println(prestaID+";"+code+";"+name+";"+color+";"+active+";123456 ;"+priceString+";"+size+";"+dostupnost+";"+category+";"+IMGURL+";"+vaha);

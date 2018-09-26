@@ -95,7 +95,7 @@ public class Produkt {
     }
 
     //  16xString, Drevona, Tempo, Autronic
-    public Produkt(String prestaID, String skupina, String kod, String dostupnost, String zasoby, String MOC, String nazov, String nazovNovy, String vyrobca,
+    public Produkt(String prestaID, String skupina, String kod, String dostupnost, String zasoby, String MOC, String VOC, String nazov, String nazovNovy, String vyrobca,
                    String aktivita, String popis, String URL, String IMGURL, String navod, String vahaString, String objem, String farba, String rozmer,
                    String sirka, String hlbka, String vyska, String dlzka) {
         this.prestaID = prestaID;
@@ -104,6 +104,7 @@ public class Produkt {
         this.dostupnost = dostupnost;
         this.zasoby = zasoby;
         this.MOC = MOC;
+        this.VOC = VOC;
         this.nazov = nazov;
         this.nazovNovy = nazovNovy;
         this.vyrobca = vyrobca;
@@ -150,7 +151,8 @@ public class Produkt {
     }
 //šírka	hĺbka	výška	výška sedu	rozkladanie	materiál	nosnosť	čalúnenie
     public String getVysledokNove() {
-        return this.kod + ";" + this.nazov+";"+this.nazovNovy+";"+this.popis+";URL;"+this.skupina+";"+this.getIMGURL()+";"+this.vyrobca+";"+this.MOC+";"+
+        return this.kod + ";" + this.nazov+";"+this.nazovNovy+";"+this.popis+";"+this.skupina+";"+this.getIMGURL()+";"+this.vyrobca+";"+this.VOC+
+                ";"+this.MOC+";"+this.vahaString+";"+
                 "<p><span style=\"color: #000000\"><strong>Dostupnosť: viac ako mesiac </strong></span> ;1;Dostupnosť: viac ako mesiac, "+this.farba+
                 ", "+this.sirka+", "+this.hlbka+", "+this.vyska+";"+this.farba+";"+this.sirka+";"+this.hlbka+";"+this.vyska+";"+this.dlzka;    }
 

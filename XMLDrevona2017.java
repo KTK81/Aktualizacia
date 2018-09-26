@@ -32,7 +32,7 @@ public class XMLDrevona2017 {
 // vycucnutie produktov z XML feedu a ich zapis do suboru
 // BEZ OHLADU NA SKLAD ******
         System.out.println("Vytvaram Drevonu - zaciatok");
-        String code = null, nameUpravene = null, name = null, price = null, stock = null, category = null,description = null,productURL = null,
+        String code = null, nameUpravene = null, name = null, price = null, priceVOC = null, stock = null, category = null,description = null,productURL = null,
                 IMGURL = null, active, delivery = null, rozmer = null;
 
         try {
@@ -53,6 +53,7 @@ public class XMLDrevona2017 {
                     productURL = eElement.getElementsByTagName("URL").item(0).getTextContent();
                     IMGURL = eElement.getElementsByTagName("IMGURL").item(0).getTextContent();
                     price = (eElement.getElementsByTagName("PRICE_VAT").item(0).getTextContent()).trim();
+                    priceVOC = (eElement.getElementsByTagName("PRICE").item(0).getTextContent()).trim();
                     category = eElement.getElementsByTagName("CATEGORYTEXT").item(0).getTextContent();
                     delivery = eElement.getElementsByTagName("DELIVERY_DATE").item(0).getTextContent();
                     stock = (eElement.getElementsByTagName("AVAILABLE").item(0).getTextContent()).trim();
@@ -119,7 +120,7 @@ public class XMLDrevona2017 {
 
                     }
 
-                    drevonaProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, name, nameUpravene, vyrobca, active, description,
+                    drevonaProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, nameUpravene, vyrobca, active, description,
                             productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                     writerSubor.println(prestaID + ";" + code + ";" + name + ";"+nameUpravene+";" + farba+";"+description + ";" + active + ";123456 ;"

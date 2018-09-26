@@ -20,6 +20,7 @@ public class XMLTempo {
         ArrayList<Produkt> tempoProdukty = new ArrayList<>();
         ArrayList<Produkt> prestaIDlist;
         int i, p, vahaInt = 0;
+        double priceInt = 0;
         String pomocnaPresta, vahaString, prestaID = null;
         String vyrobca = "Tempo-Kondela", nameUpravene = null, sirka=null, vyska=null, hlbka=null, dlzka=null;
         prestaIDlist = Premenne.prestaIDPremenne;
@@ -31,7 +32,7 @@ public class XMLTempo {
         writerSubor.println("PrestaID;Kod;Nazov;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina;Vaha;Navod");
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
-        String code = null, name = null, price = null, dostupnost = null, category = null, active, name_spatny_nazov,
+        String code = null, name = null, price = null, priceVOC = null, dostupnost = null, category = null, active, name_spatny_nazov,
                 description = null, navod = null, vaha = null, productURL = null, objem = null, IMGURL = null, farba = null;
         System.out.println("Vytvaram Tempo - zaciatok");
         Authenticator.setDefault(new MyAuthenticator());
@@ -54,6 +55,12 @@ public class XMLTempo {
                     category = eElement.getElementsByTagName("CENOVA_KATEGORIA").item(0).getTextContent();
                     dostupnost = (eElement.getElementsByTagName("DOSTUPNOST").item(0).getTextContent()).trim();
                     price = (eElement.getElementsByTagName("MOC_SK").item(0).getTextContent()).trim();
+                    priceVOC = (eElement.getElementsByTagName("VOC_SK").item(0).getTextContent()).trim(); //cena bez DPH
+                    if (priceVOC !=null && !priceVOC.isEmpty()) {
+                        priceInt = (int) Double.parseDouble(priceVOC); //zaokruhli na cele cislo
+                        priceInt = priceInt * 1.2; //pripocita DPH
+//                        priceVOC = Double.toString(priceInt); //uz cena s DPH
+                    }
                     IMGURL = eElement.getElementsByTagName("URL_OBRAZOK").item(0).getTextContent();
                     navod = eElement.getElementsByTagName("URL_MONTAZNY_NAVOD").item(0).getTextContent();
                     productURL = eElement.getElementsByTagName("URL_PRODUKT").item(0).getTextContent();
@@ -65,6 +72,7 @@ public class XMLTempo {
                     name_spatny_nazov = (eElement.getElementsByTagName("NAZOV_POLOZKY").item(0).getTextContent()).trim();
                     objem = eElement.getElementsByTagName("OBJEM").item(0).getTextContent();
                 }
+                System.out.println(code+";"+priceVOC+";"+priceInt+";"+price);
 
 
 // ak sa zhodne kategoria alebo nazov s vyhodenymi, tak tento vyrobok zmením na neaktívny, ak nie, pokracujem
@@ -105,9 +113,7 @@ public class XMLTempo {
                     dlzka = rozmery.get(0).getDlzka();
                 }
 
-
-
-                tempoProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", price, name, nameUpravene, vyrobca, active, description,
+                tempoProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", price, priceVOC, name, nameUpravene, vyrobca, active, description,
                         productURL, IMGURL, navod, vaha, objem, farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                 writerSubor.println(prestaID + ";" + code + ";" + name + ";" + active + ";123456 ;" + price + ";null;" +

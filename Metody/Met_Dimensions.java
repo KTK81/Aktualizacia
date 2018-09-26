@@ -148,9 +148,6 @@ public class Met_Dimensions {
                 }
 
 
-
-
-
                 if (description.contains("ŠxV")) {
                     //vycucnem text v okoli rozmerov
                     Pattern p = Pattern.compile("ŠxV(.*?)(cm| , )");
@@ -174,17 +171,11 @@ public class Met_Dimensions {
                 }
 
                     if (description.contains("Rozmery (ŠxD)")) {
-//                        if (description.contains("PEBBLE")) {
-//                            System.out.println(description);
-//                        }
                         //vycucnem text v okoli rozmerov
                         Pattern p = Pattern.compile("ŠxD(.*?)(cm| , )");
                         Matcher m = p.matcher(description);
                         while (m.find()) {
                             rozmer = m.group();
-                            if (description.contains("PEBBLE")) {
-                                System.out.println("PEBBLE "+rozmer);
-                            }
                         }
 
                         //vycucnem jednolive rozmery
@@ -192,11 +183,6 @@ public class Met_Dimensions {
                         m = p.matcher(rozmer);
                         while (m.find()) {
                             sirka += m.group(2) + " cm";
-                            if (description.contains("PEBBLE")) {
-                                System.out.println("sirka "+sirka);
-                                System.out.println(m.group(1));
-                                System.out.println(m.group(2));
-                            }
                         }
 
                         p = Pattern.compile("x(\\d+((\\.|\\,)\\d+)?)(\\s|c)");
@@ -204,7 +190,7 @@ public class Met_Dimensions {
                         while (m.find()) {
                             vyska += m.group(1) + " cm";
                             if (description.contains("PEBBLE")) {
-                                System.out.println("dlzka "+m.group(1));
+//                                System.out.println("dlzka "+m.group(1));
                             }
                         }
                     }
