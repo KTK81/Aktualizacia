@@ -38,7 +38,7 @@ public class XMLTempo {
         Authenticator.setDefault(new MyAuthenticator());
 
         try {
-            URL url = new URL("http://shop.tempo-kondela.sk/Feed/feedsk.xml");
+            URL url = new URL("https://shop.tempo-kondela.sk/Feed/feedsk.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url.openStream());
@@ -72,7 +72,7 @@ public class XMLTempo {
                     name_spatny_nazov = (eElement.getElementsByTagName("NAZOV_POLOZKY").item(0).getTextContent()).trim();
                     objem = eElement.getElementsByTagName("OBJEM").item(0).getTextContent();
                 }
-                System.out.println(code+";"+priceVOC+";"+priceInt+";"+price);
+//                System.out.println(code+";"+priceVOC+";"+priceInt+";"+price);
 
 
 // ak sa zhodne kategoria alebo nazov s vyhodenymi, tak tento vyrobok zmením na neaktívny, ak nie, pokracujem
