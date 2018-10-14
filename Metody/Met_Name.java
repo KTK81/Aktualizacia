@@ -80,6 +80,9 @@ public class Met_Name {
             else if (popis.contains("Rohová skrinka")) {
                 nameUpravene = "Rohová skrinka "+nameUpravene;
             }
+            else if (popis.contains("Sedacia súprava")) {
+                nameUpravene = "Sedacia súprava "+nameUpravene;
+            }
         }
 // ************  TEMPO **********
         if (vyrobca.contains("Tempo-Kondela")) {

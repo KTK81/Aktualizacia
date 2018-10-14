@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 //priradi nasu kategoriu zo zoznamu, na zaklade originalnej kategorie, alebo inych udajov
 public class Met_Category {
-    public static String zistiKategoriu(String kategoriaOriginal, String vyrobca, String pomocne, String popis) throws IOException {
+    public static String zistiKategoriu(String kategoriaOriginal, String vyrobca, String meno, String popis) throws IOException {
         String kategoria = "Original : "+kategoriaOriginal;
-        String name = pomocne;
+        String name = meno;
         String subor = null;
         if (vyrobca.equals("DREVONA"))
             subor = "Zoznam_kategoria_drevona.csv";
@@ -35,10 +35,18 @@ public class Met_Category {
             for (int i = 0; i < temp.size(); i++) {
                 if (name.contains(temp.get(i).getKod())) {
                     kategoria = temp.get(i).getMOC();
+                    //KUCHYNA
                     if (kategoriaOriginal.contains("Kuchyňa a Jedáleň > Stoličky > Drevené"))
                         kategoria = "Drevené stoličky, Stoličky, Kuchyňa";
                     if (kategoriaOriginal.contains("Kuchyňa a Jedáleň > Stoličky > Kovové"))
                         kategoria = "Kovové stoličky, Stoličky, Kuchyňa";
+                    if (kategoriaOriginal.contains("Jedálenské sety"))
+                        kategoria = "Jedálenské sety, Kuchyňa";
+                    if (kategoriaOriginal.contains("Kuchyňa a Jedáleň > Kuchynské linky > Komplety"))
+                        kategoria = "Kompletné linky, Kuchynské linky, Kuchyňa";
+                    if (kategoriaOriginal.contains("Kuchyňa a Jedáleň > Lavice do kuchyne"))
+                        kategoria = "Lavice do kuchyne, Stoličky, Kuchyňa";
+                    //SPALNA
                     if (kategoriaOriginal.contains("Jednolôžka"))
                         kategoria = "Jednolôžkové postele, Postele, Spálňa";
                     if (kategoriaOriginal.contains("Kancelária > Regály"))
@@ -47,6 +55,8 @@ public class Met_Category {
                         kategoria = "Konferenčné stolíky, Stolíky, Obývačka";
                     if (kategoriaOriginal.contains("Obývacia izba > TV stolíky"))
                         kategoria = "TV stolíky, Stolíky, Obývačka";
+                    if (kategoriaOriginal.contains("Rohové sedačky"))
+                        kategoria = "Rohové súpravy, Sedacie súpravy, Obývačka";
 
                     //postele su specificke, podla sirky postele sa urci kategoria
                     if (kategoria.equals("Jednolôžkové postele, Postele, Spálňa")) {
