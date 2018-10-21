@@ -103,10 +103,6 @@ public class Met_Color {
 //        }
 
 //        if (vyrobca.contains("DREVONA")) {
-//
-//
-//
-//
 //            if (nazov.contains("BIELA")) {
 //                farba += "biela";
 //            } else if (nazov.contains("NAVARRA")) {

@@ -39,6 +39,7 @@ public class KompletALL {
                         String XMLVyrobca = produktyALL.get(s).getVyrobca();
                         String XMLCena = produktyALL.get(s).getMOC();
 
+
 // *** AKTIVITA ***
 //aktivita : 0 nedostupne, 1 dostupne, 9 vyhodene (ak aj je dostupne, nechceme ho)
                         if (!(prestaAktivita.contains(XMLAktivita))) {
@@ -108,6 +109,8 @@ public class KompletALL {
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.feature2tyzdne, prestaNase.get(p).getDostupnost()));
                             else if (XMLDostupnost.contains(Premenne.feature4tyzdne))
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.feature4tyzdne, prestaNase.get(p).getDostupnost()));
+                            else if (XMLDostupnost.contains(Premenne.feature2mesiace))
+                                docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.feature2mesiace, prestaNase.get(p).getDostupnost()));
                             else if (XMLDostupnost.contains(Premenne.featureMesiac))
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.featureMesiac, prestaNase.get(p).getDostupnost()));
                             else

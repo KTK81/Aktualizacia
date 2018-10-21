@@ -3,7 +3,7 @@ package Metody;
 //vycucnutie farby z nazvu produktu
 public class Met_Name {
     public static String zistiNazov (String nazov, String vyrobca, String popis) {
-        String farba;
+        String farba = " , null";
         String nameUpravene=null;
 //********** DREVONA *************
         if (vyrobca.contains("DREVONA")) {
@@ -88,13 +88,57 @@ public class Met_Name {
         if (vyrobca.contains("Tempo-Kondela")) {
             if (nazov.contains(",")) {
                 int ciarka = nazov.indexOf(",");
+                int ciarkaDruha = nazov.indexOf(",", ciarka+1);
+                int ciarkaTretia = nazov.indexOf(",", ciarkaDruha+1);
                 int ciarkaPosledna = nazov.lastIndexOf(",");
                 String prva_cast = nazov.substring(0, ciarka);
                 String druha_cast = nazov.substring(ciarkaPosledna+1);
-                farba = ", "+popis.substring(7);
+                String strednaCast = "nenaslo";
+                String strednaCast2 = "nenaslo";
+                String pomocna = null;
+                //NAZOV vyrobku davam taky isty, ako ma Tempo - nedavam konkretnu farbu, ako davam do Feature, Vlastnosti, ale skopcim proste cely text o farbe
+                //ALE samozrejme, ze Tempo to ma rozne, raz je farba tam, raz inde, takze byva v DVOCH roznych sekciach, bud za prvou ciarkou alebo za druhou
+                //takze vycucnem obe tie sekcie, pozriem, ktora z nich ma nieco s farbou - obsahuje zmienku o nejakej farbe a potom celu tu sekciu dam do nazvu
+                //ALE tym padom sa moze stat, ze nazov vyrobku v Tempe neobsahuje aj tu druhu cast, proste v nazve je len jedna ciarka
+                //tym padom take nazvy mi vhodia error, preto to davam do try catch a ak nenajde tu druhu ciarku, tak len do pomocnej premennej zapisem hodnotu
+                try {
+                    strednaCast = nazov.substring(ciarka, ciarkaDruha);
+                    strednaCast2 = nazov.substring(ciarkaDruha, ciarkaTretia);
+                }
+                catch (StringIndexOutOfBoundsException e)  {
+//                    System.out.println("met Name catch: " +nazov);
+                    pomocna = "nieco";
+                }
+
+                if (strednaCast.contains("biel")||strednaCast.contains("čierna")||strednaCast.contains("siv")||strednaCast.contains("červená")
+                        ||strednaCast.contains("béžov")||strednaCast.contains("capuccino")||strednaCast.contains("dub")||strednaCast.contains("buk")
+                        ||strednaCast.contains("čereš")||strednaCast.contains("hned")||strednaCast.contains("modr")||strednaCast.contains("orech")
+                        ||strednaCast.contains("wenge")||strednaCast.contains("zelen")||strednaCast.contains("žlt")||strednaCast.contains("zlat")
+                        ||strednaCast.contains("čiern")||strednaCast.contains("látka")||strednaCast.contains("koža")||strednaCast.contains("mocca")
+                        ||strednaCast.contains("ružov")||strednaCast.contains("vzor")||strednaCast.contains("tyrky")||strednaCast.contains("viacfareb")
+                        ||strednaCast.contains("slonovi")||strednaCast.contains("jelš")) {
+                    farba = strednaCast;
+                }
+                if (strednaCast2.contains("biel")||strednaCast2.contains("čierna")||strednaCast2.contains("sivá")||strednaCast2.contains("červená")
+                        ||strednaCast2.contains("béžov")||strednaCast2.contains("capuccino")||strednaCast2.contains("dub")||strednaCast2.contains("buk")
+                        ||strednaCast2.contains("čereš")||strednaCast2.contains("hned")||strednaCast2.contains("modr")||strednaCast2.contains("orech")
+                        ||strednaCast2.contains("wenge")||strednaCast2.contains("zelen")||strednaCast2.contains("žlt")||strednaCast2.contains("zlat")
+                        ||strednaCast2.contains("čiern")||strednaCast2.contains("látka")||strednaCast2.contains("koža")||strednaCast2.contains("mocca")
+                        ||strednaCast2.contains("ružov")||strednaCast2.contains("vzor")||strednaCast2.contains("tyrky")||strednaCast2.contains("viacfareb")
+                        ||strednaCast2.contains("slonovi")||strednaCast2.contains("jelš")) {
+                    farba = strednaCast2;
+                }
+//                farba = ", "+popis.substring(7);
                 nameUpravene = prva_cast + druha_cast + farba;
 
+
                 //rozne specificke nazvy, kde neplati standardizovany sposob vytvarania nazvu
+
+                // sedacie supravy, LAVE a PRAVE - pridat na koniec nazvu
+                if (nazov.contains("pravá"))
+                    nameUpravene+= ", pravá";
+                if (nazov.contains("ľavá"))
+                    nameUpravene+= ", ľavá";
 
                 //spodne a horne skrinky do kuchyne
                 if (nazov.contains("Spodná")) {

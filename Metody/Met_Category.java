@@ -25,7 +25,7 @@ public class Met_Category {
             suborMeno = "Zoznam_kategoria_autronic.csv";
         
         ArrayList<Produkt> zoznamMeno = Premenne.complexReplace(Premenne.cestaZoznam + suborMeno);
-        ArrayList<Produkt> zoznamKategoria = Premenne.complexReplace(Premenne.cestaZoznam + suborCategory);
+
 
 //hladam kategoriu v povodnej kategorii
         if (vyrobca.equals("DREVONA")) {
@@ -39,6 +39,7 @@ public class Met_Category {
 
 //hladam kategoriu v povodnom NAZVE vyrobku
         if (vyrobca.equals("Tempo-Kondela")) {
+            ArrayList<Produkt> zoznamKategoria = Premenne.complexReplace(Premenne.cestaZoznam + suborCategory);
             for (int i = 0; i < zoznamMeno.size(); i++) {
                 if (name.contains(zoznamMeno.get(i).getKod())) {
                     kategoria = zoznamMeno.get(i).getMOC();
