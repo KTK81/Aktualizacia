@@ -179,11 +179,18 @@ public class Met_Name {
 
                     nameUpravene = "Posteľ " + druha_cast + sirkaPostele + farba;
                 }
+
                 //taburety, rozne taburety, vzdy len slovo taburet
                 if (nameUpravene.contains("aburet"))
                     nameUpravene = "Taburet" + druha_cast + farba;
                 if (nameUpravene.contains("otník"))
                     nameUpravene = "Botník" + druha_cast + farba;
+
+                //koberce, pridat aj rozmer do nazvu
+                if (nameUpravene.contains("oberec")) {
+                    nameUpravene+=strednaCast2;
+                }
+
 
             }
         }

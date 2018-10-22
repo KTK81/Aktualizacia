@@ -170,7 +170,7 @@ public class Met_Dimensions {
                     }
                 }
 
-                    if (description.contains("Rozmery (ŠxD)")) {
+                    if ((description.contains("Rozmery (ŠxD)"))||(description.contains("Rozmery: (ŠxD)"))) {
                         //vycucnem text v okoli rozmerov
                         Pattern p = Pattern.compile("ŠxD(.*?)(cm| , )");
                         Matcher m = p.matcher(description);
@@ -189,9 +189,6 @@ public class Met_Dimensions {
                         m = p.matcher(rozmer);
                         while (m.find()) {
                             vyska += m.group(1) + " cm";
-                            if (description.contains("PEBBLE")) {
-//                                System.out.println("dlzka "+m.group(1));
-                            }
                         }
                     }
 

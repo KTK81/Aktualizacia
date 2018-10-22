@@ -88,11 +88,16 @@ public class XMLDrevona2017 {
                         dostupnost = Premenne.feature4tyzdne; //2 - 4 týždne
                     else if (delivery.equals("4-6 tyždnov"))
                         dostupnost = Premenne.featureMesiac; // viac, ako mesiac
+                    else if (delivery.equals("Do vypredania zásob")) {
+                        dostupnost = Premenne.featureMesiac; // viac, ako mesiac
+                        active = "0";
+                    }
                     else
                         dostupnost = Premenne.featureMesiac; // viac, ako mesiac
                 }
                 else
                     dostupnost = Premenne.featureSKL; //1 - 3 dni (skladom)
+
 
 //popis, cucam z XML
                 description = Met_Description.zistiPopis(description, "DREVONA");
