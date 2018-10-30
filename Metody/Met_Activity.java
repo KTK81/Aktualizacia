@@ -15,9 +15,9 @@ public class Met_Activity {
             subor = "vyhodene_kategorie_drevona.txt";
         //kategoriu "Koberce" neriesim, davam rovno activitu na "9" /vyhodene produkty, ignore/
         if (vyrobca.equals("Tempo-Kondela")) {
-            if (category.contains("Koberce")) {
-                active = "9";
-            }
+//            if (category.contains("Koberce")) {
+//                active = "9";
+//            }
             subor = "vyhodene_kategorie_tempo.txt";
         }
 //u Autronicu sa activita priebezne meni, nie je vzdy "1" pri spusteni metody, takze si vycucnem povodnu hodnotu a ak nedojde k zmene na "9", vratim povodnu

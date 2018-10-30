@@ -27,7 +27,8 @@ public class Met_Category {
         ArrayList<Produkt> zoznamMeno = Premenne.complexReplace(Premenne.cestaZoznam + suborMeno);
 
 
-//hladam kategoriu v povodnej kategorii
+
+//hladam kategoriu v povodnej KATEGORII
         if (vyrobca.equals("DREVONA")) {
             for (int i = 0; i < zoznamMeno.size(); i++) {
                 if (kategoriaOriginal.contains(zoznamMeno.get(i).getKod())) {
@@ -48,6 +49,7 @@ public class Met_Category {
             }
 
             for (int i = 0; i < zoznamKategoria.size(); i++) {
+
                 if (kategoriaOriginal.contains(zoznamKategoria.get(i).getKod())) {
                     kategoria = zoznamKategoria.get(i).getMOC();
                     break;

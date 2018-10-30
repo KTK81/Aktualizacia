@@ -23,8 +23,8 @@ public class PorovnanieCien {
         writerSubor.println("Kod;Nasa cena;Spravna cena;Poznamka");
 
          for (int i = 0; i < prestaNase.size(); i++) {
-//             if ((prestaNase.get(i).getAktivita().contains("1")) && (prestaNase.get(i).getVyrobca().contains("AUTRONIC"))) {
-            if (prestaNase.get(i).getAktivita().contains("1")) {
+             if ((prestaNase.get(i).getAktivita().contains("1")) && (prestaNase.get(i).getVyrobca().contains("AUTRONIC"))) {
+//            if (prestaNase.get(i).getAktivita().contains("1")) {
                 String prestID = prestaNase.get(i).getPrestaID();
                 String vyrobca = prestaNase.get(i).getVyrobca();
                 String kod = prestaNase.get(i).getKod();
@@ -50,24 +50,29 @@ public class PorovnanieCien {
 
 
     public static Double najdiCenu(String kod) throws IOException {
-        String kodNaHladanie = kod.replaceAll("\\s", "+");
-        URL hladanie = new URL("https://www.lacnyeshop.sk/search-engine.htm?slovo=" + kodNaHladanie + "&search_submit=&hledatjak=2");
-        BufferedReader in = new BufferedReader(new InputStreamReader(hladanie.openStream()));
-        String riadokArtium = null;
-        Boolean naslo = false;
-        String cena = null;
         Double cenaDouble = null;
-        while ((riadokArtium = in.readLine()) != null)    //načíta URL source kód, kým sú riadky, tak ide
-        {
-            if (riadokArtium.contains(kod))
-                naslo = true;
-            if (naslo && riadokArtium.contains("product_price_text")) {
-                int zaciatok = riadokArtium.indexOf("product_price_text");
-                int koniec = riadokArtium.lastIndexOf("span");
-                cena = riadokArtium.substring(zaciatok + 20, koniec - 9);
-                cena = cena.replaceAll(",", ".");
-                cenaDouble = Double.parseDouble(cena);
+        try {
+            String kodNaHladanie = kod.replaceAll("\\s", "+");
+            URL hladanie = new URL("https://www.lacnyeshop.sk/search-engine.htm?slovo=" + kodNaHladanie + "&search_submit=&hledatjak=2");
+            BufferedReader in = new BufferedReader(new InputStreamReader(hladanie.openStream()));
+            String riadokArtium = null;
+            Boolean naslo = false;
+            String cena = null;
+            while ((riadokArtium = in.readLine()) != null)    //načíta URL source kód, kým sú riadky, tak ide
+            {
+                if (riadokArtium.contains(kod))
+                    naslo = true;
+                if (naslo && riadokArtium.contains("product_price_text")) {
+                    int zaciatok = riadokArtium.indexOf("product_price_text");
+                    int koniec = riadokArtium.lastIndexOf("span");
+                    cena = riadokArtium.substring(zaciatok + 20, koniec - 9);
+                    cena = cena.replaceAll(",", ".");
+                    cenaDouble = Double.parseDouble(cena);
+                }
             }
+        }
+        catch (java.io.IOException e) {
+            System.out.println("zla www");
         }
         return cenaDouble;
     }

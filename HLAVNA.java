@@ -145,9 +145,11 @@ public class HLAVNA {
                 PorovnanieCien.spusti();
                 break;
             case "do":
-                TempoDownPicNew.zapisProduktov();
+                DownPicAll.zapisProduktov();
                 break;
-
+            case "pomoc":
+                PomocnyClassHocico.zapisProduktov();
+                break;
 
 
         }

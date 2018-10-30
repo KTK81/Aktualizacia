@@ -20,7 +20,7 @@ public class NoveProdukty {
 		prestaSubor = Premenne.prestaIDPremenne;
 //		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
 		vyrobkyTempo = XMLTempo.zapisProduktov();
-//		vyrobkyAutronic = XMLAutronic.zapisProduktov();
+		vyrobkyAutronic = XMLAutronic.zapisProduktov();
 
 	  writerVysledok.println("Kod;Nazov;Nazov upraveny;Popis;Kategoria;Obrazok;Vyrobca;CenaNakup;CenaPredaj;Vaha;Short;Activ;Feature;Farba;Šírka;Hĺbka;Výška;Dĺžka;Výška sedu;Rozkladanie;Materiál;Nosnosť;Čalúnenie");
 
@@ -60,21 +60,21 @@ public class NoveProdukty {
 		  }
 	  }
 		System.out.println("TEMPO hotovo");
-////AUTRONIC
-//	for(s=0; s < vyrobkyAutronic.size(); s++) {
-//		if (!(vyrobkyAutronic.get(s).getAktivita().contains("9"))) {
-//			pomocnyHladanie = "0";
-//			for (p = 0; p < prestaSubor.size(); p++) {
-//				if (prestaSubor.get(p).getKod().equals(vyrobkyAutronic.get(s).getKod())) {
-//					pomocnyHladanie = "2";
-//					break;
-//				}
-//			}
-//			if (pomocnyHladanie == "0")
-//				writerVysledok.println(vyrobkyAutronic.get(s).getVysledokNove());
-//		}
-//	}
-//			System.out.println("AUTRONIC hotovo");
+//AUTRONIC
+	for(s=0; s < vyrobkyAutronic.size(); s++) {
+		if (!(vyrobkyAutronic.get(s).getAktivita().contains("9"))) {
+			pomocnyHladanie = "0";
+			for (p = 0; p < prestaSubor.size(); p++) {
+				if (prestaSubor.get(p).getKod().equals(vyrobkyAutronic.get(s).getKod())) {
+					pomocnyHladanie = "2";
+					break;
+				}
+			}
+			if (pomocnyHladanie == "0")
+				writerVysledok.println(vyrobkyAutronic.get(s).getVysledokNove());
+		}
+	}
+			System.out.println("AUTRONIC hotovo");
 	    	writerVysledok.close();
 	}
 }
