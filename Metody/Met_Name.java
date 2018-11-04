@@ -113,7 +113,7 @@ public class Met_Name {
                     pomocna = "nieco";
                 }
 
-                if (strednaCast.contains("biel")||strednaCast.contains("čierna")||strednaCast.contains("siv")||strednaCast.contains("červená")
+                if (strednaCast.contains("biel")||strednaCast.contains("čiern")||strednaCast.contains("siv")||strednaCast.contains("červen")
                         ||strednaCast.contains("béžov")||strednaCast.contains("capuccino")||strednaCast.contains("dub")||strednaCast.contains("buk")
                         ||strednaCast.contains("čereš")||strednaCast.contains("hned")||strednaCast.contains("modr")||strednaCast.contains("orech")
                         ||strednaCast.contains("wenge")||strednaCast.contains("zelen")||strednaCast.contains("žlt")||strednaCast.contains("zlat")
@@ -123,10 +123,12 @@ public class Met_Name {
                         ||strednaCast.contains("natural")||strednaCast.contains("lesk")||strednaCast.contains("bardolino")||strednaCast.contains("samoa")
                         ||strednaCast.contains("krémov")||strednaCast.contains("mentolov")||strednaCast.contains("sosna")||strednaCast.contains("sonoma")
                         ||strednaCast.contains("woodline")||strednaCast.contains("chróm")||strednaCast.contains("slivka")||strednaCast.contains("javor")
-                        ||strednaCast.contains("strieb")||strednaCast.contains("cappuccino")||strednaCast.contains("sklo")||strednaCast.contains("prírod")) {
+                        ||strednaCast.contains("strieb")||strednaCast.contains("cappuccino")||strednaCast.contains("sklo")||strednaCast.contains("prírod")
+                        ||strednaCast.contains("oranžov")||strednaCast.contains("fialov")) {
+
                     farba = strednaCast;
                 }
-                if (strednaCast2.contains("biel")||strednaCast2.contains("čierna")||strednaCast2.contains("sivá")||strednaCast2.contains("červená")
+                if (strednaCast2.contains("biel")||strednaCast2.contains("čierna")||strednaCast2.contains("siv")||strednaCast2.contains("červen")
                         ||strednaCast2.contains("béžov")||strednaCast2.contains("capuccino")||strednaCast2.contains("dub")||strednaCast2.contains("buk")
                         ||strednaCast2.contains("čereš")||strednaCast2.contains("hned")||strednaCast2.contains("modr")||strednaCast2.contains("orech")
                         ||strednaCast2.contains("wenge")||strednaCast2.contains("zelen")||strednaCast2.contains("žlt")||strednaCast2.contains("zlat")
@@ -136,20 +138,21 @@ public class Met_Name {
                         ||strednaCast2.contains("natural")||strednaCast2.contains("lesk")||strednaCast2.contains("bardolino")||strednaCast2.contains("samoa")
                         ||strednaCast2.contains("krémov")||strednaCast2.contains("mentolov")||strednaCast2.contains("sosna")||strednaCast2.contains("sonoma")
                         ||strednaCast2.contains("woodline")||strednaCast2.contains("chróm")||strednaCast2.contains("slivka")||strednaCast2.contains("javor")
-                        ||strednaCast2.contains("strieb")||strednaCast2.contains("cappuccino")||strednaCast2.contains("sklo")||strednaCast2.contains("prírod")) {
+                        ||strednaCast2.contains("strieb")||strednaCast2.contains("cappuccino")||strednaCast2.contains("sklo")||strednaCast2.contains("prírod")
+                        ||strednaCast2.contains("oranžov")||strednaCast2.contains("fialov")) {
                     farba = strednaCast2;
                 }
 //                farba = ", "+popis.substring(7);
                 nameUpravene = prva_cast + druha_cast + farba;
 
                 //postel, rozmery - v texte, "x" ko sa normalne nevystihuje
-                Pattern p = Pattern.compile("\\d*x\\d*");
-                Matcher m = p.matcher(strednaCast);
-                if (m.find())
-                    nameUpravene+=strednaCast;
-                m = p.matcher(strednaCast2);
-                if (m.find())
-                    nameUpravene+=strednaCast2;
+//                Pattern p = Pattern.compile("\\d*x\\d*");
+//                Matcher m = p.matcher(strednaCast);
+//                if (m.find())
+//                    nameUpravene+=strednaCast;
+//                m = p.matcher(strednaCast2);
+//                if (m.find())
+//                    nameUpravene+=strednaCast2;
 
 
                 //rozne specificke nazvy, kde neplati standardizovany sposob vytvarania nazvu

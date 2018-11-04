@@ -150,6 +150,9 @@ public class HLAVNA {
             case "pomoc":
                 PomocnyClassHocico.zapisProduktov();
                 break;
+            case "konku":
+                AutroCennikUpdate.spustiProgram();
+                break;
 
 
         }

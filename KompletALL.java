@@ -18,6 +18,7 @@ public class KompletALL {
         produktyALL.addAll(XMLTempo.zapisProduktov());
         produktyALL.addAll(XMLDrevona2017.zapisProduktov());
         produktyALL.addAll(XMLAutronic.zapisProduktov());
+//        produktyALL.addAll(XMLNellys.zapisProduktov());
 //        prestaNase = PrestaIDRead.filePresta();
         prestaNase = Premenne.prestaIDPremenne;
 
@@ -84,7 +85,7 @@ public class KompletALL {
                         citac.close();
 
 // zmena ceny, contains, nie equals, prestaID ma desatinne, XML ma bez desatinnej ciarky, aktivita 9 = vyhodene produkty, nechceme ich, Autronic nema ceny
-                        if ((!(XMLCena.contains(prestaMOC)) && (XMLAktivita.contains("1")))) {
+                        if ((!(prestaMOC.contains(XMLCena)) && (XMLAktivita.contains("1")))) {
 //ak doslo k zmene ceny, spravi zmenu ceny, ale ak doslo k zmene pevne zadanej ceny /CENAOFF/, tak to zapise, ako "Zmena OFF ceny"
                             if (!(codeOFF.equals(prestaNase.get(p).getKod()))) {
                                 System.out.println(prestaNase.get(p).getKod()+";"+prestaMOC+";"+produktyALL.get(s).getMOC()+";"+produktyALL.get(s).getVyrobca());

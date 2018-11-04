@@ -24,8 +24,6 @@ import java.util.ArrayList;
 		String pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null,active,
 				size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null, priceVOC = null;
 
-
-//		prestaIDlist = PrestaIDRead.filePresta();
 		prestaIDlist = Premenne.prestaIDPremenne;
 
 //zapis XMLAutronic do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
@@ -34,8 +32,7 @@ import java.util.ArrayList;
 		PrintWriter writerSubor = new PrintWriter(Premenne.cesta+"XML\\autronic\\"+fileFinding+fileNumber+".csv", "UTF-8");
 		writerSubor.println("PrestaID;Kod;Nazov;Farba;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina;IMGURL;Vaha");
 
-		autroAkcia = Met_AutAction.produkty();  //nacitanie akciovych produktov
-		autroPrice = Met_AutAction.ceny(autroAkcia);  //nacitanie akciovych cien
+
 
 // vycucnutie produktov z XML feedu a ich zapis do arraylistu
 // BEZ OHLADU NA SKLAD ******
@@ -129,6 +126,7 @@ import java.util.ArrayList;
 						priceString = prestaIDlist.get(p).getMOC().replace(",",".");
 						name = prestaIDlist.get(p).getNazov();
 						pomocnaPresta = "2";
+
 						break;
 					}
 				}
@@ -140,11 +138,14 @@ import java.util.ArrayList;
 // ak sa zhodne kategoria alebo kod s vyhodenymi, tak tento vyrobok zmením na neaktívny, ak nie, pokracujem
 				active = Met_Activity.zistiAktivitu(category, code, name, active,"AUTRONIC");
 
-// ak sa zhodne cena s cennikovou cenou, zmena na cennikovu
-				for (i = 0; i < autroPrice.size(); i++) {
-					String hladanyKod = autroPrice.get(i).getKod();
-					if (hladanyKod.equals(code)) {
-						String hladanyPrice = String.valueOf(autroPrice.get(i).getMOCBigDecimal());
+// ak sa zhodne cena s akciovou cenou, zmena na akciovu
+				autroAkcia = Met_AutAction.produkty();  //nacitanie akciovych produktov
+//				autroPrice = Met_AutAction.ceny(autroAkcia);  //nacitanie akciovych cien
+				for (i = 0; i < autroAkcia.size(); i++) {
+//					String hladanyKod = autroPrice.get(i).getKod();
+//					if (hladanyKod.equals(code)) {
+					if (code.equals(autroAkcia.get(i).getKod())) {
+						String hladanyPrice = String.valueOf(autroAkcia.get(i).getMOCBigDecimal());
 						priceString = (hladanyPrice.replace(",",".")).trim();
 						break;
 					}
@@ -152,6 +153,7 @@ import java.util.ArrayList;
 
 				color = Met_Color.zistiFarbu(name, vyrobca);  //z nazvu zisti farbu
 //				color = Premenne.complexReplace (Premenne.cesta+"Zoznam_farba.csv");
+
 
 				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, "novyNazov",vyrobca, active, "popissss",
 						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, "sirka","vyska","hlbka","dlzka"));

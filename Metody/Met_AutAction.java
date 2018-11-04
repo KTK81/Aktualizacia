@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Met_AutAction {
-    //nacita zoznam akciovych produktov, kody vyrobkov
+    //nacita zoznam akciovych produktov, kody vyrobkov plus akciove ceny
     public static ArrayList<Produkt> produkty () throws IOException {
         BigDecimal priceAkcia;
         ArrayList<Produkt>autroAkcia = new ArrayList<>();
@@ -40,32 +40,32 @@ public class Met_AutAction {
         return autroAkcia;
     }
 
-    public static ArrayList<Produkt> ceny (ArrayList<Produkt> autroAkcia) throws IOException {
-        //nacita zoznam akciovych produktov, ceny vyrobkov
-        BigDecimal price = null;
-        ArrayList<Produkt>autroPrice = new ArrayList<>();
-        FileInputStream fin = new FileInputStream(Premenne.cestaZoznam+"autronic_cennik.txt");
-        BufferedReader citac = new BufferedReader(new InputStreamReader(fin, "UTF-8"));
-        String riadok = citac.readLine();
-        while (riadok != null) {
-            riadok = citac.readLine();
-            if (riadok != null) {
-                int bodkociarka = riadok.indexOf(";");
-                String codePrice = riadok.substring(0, bodkociarka);
-                String priceTemp = ((riadok.substring(bodkociarka+1)).replace(",",".")).trim();
-                price = new BigDecimal(priceTemp);
-
-                // pozrie na akciove produkty a ak najde, priradi do "price" akciovu cenu, tak ju potom nevyhodi ako rozdielnu, pri konecnom porovnavani
-                for (int j=0; j<autroAkcia.size();j++) {
-                    if (autroAkcia.get(j).getKod().equals(codePrice))
-                        price = autroAkcia.get(j).getMOCBigDecimal();
-                }
-                autroPrice.add (new Produkt(codePrice,price));
-            }
-        }
-        citac.close();
-        return autroPrice;
-    }
+//    public static ArrayList<Produkt> ceny (ArrayList<Produkt> autroAkcia) throws IOException {
+//        //nacita zoznam akciovych produktov, ceny vyrobkov
+//        BigDecimal price = null;
+//        ArrayList<Produkt>autroPrice = new ArrayList<>();
+//        FileInputStream fin = new FileInputStream(Premenne.cestaZoznam+"autronic_cennik.txt");
+//        BufferedReader citac = new BufferedReader(new InputStreamReader(fin, "UTF-8"));
+//        String riadok = citac.readLine();
+//        while (riadok != null) {
+//            riadok = citac.readLine();
+//            if (riadok != null) {
+//                int bodkociarka = riadok.indexOf(";");
+//                String codePrice = riadok.substring(0, bodkociarka);
+//                String priceTemp = ((riadok.substring(bodkociarka+1)).replace(",",".")).trim();
+//                price = new BigDecimal(priceTemp);
+//
+//                // pozrie na akciove produkty a ak najde, priradi do "price" akciovu cenu, tak ju potom nevyhodi ako rozdielnu, pri konecnom porovnavani
+//                for (int j=0; j<autroAkcia.size();j++) {
+//                    if (autroAkcia.get(j).getKod().equals(codePrice))
+//                        price = autroAkcia.get(j).getMOCBigDecimal();
+//                }
+//                autroPrice.add (new Produkt(codePrice,price));
+//            }
+//        }
+//        citac.close();
+//        return autroPrice;
+//    }
 
 
 
