@@ -146,13 +146,13 @@ public class Met_Name {
                 nameUpravene = prva_cast + druha_cast + farba;
 
                 //postel, rozmery - v texte, "x" ko sa normalne nevystihuje
-//                Pattern p = Pattern.compile("\\d*x\\d*");
-//                Matcher m = p.matcher(strednaCast);
-//                if (m.find())
-//                    nameUpravene+=strednaCast;
-//                m = p.matcher(strednaCast2);
-//                if (m.find())
-//                    nameUpravene+=strednaCast2;
+                Pattern p = Pattern.compile("\\d*x\\d*");
+                Matcher m = p.matcher(strednaCast);
+                if (m.find())
+                    nameUpravene = prva_cast + druha_cast + strednaCast + farba;
+                m = p.matcher(strednaCast2);
+                if (m.find())
+                    nameUpravene = prva_cast + druha_cast + strednaCast2 + farba;
 
 
                 //rozne specificke nazvy, kde neplati standardizovany sposob vytvarania nazvu

@@ -11,6 +11,7 @@ public class Premenne {
     public static String cesta = "C:\\Users\\jano\\Disk Google\\JAVA\\subory\\";
 //    public static String cestaXML = "C:\\Users\\Jan\\Disk Google\\JAVA\\subory\\XML\\";
     public static String cestaZoznam = "C:\\Users\\jano\\Disk Google\\JAVA\\subory\\zoznamy\\";
+    public static String featureOzajSKL = "na sklade";
     public static String featureSKL = "1 - 3 dni (skladom)";
     public static String feature2tyzdne = "2 - 14 dní";
     public static String feature4tyzdne = "3 - 5 týždňov";
@@ -26,6 +27,9 @@ public class Premenne {
             e.printStackTrace();
         }
     }
+
+
+
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm");
     private static LocalDateTime dateTime = LocalDateTime.now();

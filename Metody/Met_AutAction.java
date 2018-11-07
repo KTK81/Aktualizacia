@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Met_AutAction {
     //nacita zoznam akciovych produktov, kody vyrobkov plus akciove ceny
-    public static ArrayList<Produkt> produkty () throws IOException {
+    public static ArrayList<Produkt> produkty (String moznost) throws IOException {
         BigDecimal priceAkcia;
         ArrayList<Produkt>autroAkcia = new ArrayList<>();
         //nacitanie akciovych produktov
@@ -22,6 +22,7 @@ public class Met_AutAction {
                 int bodkociarka3 = riadokAkcia.indexOf(";", bodkociarka2+1);
                 int bodkociarka4 = riadokAkcia.indexOf(";", bodkociarka3+1);
                 String codeAkcia = riadokAkcia.substring(bodkociarka+1, bodkociarka2);
+                String categoryAkcia = riadokAkcia.substring(bodkociarka2+1, bodkociarka3);
 //                priceAkciaString = ((riadokAkcia.substring(bodkociarka3 + 1, bodkociarka4)).replace(",", "."));
                 priceAkciaString = ((riadokAkcia.substring(bodkociarka3 + 1, bodkociarka4)));
                 if (priceAkciaString.contains(",")) {
@@ -33,7 +34,12 @@ public class Met_AutAction {
 
                 priceAkcia = new BigDecimal(priceAkciaString);
                 priceAkcia = priceAkcia.setScale(2);
-                autroAkcia.add (new Produkt(codeAkcia,priceAkcia));
+                if (moznost.equals("cena")) {
+                    autroAkcia.add(new Produkt(codeAkcia, priceAkcia));
+                }
+                if (moznost.equals("kategoria")) {
+                    autroAkcia.add(new Produkt(codeAkcia, categoryAkcia));
+                }
             }
         }
         citacAkcia.close();

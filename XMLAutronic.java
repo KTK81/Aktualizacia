@@ -17,7 +17,8 @@ import java.util.ArrayList;
 	public static ArrayList<Produkt> zapisProduktov() throws IOException{
 		ArrayList<Produkt>autroProdukty=new ArrayList<>();
 		ArrayList<Produkt>autroPrice=new ArrayList<>();
-		ArrayList<Produkt>autroAkcia=new ArrayList<>();
+		ArrayList<Produkt>autroAkciaCena=new ArrayList<>();
+		ArrayList<Produkt>autroAkciaKategoria=new ArrayList<>();
 		ArrayList<Produkt>prestaIDlist;
 		int i, s, p, vahaInt = 1;
 		String vyrobca = "AUTRONIC";
@@ -102,7 +103,7 @@ import java.util.ArrayList;
 									double dostupnostPoruba = 0;
 									dostupnostPoruba = Double.parseDouble(dostupnostModified);
 									if (dostupnostPoruba >= 3) {
-										dostupnost = Premenne.featureSKL;
+										dostupnost = Premenne.featureOzajSKL;
 									} else if (dostupnost.contains("nikde")) {
 										active = "0";
 									}
@@ -123,6 +124,15 @@ import java.util.ArrayList;
 					if (prestaIDlist.get(p).getKod().equals(code)) {
 						prestaID = prestaIDlist.get(p).getPrestaID();
 						category = prestaIDlist.get(p).getSkupina();
+						//ak je tovar v akcii, prida ku category este "Akcia Autronic", aby pri zmenach nevyhadzovalo tento produkt z Akcie
+						autroAkciaKategoria = Met_AutAction.produkty("kategoria");
+						for (i = 0; i < autroAkciaKategoria.size(); i++) {
+							if (code.equals(autroAkciaKategoria.get(i).getKod())) {
+								category = autroAkciaKategoria.get(i).getMOC(); //je hlupo oznacene v Produkt Classe, druhy String ako MOC
+								break;
+							}
+						}
+
 						priceString = prestaIDlist.get(p).getMOC().replace(",",".");
 						name = prestaIDlist.get(p).getNazov();
 						pomocnaPresta = "2";
@@ -139,13 +149,13 @@ import java.util.ArrayList;
 				active = Met_Activity.zistiAktivitu(category, code, name, active,"AUTRONIC");
 
 // ak sa zhodne cena s akciovou cenou, zmena na akciovu
-				autroAkcia = Met_AutAction.produkty();  //nacitanie akciovych produktov
+				autroAkciaCena = Met_AutAction.produkty("cena");  //nacitanie akciovych produktov
 //				autroPrice = Met_AutAction.ceny(autroAkcia);  //nacitanie akciovych cien
-				for (i = 0; i < autroAkcia.size(); i++) {
+				for (i = 0; i < autroAkciaCena.size(); i++) {
 //					String hladanyKod = autroPrice.get(i).getKod();
 //					if (hladanyKod.equals(code)) {
-					if (code.equals(autroAkcia.get(i).getKod())) {
-						String hladanyPrice = String.valueOf(autroAkcia.get(i).getMOCBigDecimal());
+					if (code.equals(autroAkciaCena.get(i).getKod())) {
+						String hladanyPrice = String.valueOf(autroAkciaCena.get(i).getMOCBigDecimal());
 						priceString = (hladanyPrice.replace(",",".")).trim();
 						break;
 					}

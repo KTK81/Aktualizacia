@@ -42,6 +42,7 @@ public class PorovnanieCien {
                 else {
                     stav = "INE ceny";
                 }
+                 System.out.println(kod+";"+cenaNasaDouble+";"+spravnaCena+";"+rozdiel+";"+stav);
                  writerSubor.println(prestID+";"+kod+";"+cenaNasaDouble+";"+spravnaCena+";"+rozdiel+";"+vyrobca+";"+kategoria+";"+stav);
                 Thread.sleep(500);
             }

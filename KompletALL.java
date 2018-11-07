@@ -106,6 +106,8 @@ public class KompletALL {
                         if ((!(prestaDostupnost.equals(XMLDostupnost))) && ((XMLAktivita.contains("1"))) && (!(XMLAktivita.contains("9")))) {
                             if (XMLDostupnost.contains(Premenne.featureSKL))
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.featureSKL, prestaNase.get(p).getDostupnost()));
+                            else if (XMLDostupnost.contains(Premenne.featureOzajSKL))
+                                docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.featureOzajSKL, prestaNase.get(p).getDostupnost()));
                             else if (XMLDostupnost.contains(Premenne.feature2tyzdne))
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("dostupnost", Premenne.feature2tyzdne, prestaNase.get(p).getDostupnost()));
                             else if (XMLDostupnost.contains(Premenne.feature4tyzdne))
