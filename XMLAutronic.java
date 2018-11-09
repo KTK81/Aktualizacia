@@ -16,14 +16,13 @@ import java.util.ArrayList;
  class XMLAutronic {
 	public static ArrayList<Produkt> zapisProduktov() throws IOException{
 		ArrayList<Produkt>autroProdukty=new ArrayList<>();
-		ArrayList<Produkt>autroPrice=new ArrayList<>();
 		ArrayList<Produkt>autroAkciaCena=new ArrayList<>();
 		ArrayList<Produkt>autroAkciaKategoria=new ArrayList<>();
 		ArrayList<Produkt>prestaIDlist;
-		int i, s, p, vahaInt = 1;
-		String vyrobca = "AUTRONIC";
-		String pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null, active, nameUpravene = null,
-				size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null, priceVOC = null;
+		int i, p, vahaInt = 1;
+		String vyrobca = "AUTRONIC", pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null, active,
+				nameUpravene = null, size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null,
+				priceVOC = null;
 
 		prestaIDlist = Premenne.prestaIDPremenne;
 
@@ -33,31 +32,27 @@ import java.util.ArrayList;
 		PrintWriter writerSubor = new PrintWriter(Premenne.cesta+"XML\\autronic\\"+fileFinding+fileNumber+".csv", "UTF-8");
 		writerSubor.println("PrestaID;Kod;Nazov;Farba;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina;IMGURL;Vaha");
 
-
-
 // vycucnutie produktov z XML feedu a ich zapis do arraylistu
 // BEZ OHLADU NA SKLAD ******
 		System.out.println("Vytvaram Autronic - zaciatok");
 		try {
-//            URL url = new URL("http://www.artium.cz/exportvelkoobchodnicenik.ashx");
-			URL url = new URL("http://www.artium.sk/exportvelkoobchodnicenik2.ashx");
+			URL url = new URL("https://www.artium.sk/exportvelkoobchodnicenik2.ashx");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(url.openStream());
 			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("Zbozi");
 			for (int temp = 0; temp < nList.getLength(); temp++) {
+				IMGURL = "";
 				category = "original";
 				description = "popis";
 				active = "1";
+				vaha = "neurčená";
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-//					vahaInt = 1;
-					vaha = "neurčená";
 					Element eElement = (Element) nNode;
 					code = (eElement.getElementsByTagName("MatID").item(0).getTextContent()).trim();
 					name = (eElement.getElementsByTagName("Nazev").item(0).getTextContent()).trim();
-//					category = eElement.getElementsByTagName("SkupinyZbozi").item(0).getTextContent();
 					NodeList categoryMain = eElement.getElementsByTagName("SkupinaZbozi");
 					for (int k=0; k<categoryMain.getLength(); k++) {
 						Node stockNodeCategory = categoryMain.item(k);
@@ -66,6 +61,7 @@ import java.util.ArrayList;
 							category = stockElement.getAttribute("SkupinaZboziID");
 						}
 					}
+
 					rozmer = eElement.getElementsByTagName("Rozmer").item(0).getTextContent();
 //					objem = eElement.getElementsByTagName("Objem").item(0).getTextContent();
 					if (eElement.getElementsByTagName("Hmotnost").getLength()>0) {
@@ -111,8 +107,7 @@ import java.util.ArrayList;
 										}
 									}
 									dostupnostModified = sb.toString();
-									double dostupnostPoruba = 0;
-									dostupnostPoruba = Double.parseDouble(dostupnostModified);
+									double dostupnostPoruba = Met_Convert.stringToDouble(dostupnostModified);
 									if (dostupnostPoruba >= 3) {
 										dostupnost = Premenne.featureOzajSKL;
 									} else if (dostupnost.contains("nikde")) {
@@ -124,8 +119,20 @@ import java.util.ArrayList;
 					}
 
 //					description = eElement.getElementsByTagName("Popis").item(0).getTextContent();
-					if (eElement.getElementsByTagName("ObrazekHi").getLength()>0)
-						IMGURL = eElement.getElementsByTagName("ObrazekHi").item(0).getTextContent();
+					//obrazok + dalsie obrazky
+					if (eElement.getElementsByTagName("Obrazek").getLength()>0)
+						IMGURL = eElement.getElementsByTagName("Obrazek").item(0).getTextContent();
+					NodeList obrazkyAllNode = eElement.getElementsByTagName("Obrazek");
+					for (int ob=0; ob<obrazkyAllNode.getLength();ob++) {
+						Node stockNodeCategory = obrazkyAllNode.item(ob);
+						if (stockNodeCategory.getNodeType() == Node.ELEMENT_NODE) {
+							Element stockElement = (Element) stockNodeCategory;
+							if (ob>0)
+								IMGURL+=", ";
+							IMGURL +=stockElement.getAttribute("Url");
+						}
+					}
+//					System.out.println("kod:"+code+";obrazok:" + IMGURL);
 				}
 
 //nacitam PrestaID subor, z neho PrestaIDcka a Kategorie a to zapisem priamo do suboru
