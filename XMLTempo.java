@@ -33,7 +33,7 @@ public class XMLTempo {
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
         String code = null, name = null, price = null, priceVOC = null, dostupnost = null, category = null, active, name_spatny_nazov,
-                description = null, navod = null, vaha = null, productURL = null, objem = null, IMGURL = null, farba = null;
+                description = null, navod = null, vaha = null, productURL = null, objem = null, farba = null;
         System.out.println("Vytvaram Tempo - zaciatok");
         Authenticator.setDefault(new MyAuthenticator());
 
@@ -61,14 +61,11 @@ public class XMLTempo {
                         priceInt = priceInt * 1.2; //pripocita DPH
 //                        priceVOC = Double.toString(priceInt); //uz cena s DPH
                     }
-//                    IMGURL = eElement.getElementsByTagName("URL_OBRAZOK").item(0).getTextContent();
+                    //najprv stiahne hlavny obrazok a potom k nemu prida vsetky dalsie obrazky
                     obrazkyAll = eElement.getElementsByTagName("URL_OBRAZOK").item(0).getTextContent();
                     NodeList obrazkyAllNode = eElement.getElementsByTagName("OBRAZOK");
-                    for (int so = 0; so < obrazkyAllNode.getLength(); so++) {
-//                        String obrazokURL = (eElement.getElementsByTagName("OBRAZOK").item(so).getTextContent());
+                    for (int so = 0; so < obrazkyAllNode.getLength(); so++)
                         obrazkyAll+= ", "+(eElement.getElementsByTagName("OBRAZOK").item(so).getTextContent());
-//                        obrazkyAll+= ", "+obrazokURL;
-                    }
                     navod = eElement.getElementsByTagName("URL_MONTAZNY_NAVOD").item(0).getTextContent();
                     productURL = eElement.getElementsByTagName("URL_PRODUKT").item(0).getTextContent();
                     vaha = eElement.getElementsByTagName("HMOTNOST").item(0).getTextContent();
