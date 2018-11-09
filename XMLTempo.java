@@ -22,7 +22,7 @@ public class XMLTempo {
         int i, p, vahaInt = 0;
         double priceInt = 0;
         String pomocnaPresta, vahaString, prestaID = null;
-        String vyrobca = "Tempo-Kondela", nameUpravene = null, sirka=null, vyska=null, hlbka=null, dlzka=null;
+        String vyrobca = "Tempo-Kondela", nameUpravene = null, sirka=null, vyska=null, hlbka=null, dlzka=null, obrazkyAll = null;
         prestaIDlist = Premenne.prestaIDPremenne;
 
 //zapis XMLTempo do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
@@ -61,7 +61,14 @@ public class XMLTempo {
                         priceInt = priceInt * 1.2; //pripocita DPH
 //                        priceVOC = Double.toString(priceInt); //uz cena s DPH
                     }
-                    IMGURL = eElement.getElementsByTagName("URL_OBRAZOK").item(0).getTextContent();
+//                    IMGURL = eElement.getElementsByTagName("URL_OBRAZOK").item(0).getTextContent();
+                    obrazkyAll = eElement.getElementsByTagName("URL_OBRAZOK").item(0).getTextContent();
+                    NodeList obrazkyAllNode = eElement.getElementsByTagName("OBRAZOK");
+                    for (int so = 0; so < obrazkyAllNode.getLength(); so++) {
+//                        String obrazokURL = (eElement.getElementsByTagName("OBRAZOK").item(so).getTextContent());
+                        obrazkyAll+= ", "+(eElement.getElementsByTagName("OBRAZOK").item(so).getTextContent());
+//                        obrazkyAll+= ", "+obrazokURL;
+                    }
                     navod = eElement.getElementsByTagName("URL_MONTAZNY_NAVOD").item(0).getTextContent();
                     productURL = eElement.getElementsByTagName("URL_PRODUKT").item(0).getTextContent();
                     vaha = eElement.getElementsByTagName("HMOTNOST").item(0).getTextContent();
@@ -116,7 +123,7 @@ public class XMLTempo {
                 }
 
                 tempoProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", price, priceVOC, name, nameUpravene, vyrobca, active, description,
-                        productURL, IMGURL, navod, vaha, objem, farba, "rozmer", sirka, hlbka, vyska, dlzka));
+                        productURL, obrazkyAll, navod, vaha, objem, farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                 writerSubor.println(prestaID + ";" + code + ";" + name + ";" + active + ";123456 ;" + price + ";null;" +
                         dostupnost + ";" + category + ";" + vaha + ";" + navod);
