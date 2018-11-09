@@ -105,7 +105,7 @@ public class XMLTempo {
 //                System.out.println(code+"; active:"+active);
                 farba = Met_Color.zistiFarbu(name, vyrobca);
                 description = Met_Description.zistiPopis(description, "Tempo-Kondela");
-                nameUpravene = Met_Name.zistiNazov(name, "Tempo-Kondela", farba);
+                nameUpravene = Met_Name.zistiNazov(code, category, name, "Tempo-Kondela", farba);
                 if (!code.equals("0000192487")) {
                     ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
 //                    System.out.println("kod: "+code);

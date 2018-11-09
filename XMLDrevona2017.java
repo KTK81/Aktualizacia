@@ -115,7 +115,7 @@ public class XMLDrevona2017 {
                     if (!(name.contains("TEXT"))) {
 //                        farba = Met_Color.zistiFarbu (name, "DREVONA");
                         farba = Met_Color.zistiFarbu(name, "DREVONA");
-                        nameUpravene = Met_Name.zistiNazov(name, "DREVONA", description);
+                        nameUpravene = Met_Name.zistiNazov(code, category, name, "DREVONA", description);
 
                         ArrayList<Produkt>rozmery = Met_Dimensions.findDimensions(description, vyrobca);
                         sirka = rozmery.get(0).getSirka();

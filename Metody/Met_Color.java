@@ -13,7 +13,7 @@ public class Met_Color {
         if (vyrobca.equals("Tempo-Kondela"))
             subor = "Zoznam_farba_tempo.csv";
         if (vyrobca.equals("AUTRONIC"))
-            subor = "Zoznam_farba_tempo.csv";
+            subor = "Zoznam_farba_autronic.csv";
 
         ArrayList<Produkt> temp=Premenne.complexReplace(Premenne.cestaZoznam+subor);
         for (int i=0; i<temp.size();i++) {

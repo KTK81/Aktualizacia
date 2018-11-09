@@ -22,7 +22,7 @@ import java.util.ArrayList;
 		ArrayList<Produkt>prestaIDlist;
 		int i, s, p, vahaInt = 1;
 		String vyrobca = "AUTRONIC";
-		String pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null,active,
+		String pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null, active, nameUpravene = null,
 				size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null, priceVOC = null;
 
 		prestaIDlist = Premenne.prestaIDPremenne;
@@ -47,6 +47,8 @@ import java.util.ArrayList;
 			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("Zbozi");
 			for (int temp = 0; temp < nList.getLength(); temp++) {
+				category = "original";
+				description = "popis";
 				active = "1";
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -55,7 +57,15 @@ import java.util.ArrayList;
 					Element eElement = (Element) nNode;
 					code = (eElement.getElementsByTagName("MatID").item(0).getTextContent()).trim();
 					name = (eElement.getElementsByTagName("Nazev").item(0).getTextContent()).trim();
-					category = eElement.getElementsByTagName("SkupinyZbozi").item(0).getTextContent();
+//					category = eElement.getElementsByTagName("SkupinyZbozi").item(0).getTextContent();
+					NodeList categoryMain = eElement.getElementsByTagName("SkupinaZbozi");
+					for (int k=0; k<categoryMain.getLength(); k++) {
+						Node stockNodeCategory = categoryMain.item(k);
+						if (stockNodeCategory.getNodeType() == Node.ELEMENT_NODE) {
+							Element stockElement = (Element) stockNodeCategory;
+							category = stockElement.getAttribute("SkupinaZboziID");
+						}
+					}
 					rozmer = eElement.getElementsByTagName("Rozmer").item(0).getTextContent();
 //					objem = eElement.getElementsByTagName("Objem").item(0).getTextContent();
 					if (eElement.getElementsByTagName("Hmotnost").getLength()>0) {
@@ -66,6 +76,7 @@ import java.util.ArrayList;
 						vaha = 	String.valueOf(vahaInt);
 					}
 //					price = (eElement.getElementsByTagName("DoporucenaCenaSDph").item(0).getTextContent()).trim();
+//					System.out.println("kod:"+code+";category:"+category);
 
 // DOSTUPNOST
 					String dostupnostModified = "";
@@ -112,7 +123,7 @@ import java.util.ArrayList;
 						}
 					}
 
-					description = eElement.getElementsByTagName("Popis").item(0).getTextContent();
+//					description = eElement.getElementsByTagName("Popis").item(0).getTextContent();
 					if (eElement.getElementsByTagName("ObrazekHi").getLength()>0)
 						IMGURL = eElement.getElementsByTagName("ObrazekHi").item(0).getTextContent();
 				}
@@ -132,7 +143,6 @@ import java.util.ArrayList;
 								break;
 							}
 						}
-
 						priceString = prestaIDlist.get(p).getMOC().replace(",",".");
 						name = prestaIDlist.get(p).getNazov();
 						pomocnaPresta = "2";
@@ -143,7 +153,9 @@ import java.util.ArrayList;
 				if (pomocnaPresta.equals("0")) {
 					prestaID = "123456";
 					priceString = "6666";
-					category = "123456";
+					category = Met_Category.zistiKategoriu(category, vyrobca, name, description);
+//					category = "123456";
+//										System.out.println("kod:"+code+";category:"+category);
 				}
 // ak sa zhodne kategoria alebo kod s vyhodenymi, tak tento vyrobok zmením na neaktívny, ak nie, pokracujem
 				active = Met_Activity.zistiAktivitu(category, code, name, active,"AUTRONIC");
@@ -161,11 +173,12 @@ import java.util.ArrayList;
 					}
 				}
 
-				color = Met_Color.zistiFarbu(name, vyrobca);  //z nazvu zisti farbu
+				color = Met_Color.zistiFarbu(code, vyrobca);  //z nazvu zisti farbu
+				nameUpravene = Met_Name.zistiNazov(code, category, name, "AUTRONIC", color);
 //				color = Premenne.complexReplace (Premenne.cesta+"Zoznam_farba.csv");
 
 
-				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, "novyNazov",vyrobca, active, "popissss",
+				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, nameUpravene,vyrobca, active, "popis",
 						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, "sirka","vyska","hlbka","dlzka"));
 // Zapis produktov z XML do suboru
 				writerSubor.println(prestaID+";"+code+";"+name+";"+color+";"+active+";123456 ;"+priceString+";"+size+";"+dostupnost+";"+category+";"+IMGURL+";"+vaha);

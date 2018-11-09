@@ -38,6 +38,20 @@ public class Met_Category {
             }
         }
 
+        if (vyrobca.equals("AUTRONIC")) {
+            for (int i = 0; i < zoznamMeno.size(); i++) {
+                if (kategoriaOriginal.contains(zoznamMeno.get(i).getKod())) {
+                    kategoria = zoznamMeno.get(i).getMOC();
+                    break;
+                }
+            }
+            //VYNIMKY
+            if (meno.contains("aburet"))
+                kategoria = "Taburety, Kreslá, Obývačka";
+            if ((meno.contains("polička"))||(meno.contains("POLIČKA")))
+                kategoria = "Police, Poličky, Regále-skrinky-poličky, Obývačka, Spálňa, Detská izba";
+        }
+
 //hladam kategoriu v povodnom NAZVE vyrobku
         if (vyrobca.equals("Tempo-Kondela")) {
             ArrayList<Produkt> zoznamKategoria = Premenne.complexReplace(Premenne.cestaZoznam + suborCategory);

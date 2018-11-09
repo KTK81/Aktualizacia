@@ -5,9 +5,39 @@ import java.util.regex.Pattern;
 
 //vycucnutie farby z nazvu produktu
 public class Met_Name {
-    public static String zistiNazov (String nazov, String vyrobca, String popis) {
+    public static String zistiNazov (String kod, String category, String nazov, String vyrobca, String popis) {
         String farba = " , null";
-        String nameUpravene=null;
+        String nameUpravene= "nazov";
+//********** AUTRONIC *************
+        if (vyrobca.contains("AUTRONIC")) {
+            if (category.equals("Zrkadlá, Doplnky"))
+                nameUpravene = "Zrkadlo "+kod;
+            else if (category.equals("Televízne kreslá, Kreslá, Obývačka"))
+                nameUpravene = "TV kreslo "+kod;
+            else if (category.equals("Taburety, Kreslá, Obývačka"))
+                nameUpravene = "Taburet "+kod;
+            else if (category.equals("Stojany, Doplnky"))
+                nameUpravene = "Stojan "+kod;
+            else if (category.equals("Ratanový nábytok, Záhrada"))
+                nameUpravene = "!!! RUCNE ZADAJ !!!";
+            else if (category.equals("Police, Poličky, Regále-skrinky-poličky, Obývačka, Spálňa, Detská izba"))
+                nameUpravene = "Polica "+kod;
+            else if (category.contains("Stoličky"))
+                nameUpravene = "Stolička "+kod;
+            else if (category.contains("Konferenčné stolíky, Stolíky, Obývačka"))
+                nameUpravene = "Konferenčný stolík "+kod;
+            else if (category.contains("Kancelárske kreslá, Kancelária"))
+                nameUpravene = "Kancelárske kreslo "+kod;
+            else if (category.contains("Jedálenské stoly, Stoly, Kuchyňa"))
+                nameUpravene = "Jedálenský stôl "+kod;
+            else if (category.contains("Botníky, Predsieň"))
+                nameUpravene = "Botník "+kod;
+            else if (category.contains("Jedálenské sety, Kuchyňa"))
+                nameUpravene = "Jedálenský set "+kod;
+        }
+
+
+
 //********** DREVONA *************
         if (vyrobca.contains("DREVONA")) {
             if (nazov.contains("BIELA")) { //najprv poriesim farbu a okresanie kodu o koncove cisla

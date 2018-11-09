@@ -70,8 +70,10 @@ public class NoveProdukty {
 					break;
 				}
 			}
-			if (pomocnyHladanie == "0")
+			if (pomocnyHladanie == "0") {
 				writerVysledok.println(vyrobkyAutronic.get(s).getVysledokNove());
+				System.out.println(vyrobkyAutronic.get(s).getKod()+";"+vyrobkyAutronic.get(s).getPopis());
+			}
 		}
 	}
 			System.out.println("AUTRONIC hotovo");
