@@ -1,3 +1,4 @@
+import Metody.Met_Spy;
 import Metody.Premenne;
 import Metody.PrestaIDRead;
 import Metody.Produkt;
@@ -153,8 +154,9 @@ public class HLAVNA {
             case "konku":
                 AutroCennikUpdate.spustiProgram();
                 break;
-
-
+            case "hladaj":
+                Met_Spy.description("CT-393","hejnabytok");
+                break;
         }
         readerUser.close();
     }

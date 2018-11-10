@@ -22,7 +22,7 @@ import java.util.ArrayList;
 		int i, p, vahaInt = 1;
 		String vyrobca = "AUTRONIC", pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null, active,
 				nameUpravene = null, size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null,
-				priceVOC = null;
+				priceXML= null, vyska = null, sirka = null, hlbka = null, dlzka = null, priceVOC = null;
 
 		prestaIDlist = Premenne.prestaIDPremenne;
 
@@ -64,6 +64,7 @@ import java.util.ArrayList;
 
 					rozmer = eElement.getElementsByTagName("Rozmer").item(0).getTextContent();
 //					objem = eElement.getElementsByTagName("Objem").item(0).getTextContent();
+					priceXML = (eElement.getElementsByTagName("DoporucenaCenaSDph").item(0).getTextContent()).trim();
 					if (eElement.getElementsByTagName("Hmotnost").getLength()>0) {
 						vaha = eElement.getElementsByTagName("Hmotnost").item(0).getTextContent();
 						vaha = vaha.replaceAll(",", ".");
@@ -71,7 +72,7 @@ import java.util.ArrayList;
 						if (vahaInt == 0) vahaInt=1;
 						vaha = 	String.valueOf(vahaInt);
 					}
-//					price = (eElement.getElementsByTagName("DoporucenaCenaSDph").item(0).getTextContent()).trim();
+
 //					System.out.println("kod:"+code+";category:"+category);
 
 // DOSTUPNOST
@@ -133,6 +134,35 @@ import java.util.ArrayList;
 						}
 					}
 //					System.out.println("kod:"+code+";obrazok:" + IMGURL);
+
+					//vycucnutie Parametrov z jednotlivych child nodes. Vzdy si pozriem, aky nazov parametru bol a podla toho urcim,
+					// do ktorej premennej to nacitat.
+					NodeList listParametrov = eElement.getElementsByTagName("Parametr");
+					for (int par=0; par<listParametrov.getLength(); par++) {
+						String nodeNazov = null, nodeHodnota = "", pomocnyString = "nic";
+						NodeList testovaciaList = listParametrov.item(par).getChildNodes();
+						for (int child=0 ; child<testovaciaList.getLength() ; child++) {
+							Node najnovsiaNode = testovaciaList.item(child);
+							if (najnovsiaNode.getNodeType() == Node.ELEMENT_NODE) {
+								Element stockElement = (Element) najnovsiaNode;
+								nodeNazov = stockElement.getNodeName();
+								nodeHodnota = stockElement.getTextContent();
+
+								if (pomocnyString.contains("Výška (cm)"))
+									vyska="Výška: "+nodeHodnota+" cm";
+								if (pomocnyString.contains("Šířka (cm)"))
+									sirka="Šírka: "+nodeHodnota+" cm";
+								if (pomocnyString.contains("Hloubka (cm)"))
+									hlbka="Hĺbka: "+nodeHodnota+" cm";
+								pomocnyString = nodeHodnota;
+							}
+						}
+//						if (nodeHodnota.contains("Výška (cm)"))
+
+
+					}
+//					System.out.println(code+";vyska:"+vyska+";sirka:"+sirka);
+//					System.out.println(code+";vyska:"+vyska+";sirka:"+sirka+";hlbka:"+hlbka);
 				}
 
 //nacitam PrestaID subor, z neho PrestaIDcka a Kategorie a to zapisem priamo do suboru
@@ -159,7 +189,7 @@ import java.util.ArrayList;
 				}
 				if (pomocnaPresta.equals("0")) {
 					prestaID = "123456";
-					priceString = "6666";
+					priceString = priceXML;
 					category = Met_Category.zistiKategoriu(category, vyrobca, name, description);
 //					category = "123456";
 //										System.out.println("kod:"+code+";category:"+category);
@@ -180,13 +210,16 @@ import java.util.ArrayList;
 					}
 				}
 
+
+				if (prestaID.equals("123456"))
+					description = Met_Spy.description(code,"hejnabytok");
 				color = Met_Color.zistiFarbu(code, vyrobca);  //z nazvu zisti farbu
 				nameUpravene = Met_Name.zistiNazov(code, category, name, "AUTRONIC", color);
 //				color = Premenne.complexReplace (Premenne.cesta+"Zoznam_farba.csv");
 
 
-				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, nameUpravene,vyrobca, active, "popis",
-						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, "sirka","vyska","hlbka","dlzka"));
+				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, nameUpravene,vyrobca, active, description,
+						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, sirka ,vyska, hlbka, ""));
 // Zapis produktov z XML do suboru
 				writerSubor.println(prestaID+";"+code+";"+name+";"+color+";"+active+";123456 ;"+priceString+";"+size+";"+dostupnost+";"+category+";"+IMGURL+";"+vaha);
 	    		}

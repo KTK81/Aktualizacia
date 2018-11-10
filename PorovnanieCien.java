@@ -53,19 +53,14 @@ public class PorovnanieCien {
     public static Double najdiCenu(String kod) throws IOException {
         Double cenaDouble = 7777.7;
         try {
-//            if (kod.equals("BC-12481 WAL")) {
                 String kodNaHladanie = kod.replaceAll("\\s", "+");
-//                System.out.println(kodNaHladanie);
-//                URL hladanie = new URL("https://www.lacnyeshop.sk/search-engine.htm?slovo=" + kodNaHladanie + "&search_submit=&hledatjak=2");
                 URL hladanie = new URL("https://www.lacnyeshop.sk/lacnyeshop/e-search?q="+kodNaHladanie+"&qm=2");
-//                System.out.println(hladanie);
                 BufferedReader in = new BufferedReader(new InputStreamReader(hladanie.openStream()));
                 String riadokArtium = null;
                 Boolean naslo = false;
                 String cena = null;
                 while ((riadokArtium = in.readLine()) != null)    //načíta URL source kód, kým sú riadky, tak ide
                 {
-//                    System.out.println(riadokArtium);
                     if (riadokArtium.contains(kod))
                         naslo = true;
                     if (naslo && riadokArtium.contains("product_price_text")) {
@@ -74,11 +69,9 @@ public class PorovnanieCien {
                         cena = riadokArtium.substring(zaciatok + 20, koniec - 9);
                         cena = cena.replaceAll(",", ".");
                         cenaDouble = Double.parseDouble(cena);
-//                        System.out.println(hladanie);
                         break;
                     }
                 }
-//            }
         }
         catch (java.io.IOException e) {
             System.out.println("zla www");
