@@ -211,7 +211,7 @@ import java.util.ArrayList;
 				}
 
 
-				if (prestaID.equals("123456"))
+				if (prestaID.equals("123456")&&(!(active).equals("9"))) 
 					description = Met_Spy.description(code,"hejnabytok");
 				color = Met_Color.zistiFarbu(code, vyrobca);  //z nazvu zisti farbu
 				nameUpravene = Met_Name.zistiNazov(code, category, name, "AUTRONIC", color);
