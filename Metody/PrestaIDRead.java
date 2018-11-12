@@ -135,6 +135,14 @@ public class PrestaIDRead {
                     }
                 }
 
+                //blby AUTRONIC ma u mnohych drevenych stoliciek navysenu cenu o sedaky. Mohol by som priamo cenu navysit o sedaky, ALE
+                //mnoha konkurencia ma cenu oddelenu a tym padom na Heureke sa zobrazuju s cenou len za telo stolicky
+                //a ked clovek klikne na ich stranku, rovno sa navysi cena o sedak... Keby som to mal rovno navysene, tak som na Heureke uplne
+                //kdesi dole, pri zoradeni podla ceny. tak to musim mat aj ja oddelene... Ale ked vycucavam udaje cez SQLko a vytvorim si z toho
+                //subor PrestaID, z ktoreho cucam vsetky data, tak tam mam zlu cenu, cenu bez sedaku. Tak to musim navysit o cenu sedaku.
+                if (vyrobca.contains("AUTRONIC"))
+                    MOC = Met_Price.cenaAutronicSedaky(MOC, kod);
+
                 if (vyrobca.contains("AUTRONIC") || vyrobca.contains("Tempo-Kondela") || vyrobca.contains("Drevona")
                         || vyrobca.contains("NELLYS")|| vyrobca.contains("SAMESKIN")) {
                     prestaIDlist.add(new Produkt(idPresta, kod, name, aktivny, MOC, vyrobca, catMeno, dostupnost));

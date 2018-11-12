@@ -58,12 +58,12 @@ public class Met_Spy {
                         popisProduktu = popisProduktu.replaceAll("<br />", "");
 //                    break;
                 }
-                if (riadokKodu.contains("Výška v cm:")) {
-                    int zaciatokVyskyKodu = riadokKodu.indexOf("Výška v cm:");
-                    String vycucVyskaVyrobku = riadokKodu.substring(zaciatokVyskyKodu, zaciatokVyskyKodu+50);
-                    System.out.println("vyska:"+vycucVyskaVyrobku);
-
-                   }
+//                if (riadokKodu.contains("Výška v cm:")) {
+//                    int zaciatokVyskyKodu = riadokKodu.indexOf("Výška v cm:");
+//                    String vycucVyskaVyrobku = riadokKodu.substring(zaciatokVyskyKodu, zaciatokVyskyKodu+50);
+//                    System.out.println("vyska:"+vycucVyskaVyrobku);
+//
+//                   }
                 }
                 catch (StringIndexOutOfBoundsException siobe ) {
                     System.out.println("zle cosi");

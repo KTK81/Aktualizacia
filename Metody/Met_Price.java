@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Met_Price {
@@ -42,5 +43,38 @@ public class Met_Price {
             }
         }
         return price;
+    }
+
+    public static String cenaAutronicSedaky(String priceOriginal, String code) throws IOException {
+        BigDecimal price = null;
+        String priceString = null;
+        //nacitanie autronic_cennik_sedaky.txt - sucasnu cenu nahradi cenou nastavenou v subore autronic_cennik_sedaky.txt - navysi cenu o cenu sedaku
+        FileInputStream fin = new FileInputStream(Premenne.cestaZoznam+"autronic_cennik_sedaky.txt");
+        BufferedReader citac = new BufferedReader(new InputStreamReader(fin, "UTF-8"));
+        String riadok = citac.readLine();
+        while (riadok != null) {
+            riadok = citac.readLine();
+            if (riadok != null) {
+                int bodkociarka = riadok.indexOf(";");
+                int bodkociarka2 = riadok.indexOf(";",bodkociarka+1);
+                String codeSedak = riadok.substring(0, bodkociarka);
+                //String cisla su nanic, neviem ich scitat a Double nemam rad, robi mi to bordel s poctom desatinnych miest,
+                // neviem to ovladat a hadze mi casto vysledky typu 45.00000009
+                BigDecimal priceMain = new BigDecimal(riadok.substring(bodkociarka+1, bodkociarka2));
+                BigDecimal priceSedak = new BigDecimal(riadok.substring(bodkociarka2+1));
+
+                if (codeSedak.equals(code)) {
+                    price = priceMain.add(priceSedak);
+                    priceString = price.toString();
+                    System.out.println(code+";"+priceString);
+                }
+
+            }
+        }
+        citac.close();
+        //ak nenaslo kod so sedakom, tak by ostalo v priceString = null, to nechceme, chceme tam vtedy dat povodnu cenu;
+        if (price == null)
+            priceString = priceOriginal;
+        return priceString;
     }
 }
