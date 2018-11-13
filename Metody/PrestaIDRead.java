@@ -136,10 +136,13 @@ public class PrestaIDRead {
                 }
 
                 if (vyrobca.contains("AUTRONIC") || vyrobca.contains("Tempo-Kondela") || vyrobca.contains("Drevona")
-                        || vyrobca.contains("NELLYS")|| vyrobca.contains("SAMESKIN")) {
+                        || vyrobca.contains("Drevona")|| vyrobca.contains("NELLYS")|| vyrobca.contains("SAMESKIN")) {
+
                     prestaIDlist.add(new Produkt(idPresta, kod, name, aktivny, MOC, vyrobca, catMeno, dostupnost));
                     zapisPresta.println(idPresta+";"+kod+";"+name+";"+aktivny+";"+MOC+";"+vyrobca+";"+catMeno+";"+dostupnostOriginal
                             +";"+farba+";"+sirka+";"+hlbka+";"+vyska+";"+sed+";"+rozkladanie+";"+material+";"+nosnost+";"+calunenie+";"+dlzka+";"+vaha);
+                    if (kod.equals("C30634"))
+                        System.out.println("PrestaID;"+kod+";aktivita:"+aktivny);
                 }
             }
 

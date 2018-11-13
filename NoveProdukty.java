@@ -11,6 +11,7 @@ public class NoveProdukty {
 		ArrayList<Produkt> vyrobkyDrevona = new ArrayList<>();
 		ArrayList<Produkt> vyrobkyTempo = new ArrayList<>();
 		ArrayList<Produkt> vyrobkyAutronic = new ArrayList<>();
+		ArrayList<Produkt> vyrobkyNellys = new ArrayList<>();
 		ArrayList<Produkt> prestaSubor = new ArrayList<>();
 		int s, p;
 		String pomocnyHladanie,nahrada,produktURL = "0",pocetRiadkov = "0";
@@ -20,7 +21,8 @@ public class NoveProdukty {
 		prestaSubor = Premenne.prestaIDPremenne;
 //		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
 //		vyrobkyTempo = XMLTempo.zapisProduktov();
-		vyrobkyAutronic = XMLAutronic.zapisProduktov();
+//		vyrobkyAutronic = XMLAutronic.zapisProduktov();
+		vyrobkyNellys = XMLNellys.zapisProduktov();
 
 	  writerVysledok.println("Kod;Nazov;Nazov upraveny;Popis;Kategoria;Obrazok;Vyrobca;CenaNakup;CenaPredaj;Vaha;Short;Activ;Feature;Farba;Šírka;Hĺbka;Výška;Dĺžka;Výška sedu;Rozkladanie;Materiál;Nosnosť;Čalúnenie");
 
@@ -72,11 +74,28 @@ public class NoveProdukty {
 			}
 			if (pomocnyHladanie == "0") {
 				writerVysledok.println(vyrobkyAutronic.get(s).getVysledokNove());
-				System.out.println(vyrobkyAutronic.get(s).getKod()+";"+vyrobkyAutronic.get(s).getPopis());
 			}
 		}
 	}
 			System.out.println("AUTRONIC hotovo");
+
+//NELLYS
+		for(s=0; s < vyrobkyNellys.size(); s++) {
+			if (!(vyrobkyNellys.get(s).getAktivita().contains("9"))) {
+				pomocnyHladanie = "0";
+				for (p = 0; p < prestaSubor.size(); p++) {
+					if (prestaSubor.get(p).getKod().equals(vyrobkyNellys.get(s).getKod())) {
+						pomocnyHladanie = "2";
+						break;
+					}
+				}
+				if (pomocnyHladanie == "0") {
+					writerVysledok.println(vyrobkyNellys.get(s).getVysledokNove());
+					System.out.println(vyrobkyNellys.get(s).getKod()+";"+vyrobkyNellys.get(s).getPopis());
+				}
+			}
+		}
+		System.out.println("NELLYS hotovo");
 	    	writerVysledok.close();
 	}
 }

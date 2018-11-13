@@ -125,6 +125,9 @@ public class XMLDrevona2017 {
 
                     }
 
+                    if (code.equals("C30634"))
+                        System.out.println("XMLDrevona;"+code+";aktivita:"+active);
+
                     drevonaProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, nameUpravene, vyrobca, active, description,
                             productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru

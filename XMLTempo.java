@@ -90,7 +90,7 @@ public class XMLTempo {
                         prestaID = prestaIDlist.get(p).getPrestaID();
                         category = prestaIDlist.get(p).getSkupina();
                         pomocnaPresta = "2";
-                        if (dostupnost.equals("Na sklade"))
+                        if ((dostupnost.equals("Na sklade"))||(dostupnost.equals("Skladem")))
                             dostupnost = Premenne.featureSKL;
                         if (dostupnost.equals("Na objednávku"))
                             dostupnost = Premenne.feature2mesiace;

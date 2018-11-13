@@ -43,8 +43,6 @@ public class AutroCennikUpdate {
                 writerSubor.println(code+";"+price);
             }
             writerSubor.close();
-
-
     }
 }
 
