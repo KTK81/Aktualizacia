@@ -36,6 +36,7 @@ public class XMLNellys {
 
         try {
             String farba = null;
+//            URL url = new URL("https://www.nellys.sk/files/exports/movix.xml");
             URL url = new URL("https://www.nellys.sk/files/exports/movix_stock.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -43,6 +44,7 @@ public class XMLNellys {
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getElementsByTagName("ITEM");
             for (int temp = 0; temp < nList.getLength(); temp++) {
+                IMGURL = "";
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
@@ -53,14 +55,21 @@ public class XMLNellys {
                     price = (eElement.getElementsByTagName("PRICES_VAT").item(0).getTextContent()).trim();
                     delivery = eElement.getElementsByTagName("DELIVERY_TIME").item(0).getTextContent();
                     stock = (eElement.getElementsByTagName("AVAILABLE").item(0).getTextContent()).trim();
-                    IMGURL = eElement.getElementsByTagName("IMAGES").item(0).getTextContent();
+                    //obrazkov moze byt viacej, takze pekne cez NodeList
+                    NodeList IMGzoznam = eElement.getElementsByTagName("IMAGE");
+                    for (int z=0; z<IMGzoznam.getLength(); z++) {
+                        if (z > 0)
+                            IMGURL += ", ";
+                        IMGURL += eElement.getElementsByTagName("IMAGE").item(z).getTextContent();
+                    }
+
+//                    IMGURL = eElement.getElementsByTagName("IMAGES").item(0).getTextContent();
                     category = eElement.getElementsByTagName("CATEGORY_SHORT").item(0).getTextContent();
-//                    description = eElement.getElementsByTagName("DESCRIPTION").item(0).getTextContent();
-                    description = "popis";
+                    description = eElement.getElementsByTagName("DESCRIPTION").item(0).getTextContent();
                     active = "1";
                 }
 
-//zaujimaju ma z celej ponuky niekolko tisic vyrobkov len pohovky a kresielka, takze obmedzim s alen na tie
+//zaujimaju ma z celej ponuky niekolko tisic vyrobkov len pohovky a kresielka, takze obmedzim sa len na tie
                 if ((category.contains("křesílka"))||(category.contains("pohovky"))) {
 
 
@@ -83,7 +92,6 @@ public class XMLNellys {
 //cena, pokial sa v niecom lisi od normal, XML ceny z feedu
 //                price = Met_Price.zistiCenu(price, code);
 
-//povodne som tam mal cely text, ze "1 - 3 dni (skladom)", ale ani za boha sa to nevedelo sparovat s textom z PrestaID, tak som to zradikalizoval
                     if (stock.equals("0")) {
                         if (delivery.equals("Skladom"))
                             dostupnost = Premenne.featureMesiac; //skladom
@@ -95,7 +103,6 @@ public class XMLNellys {
 //                description = Met_Description.zistiPopis(description, "NELLYS");
 // uprava nazvu a zaroven vycucnutie farby; niektore vyrobky maju inu tvorbu nazvov
 //                farba = Met_Color.zistiFarbu(name, "NELLYS");
-//                nameUpravene = Met_Name.zistiNazov(name, "NELLYS", description);
 
 //                ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
 //                sirka = rozmery.get(0).getSirka();
@@ -103,13 +110,17 @@ public class XMLNellys {
 //                hlbka = rozmery.get(0).getHlbka();
 //                dlzka = rozmery.get(0).getDlzka();
 
-                }
+//                }
 
-            nellysProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, nameUpravene, vyrobca, active, description,
-                    productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
+                    category = Met_Category.zistiKategoriu(category,"NELLYS","","");
+                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
+
+                    nellysProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
+                            productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
-            writerSubor.println(prestaID + ";" + code + ";" + name + ";" + nameUpravene + ";" + farba + ";" + description + ";" + active + ";123456 ;"
-                    + price + ";" + stock + ";" + dostupnost + ";" + category + ";" + delivery + ";");
+                    writerSubor.println(prestaID + ";" + code + ";" + name + ";" + name + ";" + farba + ";" + description + ";" + active + ";123456 ;"
+                            + price + ";" + stock + ";" + dostupnost + ";" + category + ";" + delivery + ";");
+                }
         }
         }
          catch (Exception e) {

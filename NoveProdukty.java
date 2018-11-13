@@ -91,7 +91,6 @@ public class NoveProdukty {
 				}
 				if (pomocnyHladanie == "0") {
 					writerVysledok.println(vyrobkyNellys.get(s).getVysledokNove());
-					System.out.println(vyrobkyNellys.get(s).getKod()+";"+vyrobkyNellys.get(s).getPopis());
 				}
 			}
 		}

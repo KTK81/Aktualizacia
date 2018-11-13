@@ -15,29 +15,19 @@ public class Met_Category {
 
         //podla vyrobcu si urcim, ktore subory sa budu nacitavat - cesta je rovnaka, len nazov suboru si urcujem
         //na nacitanie pouzivam metodu Premenne.complexReplace - kde nacitam dva stlpce a cey get.Kod a get.MOC ich nacitam
-        if (vyrobca.equals("DREVONA"))
+        if (vyrobca.contains("AUTRONIC"))
+            suborMeno = "Zoznam_kategoria_autronic.csv";
+        if (vyrobca.contains("DREVONA"))
             suborMeno = "Zoznam_kategoria_drevona.csv";
-        if (vyrobca.equals("Tempo-Kondela")) {
+        if (vyrobca.contains("NELLYS"))
+            suborMeno = "Zoznam_kategoria_nellys.csv";
+        if (vyrobca.contains("Tempo-Kondela")) {
             suborMeno = "Zoznam_kategoria_tempo podla nazvu.csv";
             suborCategory = "Zoznam_kategoria_tempo podla kategorie.csv";
         }
-        if (vyrobca.equals("AUTRONIC"))
-            suborMeno = "Zoznam_kategoria_autronic.csv";
-        
         ArrayList<Produkt> zoznamMeno = Premenne.complexReplace(Premenne.cestaZoznam + suborMeno);
 
-
-
 //hladam kategoriu v povodnej KATEGORII
-        if (vyrobca.equals("DREVONA")) {
-            for (int i = 0; i < zoznamMeno.size(); i++) {
-                if (kategoriaOriginal.contains(zoznamMeno.get(i).getKod())) {
-                    kategoria = zoznamMeno.get(i).getMOC();
-                    break;
-                }
-            }
-        }
-
         if (vyrobca.equals("AUTRONIC")) {
             for (int i = 0; i < zoznamMeno.size(); i++) {
                 if (kategoriaOriginal.contains(zoznamMeno.get(i).getKod())) {
@@ -52,6 +42,23 @@ public class Met_Category {
                 kategoria = "Police, Poličky, Regále-skrinky-poličky, Obývačka, Spálňa, Detská izba";
         }
 
+        if (vyrobca.equals("DREVONA")) {
+            for (int i = 0; i < zoznamMeno.size(); i++) {
+                if (kategoriaOriginal.contains(zoznamMeno.get(i).getKod())) {
+                    kategoria = zoznamMeno.get(i).getMOC();
+                    break;
+                }
+            }
+        }
+
+        if (vyrobca.contains("NELLYS")) {
+            for (int i = 0; i < zoznamMeno.size(); i++) {
+                if (kategoriaOriginal.contains(zoznamMeno.get(i).getKod())) {
+                    kategoria = zoznamMeno.get(i).getMOC();
+                    break;
+                }
+            }
+        }
 //hladam kategoriu v povodnom NAZVE vyrobku
         if (vyrobca.equals("Tempo-Kondela")) {
             ArrayList<Produkt> zoznamKategoria = Premenne.complexReplace(Premenne.cestaZoznam + suborCategory);
