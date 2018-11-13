@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -20,7 +21,6 @@ public class XMLNellys {
         String pomocnaPresta, dostupnost = null, prestaID = null, sirka = null, vyska = null, dlzka = null, hlbka = null;
         String vyrobca = "NELLYS";
         prestaIDlist = Premenne.prestaIDPremenne;
-
 
 //zapis XMLNellys do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
         String fileFinding = ("nellys_produkty");
@@ -51,8 +51,22 @@ public class XMLNellys {
                     name = (eElement.getElementsByTagName("NAME").item(0).getTextContent()).trim();
                     code = (eElement.getElementsByTagName("CODE").item(0).getTextContent()).trim();
                     productURL = eElement.getElementsByTagName("URL").item(0).getTextContent();
-                    priceVOC = (eElement.getElementsByTagName("PRICES").item(0).getTextContent()).trim();
-                    price = (eElement.getElementsByTagName("PRICES_VAT").item(0).getTextContent()).trim();
+                    //cena je v elemente PRICES_VAT, kde su childNody PRICE_VAT, ten, ktory ma atribut  level="2" nas zaujima a hodnota tej Nody
+                    NodeList priceVOCzoznam = (eElement.getElementsByTagName("PRICE_VAT"));
+                    for (int pr=0; pr<priceVOCzoznam.getLength(); pr++) {
+                        Node priceJedenElement = priceVOCzoznam.item(pr);
+                        if (priceJedenElement.getNodeType() == Node.ELEMENT_NODE) {
+                            Element priceElement = (Element) priceJedenElement;
+                            if (priceElement.getAttribute("level").contains("2")) {
+                                priceVOC = priceElement.getTextContent();
+                            }
+                        }
+                    }
+                    //cena. Vieme velkoobchodnu cenu, to je priceVOC, no a chceme si pridat 30%, lebo maloobchodnu cenu nevieme
+                    Double priceDouble = Double.parseDouble(priceVOC);
+                    priceDouble = priceDouble*1.3;
+                    priceDouble = (double)Math.round(priceDouble * 100d) / 100d;
+                    price = priceDouble.toString();
                     delivery = eElement.getElementsByTagName("DELIVERY_TIME").item(0).getTextContent();
                     stock = (eElement.getElementsByTagName("AVAILABLE").item(0).getTextContent()).trim();
                     //obrazkov moze byt viacej, takze pekne cez NodeList
@@ -62,16 +76,14 @@ public class XMLNellys {
                             IMGURL += ", ";
                         IMGURL += eElement.getElementsByTagName("IMAGE").item(z).getTextContent();
                     }
-
-//                    IMGURL = eElement.getElementsByTagName("IMAGES").item(0).getTextContent();
                     category = eElement.getElementsByTagName("CATEGORY_SHORT").item(0).getTextContent();
+                    farba = eElement.getElementsByTagName("PEREX").item(0).getTextContent();
                     description = eElement.getElementsByTagName("DESCRIPTION").item(0).getTextContent();
                     active = "1";
                 }
 
 //zaujimaju ma z celej ponuky niekolko tisic vyrobkov len pohovky a kresielka, takze obmedzim sa len na tie
                 if ((category.contains("křesílka"))||(category.contains("pohovky"))) {
-
 
 //nacitam PrestaID subor, z neho PrestaIDcka a Kategorie a to zapisem priamo do suboru
 //ak nenajdem PrestaIDcko, tak mu dam PrestaID 123456
@@ -101,8 +113,6 @@ public class XMLNellys {
 
 //popis, cucam z XML
 //                description = Met_Description.zistiPopis(description, "NELLYS");
-// uprava nazvu a zaroven vycucnutie farby; niektore vyrobky maju inu tvorbu nazvov
-//                farba = Met_Color.zistiFarbu(name, "NELLYS");
 
 //                ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
 //                sirka = rozmery.get(0).getSirka();
@@ -112,6 +122,7 @@ public class XMLNellys {
 
 //                }
 
+                    farba = Met_Color.zistiFarbu(farba,"NELLYS");
                     category = Met_Category.zistiKategoriu(category,"NELLYS","","");
                     description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
 

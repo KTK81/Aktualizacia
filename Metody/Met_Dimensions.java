@@ -10,6 +10,7 @@ http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
 znak je znak, napr. š, v, h = jeden konkretny znak
 \d je cislo, ako digit, ked je \D, tak vsetko okrem cisla
 \w je word
+\s medzera, s ako space
 . je hocijaky znak
 | = or, alebo, nieco, or este daco
 ked pridam k danej veci "+", tak bud sa vyskytuje aspon raz alebo viackrat
