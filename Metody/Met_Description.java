@@ -55,6 +55,26 @@ public class Met_Description {
             description = description.replaceAll(";", " ").replaceAll("<p><br />", "<p> ").replaceAll("(\r\n|\n\r|\r|\n)", "<br />");
         }
 
+        if (vyrobca.contains("NELLYS")) {
+            //zas raz jeden popis, kde boli vsunute okom neviditelne NEW LINE znaky a robilo to brutal bordel
+            //Pretoze zaroven tam su <br /> <br /> znaky, na oddelenie riadkov, ale medzi nimi je hajzlik NEW LINE znak, ASCII kod 10
+            StringBuilder sb = new StringBuilder();
+            for (int k = 0; k < description.length(); k++) {
+                int asci = description.charAt(k);
+                if (description.charAt(k) == 10) {
+                    sb.append(' ');
+                } else
+                    sb.append(description.charAt(k));
+            }
+            description = sb.toString();
+            //par pravopisnych chyb
+            description = description.replaceAll("Obľúbené tovaru!","Obľúbený tovar!");
+            description = description.replaceAll("čvrtému","štvrtému");
+            description = description.replaceAll("pohovka je stabilný","pohovka je stabilná");
+            description = description.replaceAll("pohovky sa čtvrým","pohovky so štvrtým");
+            description = description.replaceAll("Pohovky odosielame len kuriérom.","");
+        }
+
         if (vyrobca.equals("Tempo-Kondela")) {
             description = description.replaceAll("\n", " , ").replaceAll(";", ",");
         }

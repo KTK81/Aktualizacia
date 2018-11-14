@@ -79,6 +79,25 @@ public class XMLNellys {
                     category = eElement.getElementsByTagName("CATEGORY_SHORT").item(0).getTextContent();
                     farba = eElement.getElementsByTagName("PEREX").item(0).getTextContent();
                     description = eElement.getElementsByTagName("DESCRIPTION").item(0).getTextContent();
+                    description = Met_Description.zistiPopis(description, "NELLYS");
+
+//                    StringBuilder sb = new StringBuilder();
+//                    for (int k = 0; k < description.length(); k++) {
+//                        int asci = description.charAt(k);
+////                        if (asci > 127)
+////                            System.out.println(";VACSIE:"+asci);
+////                        if (asci < 32)
+////                            System.out.println(";MENSIE:"+asci);
+//
+//                            if (description.charAt(k) == 10) {
+//                                sb.append(' ');
+//                            } else
+//                                sb.append(description.charAt(k));
+//                    }
+//                    description = sb.toString();
+                    System.out.println(code+";"+description);
+//                    description = description.replaceAll("<Strong>","TEST");
+
                     active = "1";
                 }
 
