@@ -66,9 +66,7 @@ public class Met_Price {
                 if (codeSedak.equals(code)) {
                     price = priceMain.add(priceSedak);
                     priceString = price.toString();
-                    System.out.println(code+";"+priceString);
                 }
-
             }
         }
         citac.close();
