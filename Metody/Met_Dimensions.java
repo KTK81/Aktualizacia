@@ -96,10 +96,47 @@ public class Met_Dimensions {
             }
         }
 
+        if (vyrobca.contains("NELLYS")) {
+            String rozmerVyska = "6666", rozmerSirka = "6666", rozmerDlzka = "6666", rozmerHlbka = "6666";
+            try {
+                Pattern vzorecVyska = Pattern.compile("\\s*Výška\\s*( - cca )*\\d*\\s*cm.");
+                Matcher najdiVyskuHrubu = vzorecVyska.matcher(description);
+                while (najdiVyskuHrubu.find())
+                    rozmerVyska = najdiVyskuHrubu.group();
+
+                Pattern vzorecCislo = Pattern.compile("\\d+");
+                Matcher najdiVysku = vzorecCislo.matcher(rozmerVyska);
+                while (najdiVysku.find())
+                    vyska += najdiVysku.group()+" cm";
+
+                Pattern vzorecSirka = Pattern.compile("\\s*Šírka\\s*\\d*s*cm.");
+                Matcher najdiSirkuHrubu = vzorecSirka.matcher(description);
+                while (najdiSirkuHrubu.find())
+                    rozmerSirka = najdiSirkuHrubu.group();
+
+                Matcher najdiSirku = vzorecCislo.matcher(rozmerSirka);
+                while (najdiSirku.find())
+                    sirka += najdiSirku.group()+" cm";
+
+                Pattern vzorecDlzka = Pattern.compile("\\s*Dĺžka\\s*\\d*s*cm.");
+                Matcher najdiDlzkuHrubu = vzorecDlzka.matcher(description);
+                while (najdiDlzkuHrubu.find())
+                    rozmerDlzka = najdiDlzkuHrubu.group();
+
+                Matcher najdiDlzku = vzorecCislo.matcher(rozmerDlzka);
+                while (najdiDlzku.find())
+                    hlbka = "Dĺžka: "+najdiDlzku.group()+" cm";
+
+            }
+
+            catch (Exception e) {
+                System.out.println("Met_Dimensions;nenasloooo  " + description);
+                e.printStackTrace();
+            }
+        }
 
         if (vyrobca.contains("Tempo-Kondela")) {
             try {
-
 
                 if (description.contains("Rozmery (ŠxH):")) {
                     //vycucnem text v okoli rozmerov
@@ -122,7 +159,6 @@ public class Met_Dimensions {
                         hlbka += m.group(1) + " cm";
                     }
                 }
-
 
                 if (description.contains("ŠxHxV")) {
                     //vycucnem text v okoli rozmerov
@@ -193,8 +229,6 @@ public class Met_Dimensions {
                     }
                 }
 
-
-
                 if (description.contains("ŠxVxH")) {
                     //vycucnem text v okoli rozmerov
                     Pattern p = Pattern.compile("ŠxVxH(.*?)(cm| , )");
@@ -206,9 +240,6 @@ public class Met_Dimensions {
                     while (m.find()) {
                         rozmer = m.group();
                     }
-
-//                    System.out.println("0 description:"+description);
-//                    System.out.println("1 rozmer:"+rozmer);
 
                     p = Pattern.compile("(\\s|:)+(\\d+((\\.|\\,)\\d+)?)x");
                     m = p.matcher(rozmer);
@@ -237,10 +268,6 @@ public class Met_Dimensions {
 
                     }
                 }
-
-
-
-
 
                     if ((description.contains("Rozmery (ŠxD)"))||(description.contains("Rozmery: (ŠxD)"))) {
                         //vycucnem text v okoli rozmerov
@@ -282,7 +309,6 @@ public class Met_Dimensions {
                 System.out.println("nenasloooo  " + description);
                 e.printStackTrace();
             }
-
         }
 
 //        System.out.println(sirka+";"+vyska+";"+hlbka);

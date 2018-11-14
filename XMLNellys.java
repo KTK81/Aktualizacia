@@ -114,18 +114,19 @@ public class XMLNellys {
 //popis, cucam z XML
 //                description = Met_Description.zistiPopis(description, "NELLYS");
 
-//                ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
-//                sirka = rozmery.get(0).getSirka();
-//                vyska = rozmery.get(0).getVyska();
-//                hlbka = rozmery.get(0).getHlbka();
-//                dlzka = rozmery.get(0).getDlzka();
+                ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
+                sirka = rozmery.get(0).getSirka();
+                vyska = rozmery.get(0).getVyska();
+                hlbka = rozmery.get(0).getHlbka();
+                dlzka = rozmery.get(0).getDlzka();
 
 //                }
 
                     farba = Met_Color.zistiFarbu(farba,"NELLYS");
                     category = Met_Category.zistiKategoriu(category,"NELLYS","","");
-                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
+//                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
 
+                    System.out.println(code+";"+description);
                     nellysProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
                             productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
