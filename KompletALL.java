@@ -19,7 +19,6 @@ public class KompletALL {
 //        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
 //        produktyALL.addAll(XMLAutronic.zapisProduktov());
 //        produktyALL.addAll(XMLNellys.zapisProduktov());
-//        prestaNase = PrestaIDRead.filePresta();
         prestaNase = Premenne.prestaIDPremenne;
 
 // HOTOVO, konečné porovnanie suborov a zapisanie vysledkov

@@ -27,9 +27,28 @@ public class Met_CatZostavy {
         //pri Ermo je problem, zopar divnych produktov sa tam primiesava, tak som to este obmedzil na Sedacie supravy
         if ((meno.contains("ERMO"))&&(kategoria.contains("Sedacie súpravy"))&&!(kategoria.contains("Ermo"))) {
             kategoria += ", Ermo, Sedačky na mieru";
-            System.out.println(PrestaCislo+";"+kod+";"+nazov+";"+kategoriaOriginal+";***;"+kategoria);
+        }
+        if ((meno.contains("GEVONA"))&&!(kategoria.contains("Gevona"))) {
+            kategoria += ", Gevona, Sedačky na mieru";
+        }
+        //pri tejto kategorii je problem, zopar divnych produktov sa tam primiesava, tak som to este obmedzil dalsimi podmienkami
+        if ((meno.contains("IZA"))&&!(kategoria.contains("Iza new"))&&(kategoria.contains("Obývačka"))&&!(kategoria.contains("kreslá"))) {
+            kategoria += ", Iza new, Sedačky na mieru";
+        }
+        if ((meno.contains("MARIETA"))&&!(kategoria.contains("Marieta"))&&!(meno.contains("žltá"))&&!(kategoria.contains("kreslá"))) {
+            kategoria += ", Marieta, Sedačky na mieru";
+        }
+        if ((meno.contains("OREGON"))&&!(kategoria.contains("Oregon"))) {
+            kategoria += ", Oregon, Sedačky na mieru";
+        }
+        if ((meno.contains("ROSANA"))&&!(kategoria.contains("Rosana"))) {
+            kategoria += ", Rosana, Sedačky na mieru";
+            System.out.println(PrestaCislo+";"+kod+";"+nazov+" ***** "+kategoriaOriginal+" ***** "+kategoria);
         }
 
+
+
+//        System.out.println(PrestaCislo+";"+kod+";"+nazov+";   ;"+kategoriaOriginal+";   ;"+kategoria);
         return kategoria;
     }
 }

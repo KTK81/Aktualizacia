@@ -11,9 +11,11 @@ public class PrestaIDRead {
         ArrayList<String> obrazy = new ArrayList<>();
         String catMeno = null;
         PrintWriter zapisPresta = new PrintWriter(Premenne.cesta+"PrestaID.csv", "UTF-8");
-        PrintWriter zapisVysledku = new PrintWriter(Premenne.cesta + "pomocnySuborVysledok.csv", "UTF-8");
         zapisPresta.println("id_product;reference;product_name;active;CAST(ps_product.price*1.2 as decimal (38,2));" +
                 "vyrobca_name;id_category_default;description_short;farba;sirka;hlbka;vyska;vyska sedu;rozkladanie;material;nosnost;calunenie;dlzka;vaha");
+        PrintWriter zapisVysledku = new PrintWriter(Premenne.cesta + "pomocnySuborVysledok.csv", "UTF-8");
+        zapisVysledku.println("id;kod;nazov;kategoria;kategoria zmenena");
+
 
 // nacitanie nazvu kategorii
         FileInputStream fin = new FileInputStream(Premenne.cestaZoznam+"kategorie_zoznam.csv");
