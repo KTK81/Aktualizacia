@@ -62,6 +62,7 @@ public class PrestaIDRead {
                     rozkladanie = null, dlzka = null;
             hladany = reader.readLine();
             if (hladany != null) {
+                catMeno = "";
                 int bodkociarka = hladany.indexOf(";");
                 int bodkociarka2 = hladany.indexOf(";",bodkociarka+1);
                 int bodkociarka3 = hladany.indexOf(";",bodkociarka2+1);
@@ -77,17 +78,20 @@ public class PrestaIDRead {
                 String MOC = hladany.substring(bodkociarka4+2, bodkociarka5-1);
                 String vyrobca = hladany.substring(bodkociarka5+2, bodkociarka6-1);
                 String kategoriaRequest = hladany.substring(bodkociarka6+2, bodkociarka7-1);
+
+
+
                 for (int i=0; i < categ.size(); i++) {
                     if (kategoriaRequest.equals(categ.get(i).getSkupina())) {
                         String kategoria=categ.get(i).getDostupnost();
                         catMeno=Met_CatZostavy.pridajZostavu(idPresta, kod, name, kategoria,name);
                         if (!(kategoria.equals(catMeno))) {
                             zapisVysledku.println(idPresta+";"+kod+";"+name+";"+kategoria+";"+catMeno);
-//                            System.out.println("testujem funkcnost;"+kod+";"+name+";"+kategoria+";"+catMeno);
                         }
                         break;
                     }
                 }
+
                 for (int i=0; i < obrazy.size(); i++) {
                     if (kod.equals(obrazy.get(i))) {
                         aktivny="0";
