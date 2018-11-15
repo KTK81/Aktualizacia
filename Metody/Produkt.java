@@ -71,7 +71,6 @@ public class Produkt {
     public Produkt(String prestaID, String kod, String nazov, String aktivita, String MOC, String vyrobca, String skupina, String dostupnost) {
         this.kod = kod;
         this.prestaID = prestaID;
-        this.kod = kod;
         this.nazov = nazov;
         this.aktivita = aktivita;
         this.MOC = MOC;

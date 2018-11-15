@@ -11,6 +11,7 @@ public class PrestaIDRead {
         ArrayList<String> obrazy = new ArrayList<>();
         String catMeno = null;
         PrintWriter zapisPresta = new PrintWriter(Premenne.cesta+"PrestaID.csv", "UTF-8");
+        PrintWriter zapisVysledku = new PrintWriter(Premenne.cesta + "pomocnySuborVysledok.csv", "UTF-8");
         zapisPresta.println("id_product;reference;product_name;active;CAST(ps_product.price*1.2 as decimal (38,2));" +
                 "vyrobca_name;id_category_default;description_short;farba;sirka;hlbka;vyska;vyska sedu;rozkladanie;material;nosnost;calunenie;dlzka;vaha");
 
@@ -48,7 +49,7 @@ public class PrestaIDRead {
         String nazovSuboruSKL=("request_sql");
         File pomocnyNazov= Met_ZistiDatum.lastFileModified(Premenne.prestaIDDownload, nazovSuboruSKL);
         String suborMeno=pomocnyNazov.getPath();
-        System.out.println(suborMeno);
+        System.out.println("Vytvaram PrestaId zo suboru "+suborMeno);
         FileInputStream fis = new FileInputStream(suborMeno);
         BufferedReader reader = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
         String hladany = reader.readLine();
@@ -73,10 +74,15 @@ public class PrestaIDRead {
                 String aktivny = hladany.substring(bodkociarka3+2, bodkociarka4-1);
                 String MOC = hladany.substring(bodkociarka4+2, bodkociarka5-1);
                 String vyrobca = hladany.substring(bodkociarka5+2, bodkociarka6-1);
-                String kategoria = hladany.substring(bodkociarka6+2, bodkociarka7-1);
+                String kategoriaRequest = hladany.substring(bodkociarka6+2, bodkociarka7-1);
                 for (int i=0; i < categ.size(); i++) {
-                    if (kategoria.equals(categ.get(i).getSkupina())) {
-                        catMeno=categ.get(i).getDostupnost();
+                    if (kategoriaRequest.equals(categ.get(i).getSkupina())) {
+                        String kategoria=categ.get(i).getDostupnost();
+                        catMeno=Met_CatZostavy.pridajZostavu(idPresta, kod, name, kategoria,name);
+                        if (!(kategoria.equals(catMeno))) {
+                            zapisVysledku.println(idPresta+";"+kod+";"+name+";"+kategoria+";"+catMeno);
+//                            System.out.println("testujem funkcnost;"+kod+";"+name+";"+kategoria+";"+catMeno);
+                        }
                         break;
                     }
                 }
@@ -141,15 +147,15 @@ public class PrestaIDRead {
                     prestaIDlist.add(new Produkt(idPresta, kod, name, aktivny, MOC, vyrobca, catMeno, dostupnost));
                     zapisPresta.println(idPresta+";"+kod+";"+name+";"+aktivny+";"+MOC+";"+vyrobca+";"+catMeno+";"+dostupnostOriginal
                             +";"+farba+";"+sirka+";"+hlbka+";"+vyska+";"+sed+";"+rozkladanie+";"+material+";"+nosnost+";"+calunenie+";"+dlzka+";"+vaha);
-                    if (kod.equals("C30634"))
-                        System.out.println("PrestaID;"+kod+";aktivita:"+aktivny);
                 }
             }
 
         }
 
+        zapisVysledku.close();
         zapisPresta.close();
         reader.close();
+        System.out.println("Hotovo PrestaID");
         return prestaIDlist;
 
     }

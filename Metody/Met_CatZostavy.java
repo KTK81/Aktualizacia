@@ -1,6 +1,8 @@
 package Metody;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,13 +12,23 @@ import java.util.ArrayList;
 //takze, najprv priradim beznu kategoriu, Met_Category, ale potom doplnim este aj Zostavovsku kategoriu
 //Hlavna kategoria nech je originalna a zostavovska nech je len doplnkova. Takze prva musi byt original.
 public class Met_CatZostavy {
-    public static String pridajZostavu(String kategoriaOriginal, String meno) throws IOException {
-        String name = meno;
-        String suborMeno = null, suborCategory = null;
+    public static String pridajZostavu(String PrestaCislo, String nazov, String kod, String kategoriaOriginal, String meno) throws IOException {
+        String kategoria = kategoriaOriginal;
 
-        if (kategoriaOriginal.contains(""))
+        //ak vyrobok obsahuje v nazve zadany text, plus uz nie je zaradeny v Zostave /ze je nepouzitelny inde, len v Sektore, tak ma primarne zaradenu
+        //kategoriu Zostavy, tak mu logicky nechcem kategoriu Zostavy priradit znova
 
-
+        if ((meno.contains("BITER"))&&!(kategoria.contains("Biter"))) {
+            kategoria += ", Biter, Sedačky na mieru";
+        }
+        if ((meno.contains("BORN"))&&!(kategoria.contains("BORN"))) {
+            kategoria += ", BORN, Sedačky na mieru";
+        }
+        //pri Ermo je problem, zopar divnych produktov sa tam primiesava, tak som to este obmedzil na Sedacie supravy
+        if ((meno.contains("ERMO"))&&(kategoria.contains("Sedacie súpravy"))&&!(kategoria.contains("Ermo"))) {
+            kategoria += ", Ermo, Sedačky na mieru";
+            System.out.println(PrestaCislo+";"+kod+";"+nazov+";"+kategoriaOriginal+";***;"+kategoria);
+        }
 
         return kategoria;
     }

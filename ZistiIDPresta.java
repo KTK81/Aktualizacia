@@ -11,12 +11,14 @@ import Metody.PrestaIDRead;
 
 public class ZistiIDPresta {
     public static void spustiIDPresta() throws IOException {
-        PrintWriter writerVysledok = new PrintWriter(Premenne.cesta + "zistiIDckaPrestaVysledok.txt", "UTF-8");
+        PrintWriter writerVysledok = new PrintWriter(Premenne.cesta + "zistiIDckaPrestaVysledok.csv", "UTF-8");
     	ArrayList<String> zoznamKodov = new ArrayList<String>();
     	ArrayList<Produkt> prestaIDlist = new ArrayList<>();
     	
-    	prestaIDlist = PrestaIDRead.filePresta();
-    	
+    	prestaIDlist = Premenne.prestaIDPremenne;
+
+		System.out.println("Hladam IDčka k produktom z "+Premenne.cesta + "zistiIDckaImport.txt");
+
     	File fileImport = new File(Premenne.cesta + "zistiIDckaImport.txt");
     	try {
     	Scanner scannerNovy = new Scanner(fileImport);
@@ -24,7 +26,6 @@ public class ZistiIDPresta {
     	{
     		String hladany = scannerNovy.nextLine();
     		zoznamKodov.add(hladany);
-//    		System.out.println(hladany);
     	}
     	scannerNovy.close();
         } catch (FileNotFoundException e) {
@@ -53,7 +54,7 @@ public class ZistiIDPresta {
    				if (pomocnaPresta=="0")
     					writerVysledok.println("123456"+";"+hladanyKod);
     	}
-    	System.out.println("Hotovo");
+    	System.out.println("Hľadanie IDčiek hotovo");
   	writerVysledok.close();
     }       
 }

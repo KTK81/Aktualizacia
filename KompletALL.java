@@ -16,9 +16,9 @@ public class KompletALL {
         PrintWriter writerVysledokPublicNew = new PrintWriter(Premenne.cesta + "aktualizacia_new.csv", "UTF-8");
 
         produktyALL.addAll(XMLTempo.zapisProduktov());
-        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
+//        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
 //        produktyALL.addAll(XMLAutronic.zapisProduktov());
-        produktyALL.addAll(XMLNellys.zapisProduktov());
+//        produktyALL.addAll(XMLNellys.zapisProduktov());
 //        prestaNase = PrestaIDRead.filePresta();
         prestaNase = Premenne.prestaIDPremenne;
 
