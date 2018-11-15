@@ -43,6 +43,9 @@ public class Met_CatZostavy {
         }
         if ((meno.contains("ROSANA"))&&!(kategoria.contains("Rosana"))) {
             kategoria += ", Rosana, Sedačky na mieru";
+        }
+        if ((meno.contains("RUBA"))&&!(kategoria.contains("Ruba"))&&!(meno.contains("cream"))) {
+            kategoria += ", Ruba, Sedačky na mieru";
             System.out.println(PrestaCislo+";"+kod+";"+nazov+" ***** "+kategoriaOriginal+" ***** "+kategoria);
         }
 
