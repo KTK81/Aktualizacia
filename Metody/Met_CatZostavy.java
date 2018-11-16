@@ -6,6 +6,9 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.util.ArrayList;
+import Metody.Produkt;
+import Metody.Premenne;
+import Metody.PrestaIDRead;
 
 //ak je nieco v Zostavach, ci uz sedacia suprava, Obyvacia stena, Kuchynska linka, Detska izba, tak chcem, aby bola zaradena
 //v nejakej kategorii, napriklad Dolna skrinka, ale zaroven chcem, aby bola zaradena aj v nejakej Zostave, napriklad Zostava Aladin
@@ -13,7 +16,12 @@ import java.util.ArrayList;
 //Hlavna kategoria nech je originalna a zostavovska nech je len doplnkova. Takze prva musi byt original.
 public class Met_CatZostavy {
     public static String pridajZostavu(String PrestaCislo, String nazov, String kod, String kategoriaOriginal, String meno) throws IOException {
-        String kategoria = kategoriaOriginal;
+        String kategoria = kategoriaOriginal, pomocnyString = "";
+ArrayList <Produkt> produktyAll = new ArrayList();
+
+
+
+
 
         //ak vyrobok obsahuje v nazve zadany text, plus uz nie je zaradeny v Zostave /ze je nepouzitelny inde, len v Sektore, tak ma primarne zaradenu
         //kategoriu Zostavy, tak mu logicky nechcem kategoriu Zostavy priradit znova
@@ -51,6 +59,10 @@ public class Met_CatZostavy {
 //        }
 
 //KUCHYNSKE LINKY
+//        nerezovy dres, je vsade
+        if (kod.equals("04000499"))
+            kategoria += ", Irys, Nova Plus dub sonoma, Nova Plus biela, Vega, Prado červená vysoký lesk";
+
 //        if ((meno.contains("IRYS"))&&!(kategoria.contains("Irys"))) {
 //            kategoria += ", Irys";
 //        }
@@ -62,11 +74,23 @@ public class Met_CatZostavy {
 //        if ((meno.contains("NOVA PLUS"))&&!(kategoria.contains("Nova Plus"))&&(meno.contains("biel"))) {
 //            kategoria += ", Nova Plus biela";
 //        }
-        if ((meno.contains("VEGA"))&&!(kategoria.contains("Vega"))&&(kategoria.contains("Kuchynské linky"))) {
-            kategoria += ", Vega";
+
+
+
+
+
+
+//        if ((meno.contains("VEGA"))&&!(kategoria.contains("Vega"))&&(kategoria.contains("Kuchynské linky"))) {
+//            kategoria += ", Vega";
+//        }
+        //kombinacia, horne su cervene, spodne su sive
+        if (((meno.contains("PRADO"))&&!(kategoria.contains("Prado červená vysoký lesk"))&&(meno.contains("červený")))
+        || (((meno.contains("PRADO"))&&!(kategoria.contains("Prado červená vysoký lesk"))&&(meno.contains("dolná")))&&(meno.contains("sivá"))&&!(meno.contains("biela")))
+        ||(kod.equals("0000112483"))) {
+            kategoria += ", Prado červená vysoký lesk";
+            pomocnyString = "pradoCervena";
             System.out.println(PrestaCislo+";"+kod+";"+nazov+" ***** "+kategoriaOriginal+" ***** "+kategoria);
         }
-
 
 
 

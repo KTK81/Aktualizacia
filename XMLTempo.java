@@ -32,7 +32,7 @@ public class XMLTempo {
         writerSubor.println("PrestaID;Kod;Nazov;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina;Vaha;Navod");
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
-        String code = null, name = null, price = null, priceVOC = null, dostupnost = null, category = null, active, name_spatny_nazov,
+        String code = null, name = null, price = null, priceVOC = null, dostupnost = null, categoryOriginal = null, category = null, active, name_spatny_nazov,
                 description = null, navod = null, vaha = null, productURL = null, objem = null, farba = null;
         System.out.println("Vytvaram Tempo - zaciatok");
         Authenticator.setDefault(new MyAuthenticator());
@@ -52,7 +52,7 @@ public class XMLTempo {
                     code = (eElement.getElementsByTagName("KOD_TOVARU").item(0).getTextContent()).trim();
                     name = eElement.getElementsByTagName("H1").item(0).getTextContent();
                     description = eElement.getElementsByTagName("POPIS_TOVARU").item(0).getTextContent();
-                    category = eElement.getElementsByTagName("CENOVA_KATEGORIA").item(0).getTextContent();
+                    categoryOriginal = eElement.getElementsByTagName("CENOVA_KATEGORIA").item(0).getTextContent();
                     dostupnost = (eElement.getElementsByTagName("DOSTUPNOST").item(0).getTextContent()).trim();
                     price = (eElement.getElementsByTagName("MOC_SK").item(0).getTextContent()).trim();
                     priceVOC = (eElement.getElementsByTagName("VOC_SK").item(0).getTextContent()).trim(); //cena bez DPH
@@ -80,7 +80,7 @@ public class XMLTempo {
 
 
 // ak sa zhodne kategoria alebo nazov s vyhodenymi, tak tento vyrobok zmením na neaktívny, ak nie, pokracujem
-                active = Met_Activity.zistiAktivitu(category, code, name, "", "Tempo-Kondela");
+                active = Met_Activity.zistiAktivitu(categoryOriginal, code, name, "", "Tempo-Kondela");
 
 //nacitam PrestaID subor, z neho PrestaIDcka a Kategorie a to zapisem priamo do suboru
 //ak nenajdem PrestaIDcko, tak mu dam PrestaID 123456
@@ -123,7 +123,7 @@ public class XMLTempo {
                         productURL, obrazkyAll, navod, vaha, objem, farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                 writerSubor.println(prestaID + ";" + code + ";" + name + ";" + active + ";123456 ;" + price + ";null;" +
-                        dostupnost + ";" + category + ";" + vaha + ";" + navod);
+                        dostupnost + ";" + categoryOriginal + ";" + vaha + ";" + navod);
             }
 
         } catch (Exception e) {
