@@ -1,3 +1,4 @@
+import XML.*;
 import Metody.Premenne;
 import Metody.Produkt;
 import org.w3c.dom.Document;
@@ -23,6 +24,17 @@ public class DownPicAll {
         ArrayList<String> zoznamKodov = new ArrayList<String>();
         ArrayList<Produkt> prestaIDlist;
 
+        //vypol som autentificator, lebo hodilo error, ako som prehadzoval XML Tempo Class do XML Package
+        //LENZE tym padom toto treba aj tak prerobit - uz mozem cucat XML tempo rovno zo suboru, uz ma pusti, tym padom nemusim 2x riesit nacitanie XML
+
+
+        // PROSTE TO PREROB
+
+
+
+
+
+
         String prestaIDcko = null;
 
         PrintWriter zapisProduktov = new PrintWriter(Premenne.cesta + "dalsieObrazky.csv", "UTF-8");
@@ -31,7 +43,7 @@ public class DownPicAll {
         prestaIDlist = Premenne.prestaIDPremenne;
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
-        Authenticator.setDefault(new MyAuthenticator());
+//        Authenticator.setDefault(new MyAuthenticator());
         String code = null, obrazokURL = null, obrazky = null, name = null, category = null, adresar = null;
 
         File fileImport = new File(Premenne.cesta + "stiahniObrazok.txt");

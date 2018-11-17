@@ -1,9 +1,6 @@
+import XML.*;
 import Metody.Met_Spy;
-import Metody.Premenne;
-import Metody.PrestaIDRead;
-import Metody.Produkt;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 // Program, ktory nacita udaje zo suboru PrestaID, ktory vygeneruje platforma Prestashop
 // PrestaID obsahuje teda aktualny stav stranok. Jednotlive XML obsahuju to, ako by to malo vyzerat. Aktualizacia je rozdiel.

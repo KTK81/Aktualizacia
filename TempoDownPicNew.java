@@ -1,3 +1,4 @@
+import XML.*;
 import Metody.Premenne;
 import Metody.Produkt;
 import org.w3c.dom.Document;
@@ -29,7 +30,7 @@ public class TempoDownPicNew {
         tempoProdukty = XMLTempo.zapisProduktov();
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
-        Authenticator.setDefault(new MyAuthenticator());
+//        Authenticator.setDefault(new MyAuthenticator());
         String code = null, obrazokURL = null, obrazky = null, name = null, obrazok = null, category = null, adresar = null;
 
         File fileImport = new File(Premenne.cestaZoznam + "stiahniObrazok.txt");

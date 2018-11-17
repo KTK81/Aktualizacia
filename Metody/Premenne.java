@@ -1,4 +1,7 @@
 package Metody;
+import XML.*;
+//import XML.XMLAutronic;
+import XML.XMLTempo;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -19,14 +22,53 @@ public class Premenne {
     public static String featureObjednavka = "Na objednávku";
     public static String featureMesiac = "viac ako mesiac";
 
+
+
+//    public static ArrayList<Produkt> prestaIDckaPremenne;
+//    static {
+//        try {
+//            System.out.println("Premenne - vytvaram PrestaIDcka");
+//            prestaIDckaPremenne = PrestaIdckaOnly.filePresta();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
     public static ArrayList<Produkt> prestaIDPremenne;
     static {
         try {
+            System.out.println("Premenne - vytvaram PrestaID");
             prestaIDPremenne = PrestaIDRead.filePresta();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+    public static ArrayList<Produkt> XMLTempoPremenne;
+    static {
+        try {
+            System.out.println("Premenne - vytvaram TempoXML");
+            XMLTempoPremenne = XMLTempo.zapisProduktov();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Produkt> XMLAutronicPremenne;
+    static {
+        try {
+            System.out.println("Premenne - vytvaram AutronicXML");
+            XMLAutronicPremenne = XMLAutronic.zapisProduktov();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class PrestaIDRead {
     public static ArrayList<Produkt> filePresta() throws IOException {
         ArrayList<Produkt> prestaIDlist = new ArrayList<>();
-        ArrayList<Produkt> categ = new ArrayList<>();
+        ArrayList<Produkt> kategorieZoznam = new ArrayList<>();
         ArrayList<Produkt> feature = new ArrayList<>();
         ArrayList<String> obrazy = new ArrayList<>();
-        String catMeno = null;
+        String catMeno = null, kategoria = null;
         PrintWriter zapisPresta = new PrintWriter(Premenne.cesta+"PrestaID.csv", "UTF-8");
         zapisPresta.println("id_product;reference;product_name;active;CAST(ps_product.price*1.2 as decimal (38,2));" +
                 "vyrobca_name;id_category_default;description_short;farba;sirka;hlbka;vyska;vyska sedu;rozkladanie;material;nosnost;calunenie;dlzka;vaha");
@@ -30,7 +30,7 @@ public class PrestaIDRead {
                 String catID = riadok.substring(0, bodkociarka);
                 String catNazov = riadok.substring(bodkociarka+1,bodkociarka2-1);
                 String catCele = riadok.substring(bodkociarka2+1,bodkociarka3);
-                categ.add(new Produkt(catID, catNazov, catCele));
+                kategorieZoznam.add(new Produkt(catID, catNazov, catCele));
             }
         }
         citac.close();
@@ -62,7 +62,7 @@ public class PrestaIDRead {
                     rozkladanie = null, dlzka = null;
             hladany = reader.readLine();
             if (hladany != null) {
-                catMeno = "";
+                kategoria = "";
                 int bodkociarka = hladany.indexOf(";");
                 int bodkociarka2 = hladany.indexOf(";",bodkociarka+1);
                 int bodkociarka3 = hladany.indexOf(";",bodkociarka2+1);
@@ -77,17 +77,18 @@ public class PrestaIDRead {
                 String aktivny = hladany.substring(bodkociarka3+2, bodkociarka4-1);
                 String MOC = hladany.substring(bodkociarka4+2, bodkociarka5-1);
                 String vyrobca = hladany.substring(bodkociarka5+2, bodkociarka6-1);
-                String kategoriaRequest = hladany.substring(bodkociarka6+2, bodkociarka7-1);
+                String kategoriaPrestaID = hladany.substring(bodkociarka6+2, bodkociarka7-1);
 
 
 
-                for (int i=0; i < categ.size(); i++) {
-                    if (kategoriaRequest.equals(categ.get(i).getSkupina())) {
-                        String kategoria=categ.get(i).getDostupnost();
-                        catMeno=Met_CatZostavy.pridajZostavu(idPresta, kod, name, kategoria,name);
-                        if (!(kategoria.equals(catMeno))) {
-                            zapisVysledku.println(idPresta+";"+kod+";"+name+";"+kategoria+";"+catMeno);
-                        }
+                for (int i=0; i < kategorieZoznam.size(); i++) {
+                    if (kategoriaPrestaID.equals(kategorieZoznam.get(i).getSkupina())) {
+                        String kategoriaNazov=kategorieZoznam.get(i).getDostupnost();
+                        kategoria= kategoriaNazov;
+//                        kategoria= Met_CatZostavy.pridajZostavu(idPresta, kod, name, kategoriaNazov,name);
+//                        if (!(kategoriaNazov.equals(kategoria))) {
+//                            zapisVysledku.println(idPresta+";"+kod+";"+name+";"+kategoriaNazov+";"+kategoria);
+//                        }
                         break;
                     }
                 }
@@ -150,8 +151,8 @@ public class PrestaIDRead {
                 if (vyrobca.contains("AUTRONIC") || vyrobca.contains("Tempo-Kondela") || vyrobca.contains("Drevona")
                         || vyrobca.contains("Drevona")|| vyrobca.contains("NELLYS")|| vyrobca.contains("SAMESKIN")) {
 
-                    prestaIDlist.add(new Produkt(idPresta, kod, name, aktivny, MOC, vyrobca, catMeno, dostupnost));
-                    zapisPresta.println(idPresta+";"+kod+";"+name+";"+aktivny+";"+MOC+";"+vyrobca+";"+catMeno+";"+dostupnostOriginal
+                    prestaIDlist.add(new Produkt(idPresta, kod, name, aktivny, MOC, vyrobca, kategoria, dostupnost));
+                    zapisPresta.println(idPresta+";"+kod+";"+name+";"+aktivny+";"+MOC+";"+vyrobca+";"+kategoria+";"+dostupnostOriginal
                             +";"+farba+";"+sirka+";"+hlbka+";"+vyska+";"+sed+";"+rozkladanie+";"+material+";"+nosnost+";"+calunenie+";"+dlzka+";"+vaha);
                 }
             }

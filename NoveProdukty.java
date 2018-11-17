@@ -1,3 +1,4 @@
+import XML.*;
 import Metody.Produkt;
 import Metody.Premenne;
 import Metody.PrestaIDRead;
@@ -19,8 +20,8 @@ public class NoveProdukty {
 		PrintWriter writerVysledok = new PrintWriter(Premenne.cesta + "noveVyrobky.csv", "UTF-8");
 
 		prestaSubor = Premenne.prestaIDPremenne;
-//		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
-//		vyrobkyTempo = XMLTempo.zapisProduktov();
+		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
+		vyrobkyTempo = XMLTempo.zapisProduktov();
 //		vyrobkyAutronic = XMLAutronic.zapisProduktov();
 		vyrobkyNellys = XMLNellys.zapisProduktov();
 

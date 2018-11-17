@@ -1,3 +1,4 @@
+package XML;
 import Metody.*;
 //import Metody.Met_Color;
 import org.w3c.dom.Document;
@@ -13,7 +14,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 //****** VYTVORI NOVY ARRAYLIST S KONKRETNYMI PRODUKTAMI - novy subor ******  
- class XMLAutronic {
+ public  class XMLAutronic {
 	public static ArrayList<Produkt> zapisProduktov() throws IOException{
 		ArrayList<Produkt>autroProdukty=new ArrayList<>();
 		ArrayList<Produkt>autroAkciaCena=new ArrayList<>();
@@ -220,7 +221,7 @@ import java.util.ArrayList;
 //				color = Premenne.complexReplace (Premenne.cesta+"Zoznam_farba.csv");
 
 
-				autroProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", priceString, "6666", name, nameUpravene,vyrobca, active, description,
+				autroProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, "stock", priceString, "6666", name, nameUpravene,vyrobca, active, description,
 						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, sirka ,vyska, hlbka, ""));
 // Zapis produktov z XML do suboru
 				writerSubor.println(prestaID+";"+code+";"+name+";"+color+";"+active+";123456 ;"+priceString+";"+size+";"+dostupnost+";"+category+";"+IMGURL+";"+vaha);

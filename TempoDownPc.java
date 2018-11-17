@@ -1,3 +1,4 @@
+import XML.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,7 +30,7 @@ public class TempoDownPc {
         tempoProdukty = XMLTempo.zapisProduktov();
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
-        Authenticator.setDefault(new MyAuthenticator());
+//        Authenticator.setDefault(new MyAuthenticator());
         String code = null,obrazokURL= null,obrazky = null,name=null,obrazok=null, category=null,adresar=null;
 
         try {

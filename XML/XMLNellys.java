@@ -1,3 +1,4 @@
+package XML;
 import Metody.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -121,8 +122,8 @@ public class XMLNellys {
                     category = Met_Category.zistiKategoriu(category,"NELLYS","","");
 //                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
 
-                    System.out.println(code+";"+description);
-                    nellysProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
+//                    System.out.println(code+";"+description);
+                    nellysProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
                             productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                     writerSubor.println(prestaID + ";" + code + ";" + name + ";" + name + ";" + farba + ";" + description + ";" + active + ";123456 ;"

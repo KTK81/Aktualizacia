@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Metody.Produkt;
 import Metody.Premenne;
-
+import XML.*;
 /**
  * Created by jano on 09.11.2016.
  * nacita zo suboru zoznam kodov vyrobkov, z XML si nacita odkaz na obrazok k produktu a z toho odkazu ho ulozi na disk

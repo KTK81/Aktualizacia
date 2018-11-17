@@ -1,4 +1,4 @@
-
+import XML.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.io.*;
@@ -15,9 +15,10 @@ public class KompletALL {
 
         PrintWriter writerVysledokPublicNew = new PrintWriter(Premenne.cesta + "aktualizacia_new.csv", "UTF-8");
 
-        produktyALL.addAll(XMLTempo.zapisProduktov());
+//        produktyALL.addAll(XMLTempo.zapisProduktov());
+        produktyALL.addAll(Premenne.XMLTempoPremenne);
         produktyALL.addAll(XMLDrevona2017.zapisProduktov());
-        produktyALL.addAll(XMLAutronic.zapisProduktov());
+        produktyALL.addAll(Premenne.XMLAutronicPremenne);
         produktyALL.addAll(XMLNellys.zapisProduktov());
         prestaNase = Premenne.prestaIDPremenne;
 
@@ -87,7 +88,7 @@ public class KompletALL {
                         if ((!(prestaMOC.contains(XMLCena)) && (XMLAktivita.contains("1")))) {
 //ak doslo k zmene ceny, spravi zmenu ceny, ale ak doslo k zmene pevne zadanej ceny /CENAOFF/, tak to zapise, ako "Zmena OFF ceny"
                             if (!(codeOFF.equals(prestaNase.get(p).getKod()))) {
-                                System.out.println(prestaNase.get(p).getKod()+";"+prestaMOC+";"+produktyALL.get(s).getMOC()+";"+produktyALL.get(s).getVyrobca());
+//                                System.out.println(prestaNase.get(p).getKod()+";"+prestaMOC+";"+produktyALL.get(s).getMOC()+";"+produktyALL.get(s).getVyrobca());
                                 docasnyArrayList.add(produktyALL.get(s).getVysledokInput("cena", Premenne.featureMesiac, prestaMOC));
 
                             }

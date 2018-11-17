@@ -2,22 +2,37 @@ package Metody;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.io.IOException;
-import java.util.ArrayList;
-import Metody.Produkt;
-import Metody.Premenne;
-import Metody.PrestaIDRead;
+import XML.*;
+
 
 //ak je nieco v Zostavach, ci uz sedacia suprava, Obyvacia stena, Kuchynska linka, Detska izba, tak chcem, aby bola zaradena
 //v nejakej kategorii, napriklad Dolna skrinka, ale zaroven chcem, aby bola zaradena aj v nejakej Zostave, napriklad Zostava Aladin
 //takze, najprv priradim beznu kategoriu, Met_Category, ale potom doplnim este aj Zostavovsku kategoriu
 //Hlavna kategoria nech je originalna a zostavovska nech je len doplnkova. Takze prva musi byt original.
 public class Met_CatZostavy {
-    public static String pridajZostavu(String PrestaCislo, String nazov, String kod, String kategoriaOriginal, String meno) throws IOException {
-        String kategoria = kategoriaOriginal, pomocnyString = "";
-ArrayList <Produkt> produktyAll = new ArrayList();
+    public static String pridajZostavu(String prestaCislo, String nazov, String kod, String kategoriaOriginal, String kategoriaPovodna) throws IOException {
+        String kategoria = kategoriaPovodna, pridalSom = null;
+        ArrayList<Produkt> zostavyZoznam = Premenne.complexReplace(Premenne.cestaZoznam + "Zoznam_kategorie_zostavy.csv");
+
+
+//podla originalnej kategore z Tempa urcim, do ktorej zostavy patri. Ak nahodou ma u mna kategoriu len v Zostave, nejaka somarina, co nie je
+//v ziadnej inej normalnej Kategorii, tak to skontrolujem a ak uz je zaradena v Zostavovskej kategorii, tak neriesim, nechavam ako je
+        for (int i = 0; i < zostavyZoznam.size(); i++) {
+            if ((kategoriaOriginal.equals(zostavyZoznam.get(i).getKod())&&!(kategoria.contains(zostavyZoznam.get(i).getMOC())))) {
+//                pridalSom = ", "+zostavyZoznam.get(i).getMOC();
+                kategoria += ", "+zostavyZoznam.get(i).getMOC();
+//                System.out.println(prestaCislo+";"+kod+";"+kategoriaOriginal+" ***** "+kategoria);
+
+                break;
+            }
+        }
+
+//a teraz vsetky tie VYNIMKY a DOPLNENIA
+        //sedacia suprava BORN nema kategoriu v Tempe, ale mala by mat
+        if ((nazov.contains("BORN"))&&!(kategoria.contains("Born"))) {
+            kategoria += ", Born, Sedačky na mieru";
+        }
 
 
 
@@ -60,8 +75,8 @@ ArrayList <Produkt> produktyAll = new ArrayList();
 
 //KUCHYNSKE LINKY
 //        nerezovy dres, je vsade
-        if (kod.equals("04000499"))
-            kategoria += ", Irys, Nova Plus dub sonoma, Nova Plus biela, Vega, Prado červená vysoký lesk";
+//        if (kod.equals("04000499"))
+//            kategoria += ", Irys, Nova Plus dub sonoma, Nova Plus biela, Vega, Prado červená vysoký lesk";
 
 //        if ((meno.contains("IRYS"))&&!(kategoria.contains("Irys"))) {
 //            kategoria += ", Irys";
@@ -76,26 +91,26 @@ ArrayList <Produkt> produktyAll = new ArrayList();
 //        }
 
 
-
-
-
-
 //        if ((meno.contains("VEGA"))&&!(kategoria.contains("Vega"))&&(kategoria.contains("Kuchynské linky"))) {
 //            kategoria += ", Vega";
 //        }
         //kombinacia, horne su cervene, spodne su sive
-        if (((meno.contains("PRADO"))&&!(kategoria.contains("Prado červená vysoký lesk"))&&(meno.contains("červený")))
-        || (((meno.contains("PRADO"))&&!(kategoria.contains("Prado červená vysoký lesk"))&&(meno.contains("dolná")))&&(meno.contains("sivá"))&&!(meno.contains("biela")))
-        ||(kod.equals("0000112483"))) {
-            kategoria += ", Prado červená vysoký lesk";
-            pomocnyString = "pradoCervena";
-            System.out.println(PrestaCislo+";"+kod+";"+nazov+" ***** "+kategoriaOriginal+" ***** "+kategoria);
-        }
-
+//        if (((meno.contains("PRADO"))&&!(kategoria.contains("Prado červená vysoký lesk"))&&(meno.contains("červený")))
+//        || (((meno.contains("PRADO"))&&!(kategoria.contains("Prado červená vysoký lesk"))&&(meno.contains("dolná")))&&(meno.contains("sivá"))&&!(meno.contains("biela")))
+//        ||(kod.equals("0000112483"))) {
+//            kategoria += ", Prado červená vysoký lesk";
+//            pomocnyString = "pradoCervena";
+//            System.out.println(PrestaCislo+";"+kod+";"+nazov+" ***** "+kategoriaOriginal+" ***** "+kategoria);
+//    }
 
 
 //        System.out.println(PrestaCislo+";"+kod+";"+nazov+";   ;"+kategoriaOriginal+";   ;"+kategoria);
+//        return kategoria;
+//    }
+//}
+
+
+
         return kategoria;
     }
 }
-

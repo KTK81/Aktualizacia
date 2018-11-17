@@ -5,12 +5,49 @@ import java.util.ArrayList;
 // zakladny objekt v tomto programe
 
 public class Produkt {
-    public String skupina, kod, dostupnost, MOC, VOC, nazov, nazovNovy, zasoby, aktivita;
-    public String prestaID, vyrobca, popis, URL, IMGURL, navod, vahaString;
+    public String skupina, kod, dostupnost, MOC, VOC, nazov, nazovNovy, nazovUpraveny, nazovOriginal, zasoby, aktivita;
+    public String prestaID, vyrobca, dodavatel, popis, URL, IMGURL, navod, vahaString, kategoria, kategoriaOriginal;
     public String feature, staryUdaj, shortText, operacia, objem, farba, rozmer, sirka, hlbka, vyska, dlzka;
     public int MOCint, zasobyint, vaha;
-    public double MOCdouble;
-    public BigDecimal MOCBigDecimal;
+    public double MOCdouble,VOCdouble;
+    public BigDecimal MOCBigDecimal, VOCBigDecimal;
+
+    //25x String, Double, int
+    //KOMPLET udaje, naplnit vzdy len tie, ktore potrebujem, ale musia byt zadane aj vsetky ostatne, apson ako prazdny znak
+    public Produkt (String prestaID, String kod, String nazov, String nazovUpraveny, String kategoria, String kategoriaOriginal, String farba,
+                    String popis, String URL, String IMGURL, String VOC, String MOC, String dodavatel, String dostupnost, String aktivita, String feature,
+                    String shortText, String operacia, String staryUdaj, String objem, String rozmer, String sirka, String hlbka, String vyska, String dlzka,
+                    int vaha, Double VOCdouble, Double MOCdouble, int zasobyint) {
+        this.prestaID = prestaID;
+        this.kod = kod;
+        this.nazov = nazov;
+        this.nazovUpraveny = nazovUpraveny;
+        this.kategoria = kategoria;
+        this.kategoriaOriginal = kategoriaOriginal;
+        this.farba = farba;
+        this.dodavatel = dodavatel;
+        this.popis = popis;
+        this.URL = URL;
+        this.IMGURL = IMGURL;
+        this.VOC = VOC;
+        this.MOC = MOC;
+        this.dostupnost = dostupnost;
+        this.aktivita = aktivita;
+        this.feature = feature;
+        this.shortText = shortText;
+        this.operacia = operacia;
+        this.staryUdaj = staryUdaj;
+        this.objem = objem;
+        this.rozmer = rozmer;
+        this.sirka = sirka;
+        this.hlbka = hlbka;
+        this.vyska = vyska;
+        this.dlzka = dlzka;
+        this.vaha = vaha;
+        this.VOCdouble = VOCdouble;
+        this.MOCdouble = MOCdouble;
+        this.zasobyint = zasobyint;
+    }
 
     //Produkt_dodavatel
     public Produkt(String prestaID, String kod, String nazov, String aktivita, String VOC, int MOCint, int zasobyint, String dostupnost, String skupina) {
@@ -94,10 +131,11 @@ public class Produkt {
     }
 
     //  16xString, Drevona, Tempo, Autronic
-    public Produkt(String prestaID, String skupina, String kod, String dostupnost, String zasoby, String MOC, String VOC, String nazov, String nazovNovy, String vyrobca,
+    public Produkt(String prestaID, String kategoriaOriginal, String skupina, String kod, String dostupnost, String zasoby, String MOC, String VOC, String nazov, String nazovNovy, String vyrobca,
                    String aktivita, String popis, String URL, String IMGURL, String navod, String vahaString, String objem, String farba, String rozmer,
                    String sirka, String hlbka, String vyska, String dlzka) {
         this.prestaID = prestaID;
+        this.kategoriaOriginal = kategoriaOriginal;
         this.skupina = skupina;
         this.kod = kod;
         this.dostupnost = dostupnost;
@@ -158,106 +196,78 @@ public class Produkt {
     public String getPrestaID() {
         return this.prestaID;
     }
-
     public String getAktivita() {
         return this.aktivita;
     }
-
     public String getVyrobca() {
         return this.vyrobca;
     }
-
     public String getSkupina() {
         return this.skupina;
     }
-
     public String getKod() {
         return this.kod;
     }
-
     public String getDostupnost() {
         return this.dostupnost;
     }
-
     public String getMOC() {
         return this.MOC;
     }
-
     public String getZasoby() {
         return this.zasoby;
     }
-
     public String getNazov() {
         return this.nazov;
     }
-
     public String getNazovNovy() {
         return this.nazovNovy;
     }
-
+    public String getNazovUpraveny() {
+        return this.nazovUpraveny;
+    }
+    public String getNazovOriginal() {
+        return this.nazovOriginal;
+    }
     public String getPopis() {
         return this.popis;
     }
-
     public String getURL() {
         return this.URL;
     }
-
     public String getIMGURL() {
         return this.IMGURL;
     }
-
     public String getNavod() {
         return this.navod;
     }
-
-    public int getVaha() {
-        return this.vaha;
-    }
-
     public String getVahaString() {
         return this.vahaString;
     }
-
     public String getObjem() {
         return this.objem;
     }
-
     public String getFarba() {
         return this.farba;
     }
-
-    public int getZasobyint() {
-        return zasobyint;
-    }
-
+    public int getZasobyint() {        return zasobyint;    }
     public void setZasobyint(int zasobyint) {
         this.zasobyint = zasobyint;
     }
-
     public int getMOCint() {
         return this.MOCint;
     }
-
-
-
     double getMOCdouble() {
         return this.MOCdouble;
     }
-
-
-
     public BigDecimal getMOCBigDecimal() {
         return this.MOCBigDecimal;
     }
-
-
 
     //    public int getVOCint() {return this.VOCint;};
     public String getVOC() {
         return this.VOC;
     }
-
 
     public void setMOC(String MOC) {
         this.MOC = MOC;
@@ -293,5 +303,10 @@ public class Produkt {
 
     public String getDlzka() {
         return dlzka;
+    }
+
+    public String getKategoriaOriginal() {return kategoriaOriginal;}
+    public int getVaha() {
+        return this.vaha;
     }
 }

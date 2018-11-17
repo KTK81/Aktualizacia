@@ -1,3 +1,4 @@
+package XML;
 import Metody.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class XMLTempo {
 
     public static ArrayList<Produkt> zapisProduktov() throws IOException {
+        System.out.println("Vytvaram Tempo 1 - zaciatok");
         ArrayList<Produkt> tempoProdukty = new ArrayList<>();
         ArrayList<Produkt> prestaIDlist;
         int i, p, vahaInt = 0;
@@ -24,17 +26,21 @@ public class XMLTempo {
         String pomocnaPresta, vahaString, prestaID = null;
         String vyrobca = "Tempo-Kondela", nameUpravene = null, sirka=null, vyska=null, hlbka=null, dlzka=null, obrazkyAll = null;
         prestaIDlist = Premenne.prestaIDPremenne;
+//        prestaIDlist = PrestaIDRead.filePresta();
 
 //zapis XMLTempo do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
         String fileFinding = ("tempo_produkty");
         int fileNumber = Premenne.findLastModified(fileFinding, "XML\\tempo");
         PrintWriter writerSubor = new PrintWriter(Premenne.cesta + "XML\\tempo\\" + fileFinding + fileNumber + ".csv", "UTF-8");
         writerSubor.println("PrestaID;Kod;Nazov;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina;Vaha;Navod");
+        PrintWriter zapisVysledku = new PrintWriter(Premenne.cesta + "pomocnySuborVysledok.csv", "UTF-8");
+        zapisVysledku.println("id;kod;nazov;kategoria Tempo;kategoria;kategoria zmenena");
+
+
 
 // ********  pristup do XML feedu /zadanie mena hesla/, vycuc konkretnych udajov s ich zapisom do suboru ********
         String code = null, name = null, price = null, priceVOC = null, dostupnost = null, categoryOriginal = null, category = null, active, name_spatny_nazov,
                 description = null, navod = null, vaha = null, productURL = null, objem = null, farba = null;
-        System.out.println("Vytvaram Tempo - zaciatok");
         Authenticator.setDefault(new MyAuthenticator());
 
         try {
@@ -88,7 +94,13 @@ public class XMLTempo {
                 for (p = 0; p < prestaIDlist.size(); p++) {
                     if (prestaIDlist.get(p).getKod().equals(code)) {
                         prestaID = prestaIDlist.get(p).getPrestaID();
-                        category = prestaIDlist.get(p).getSkupina();
+                        String categoryPresta = prestaIDlist.get(p).getSkupina();
+                        category= Met_CatZostavy.pridajZostavu(prestaID, name, code, categoryOriginal, categoryPresta);
+                        if (!(categoryPresta.equals(category))) {
+                            zapisVysledku.println(prestaID+";"+code+";"+name+";"+categoryOriginal+";"+categoryPresta+";"+category);
+                        }
+
+
                         pomocnaPresta = "2";
                         if ((dostupnost.equals("Na sklade"))||(dostupnost.equals("Skladem")))
                             dostupnost = Premenne.featureSKL;
@@ -119,16 +131,17 @@ public class XMLTempo {
                     dlzka = rozmery.get(0).getDlzka();
                 }
 
-                tempoProdukty.add(new Produkt(prestaID, category, code, dostupnost, "stock", price, priceVOC, name, nameUpravene, vyrobca, active, description,
+                tempoProdukty.add(new Produkt(prestaID, categoryOriginal, category, code, dostupnost, "stock", price, priceVOC, name, nameUpravene, vyrobca, active, description,
                         productURL, obrazkyAll, navod, vaha, objem, farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                 writerSubor.println(prestaID + ";" + code + ";" + name + ";" + active + ";123456 ;" + price + ";null;" +
-                        dostupnost + ";" + categoryOriginal + ";" + vaha + ";" + navod);
+                        dostupnost + ";" + categoryOriginal+";"+category + ";" + vaha + ";" + navod);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        zapisVysledku.close();
         writerSubor.close();
         System.out.println("Vytvaram Tempo - koniec");
         return tempoProdukty;

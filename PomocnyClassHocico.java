@@ -1,3 +1,4 @@
+import XML.*;
 import Metody.Premenne;
 import Metody.Produkt;
 import org.w3c.dom.Document;

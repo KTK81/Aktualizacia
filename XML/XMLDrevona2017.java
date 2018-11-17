@@ -1,3 +1,4 @@
+package XML;
 import Metody.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -8,7 +9,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-
 
 //****** VYTVORI NOVY ARRAYLIST S KONKRETNYMI PRODUKTAMI - novy subor ******
 public class XMLDrevona2017 {
@@ -128,7 +128,7 @@ public class XMLDrevona2017 {
                     if (code.equals("C30634"))
                         System.out.println("XMLDrevona;"+code+";aktivita:"+active);
 
-                    drevonaProdukty.add(new Produkt(prestaID, category, code, dostupnost, stock, price, priceVOC, name, nameUpravene, vyrobca, active, description,
+                    drevonaProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, stock, price, priceVOC, name, nameUpravene, vyrobca, active, description,
                             productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                     writerSubor.println(prestaID + ";" + code + ";" + name + ";"+nameUpravene+";" + farba+";"+description + ";" + active + ";123456 ;"
