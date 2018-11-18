@@ -17,9 +17,9 @@ public class KompletALL {
 
 //        produktyALL.addAll(XMLTempo.zapisProduktov());
         produktyALL.addAll(Premenne.XMLTempoPremenne);
-        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
-        produktyALL.addAll(Premenne.XMLAutronicPremenne);
-        produktyALL.addAll(XMLNellys.zapisProduktov());
+//        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
+//        produktyALL.addAll(Premenne.XMLAutronicPremenne);
+//        produktyALL.addAll(XMLNellys.zapisProduktov());
         prestaNase = Premenne.prestaIDPremenne;
 
 // HOTOVO, konečné porovnanie suborov a zapisanie vysledkov
