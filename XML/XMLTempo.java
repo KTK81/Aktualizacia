@@ -113,7 +113,7 @@ public class XMLTempo {
                 }
                 if (pomocnaPresta.equals("0")) {
                     prestaID = "123456";
-                    category = Met_Category.zistiKategoriu(category, vyrobca, name, description);
+                    category = Met_Category.zistiKategoriu(categoryOriginal, vyrobca, name, description);
                 }
 
 

@@ -38,7 +38,7 @@ public class XMLNellys {
         try {
             String farba = null;
 //            URL url = new URL("https://www.nellys.sk/files/exports/movix.xml");
-            URL url = new URL("https://www.nellys.sk/files/exports/movix_stock.xml");
+            URL url = new URL("https://www.nellys.sk/files/exports/movix.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url.openStream());
@@ -123,11 +123,16 @@ public class XMLNellys {
 //                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
 
 //                    System.out.println(code+";"+description);
-                    nellysProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
-                            productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
+
+
+                    //zadam len to, co ma zaujima. Maju asi patsto milionov produktov, je tam mrte balast pre mna.
+                    if (category.contains("Detská izba")) {
+                        nellysProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
+                                productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
-                    writerSubor.println(prestaID + ";" + code + ";" + name + ";" + name + ";" + farba + ";" + description + ";" + active + ";123456 ;"
-                            + price + ";" + stock + ";" + dostupnost + ";" + category + ";" + delivery + ";");
+                        writerSubor.println(prestaID + ";" + code + ";" + name + ";" + name + ";" + farba + ";" + description + ";" + active + ";123456 ;"
+                                + price + ";" + stock + ";" + dostupnost + ";" + category + ";" + delivery + ";");
+                    }
                 }
         }
         }

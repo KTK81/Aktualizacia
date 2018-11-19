@@ -79,7 +79,7 @@ public class Met_CatZostavy {
         if ((nazov.contains("INFINITY"))&&(nazov.contains("jaseň svetlý")))
             kategoria += ", Infinity jaseň svetlý";
 
-        if ((nazov.contains("INFINITY"))&&(nazov.contains("jaseň tmavý")))
+        if ((nazov.contains("INFINITY"))&&(nazov.contains("jaseň tmavý"))&&!(kod.equals("0000149934")))
             kategoria += ", Infinity jaseň tmavý";
 
     //LEDky na infinity zostavy
