@@ -26,9 +26,13 @@ public class Met_CatZostavy {
                 break;
             }
         }
+        //Sedacky BITER musia ist takto, nie cez ten zoznam
+        if ((nazov.contains("BITER"))&&!(kategoriaPovodna.contains("Biter"))&&(nazov.contains("čierna")))
+            kategoria += ", Biter";
+
 
 //a teraz vsetky tie VYNIMKY a DOPLNENIA
-        //sedacia suprava BORN nema kategoriu v Tempe, ale mala by mat. Vacsina je zaradena priamo do Born kategorie, len 2 hotove sedacky su v sedackach
+//        sedacia suprava BORN nema kategoriu v Tempe, ale mala by mat. Vacsina je zaradena priamo do Born kategorie, len 2 hotove sedacky su v sedackach
         if ((kod.equals("0000210903"))||(kod.equals("0000210902")))
             kategoria += ", Born, Sedačky na mieru";
 
@@ -44,7 +48,7 @@ public class Met_CatZostavy {
 
 //Tak SMOLA, kopec veci je zotriedenych do zostav, ale dokonca aj Tempo to ma hodene len v konkretnej kategorii, ako jednotlive vyrobky,
 //nie v zostava kategoriach. Komoda je komoda a nie Zostava Adonis
-
+//
 //OBYVACIE PROGRAMY
         if ((nazov.contains("ADONIS"))&&(nazov.contains("biela")))
             kategoria += ", Adonis biely";
@@ -85,7 +89,7 @@ public class Met_CatZostavy {
     //LEDky na infinity zostavy
         if ((kod.equals("0000108458"))||(kod.equals("0000108456"))||(kod.equals("0000108459"))||(kod.equals("0000108455"))
                 ||(kod.equals("0000108457")))
-            kategoria += ", Infinity jaseň biely, Infinity jaseň tmavý, Infinity jaseň svetlý";
+            kategoria += ", Infinity jaseň biely, Infinity jaseň tmavý, Infinity jaseň svetlý, Infinity biela, Infinity svetlá, Infinity tmavá";
 
         if ((nazov.contains("KORA"))&&(nazov.contains("samoa king")))
             kategoria += ", Kora samoa king";
@@ -148,6 +152,168 @@ public class Met_CatZostavy {
                 &&!(kategoria.contains("Dvierka"))&&!(kategoria.contains("postele"))&&!(kategoria.contains("Nočné"))&&!(kategoria.contains("spálne"))
                 &&!(kod.equals("0000194045"))&&!(kod.equals("0000194046"))&&!(kod.equals("0000194144"))&&!(kod.equals("0000195344")))
             kategoria += ", Valeria";
+
+
+//SPALNE
+        if ((nazov.contains("ARMOND"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("Armond")))
+            kategoria += ", Armond";
+
+        if ((nazov.contains("ASIENA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("Asiena")))
+            kategoria += ", Asiena";
+
+        if ((nazov.contains("BETINO"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("Betino")))
+            kategoria += ", Betino";
+
+        if ((nazov.contains("BETTY 4"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("Betty 4")))
+            kategoria += ", Betty 4";
+
+        if ((nazov.contains("DEVON"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("Devon NEW")))
+            kategoria += ", Devon NEW";
+
+        if ((nazov.contains("FLAMENGO"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Flamengo")))
+            kategoria += ", Flamengo";
+
+        if ((nazov.contains("INFINITY"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Infinity biela"))&&(nazov.contains("biely")))
+            kategoria += ", Infinity biela";
+        if ((nazov.contains("INFINITY"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Infinity svetlá"))&&(nazov.contains("svetlý")))
+            kategoria += ", Infinity svetlá";
+        if ((nazov.contains("INFINITY"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Infinity tmavá"))&&(nazov.contains("tmavý")))
+            kategoria += ", Infinity tmavá";
+        if (kod.contains("0000149942")) //LEDka ku posteli
+            kategoria += ", Infinity biela, Infinity svetlá, Infinity tmavá";
+
+        if ((nazov.contains("ITALIA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Italia")))
+            kategoria += ", Italia";
+
+        if ((nazov.contains("KORA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Kora Samoa"))&&(nazov.contains("samoa king")))
+            kategoria += ", Kora Samoa";
+
+        if ((nazov.contains("KORA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Kora Sosna"))&&(nazov.contains("sosna andersen")))
+            kategoria += ", Kora Sosna";
+
+        if ((nazov.contains("LAVELI"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Laveli biela")))
+            kategoria += ", Laveli biela";
+
+        if ((nazov.contains("LIONA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Liona biela")))
+            kategoria += ", Liona biela";
+
+        if ((nazov.contains("LUMERA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský"))&&!(kategoriaPovodna.contains("Skrinky a vitríny"))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("obývačky"))&&!(kategoriaPovodna.contains("Kúpeľňové"))&&!(kategoriaPovodna.contains("Predsieňové"))
+                &&!(kategoriaPovodna.contains("panely"))&&!(kategoriaPovodna.contains("Lumera")))
+            kategoria += ", Lumera";
+
+        if ((nazov.contains("LYNATET"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský"))&&!(kategoriaPovodna.contains("Skrinky a vitríny"))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("obývačky"))&&!(kategoriaPovodna.contains("Kúpeľňové"))&&!(kategoriaPovodna.contains("Predsieňové"))
+                &&!(kategoriaPovodna.contains("panely"))&&!(kategoriaPovodna.contains("Lynatet lesk")))
+            kategoria += ", Lynatet lesk";
+
+        if ((nazov.contains("MARTINA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Martina")))
+            kategoria += ", Martina";
+
+        if ((nazov.contains("MEDIOLAN"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Mediolan")))
+            kategoria += ", Mediolan";
+
+        if ((nazov.contains("MIRAN"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Miran dub")))
+            kategoria += ", Miran dub";
+
+        if ((nazov.contains("MONTE"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Monte dub"))&&!(kategoriaPovodna.contains("Obývacie"))&&!(kategoriaPovodna.contains("Predsieň")))
+            kategoria += ", Monte dub";
+
+        if ((nazov.contains("PROVANCE"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský"))&&!(kategoriaPovodna.contains("Skrinky a vitríny"))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("obývačky"))&&!(kategoriaPovodna.contains("Kúpeľňové"))&&!(kategoriaPovodna.contains("Predsieňové"))
+                &&!(kategoriaPovodna.contains("panely"))&&!(kategoriaPovodna.contains("Provance spálňa"))&&!(kategoriaPovodna.contains("Dolné skrinky"))
+                &&!(kategoriaPovodna.contains("Horné skrinky"))&&!(kategoriaPovodna.contains("Dvierka"))&&!(kategoriaPovodna.contains("Potravinové")))
+            kategoria += ", Provance spálňa";
+
+        if ((nazov.contains("REKATO"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Rekato"))&&!(kategoriaPovodna.contains("Obývacie")))
+            kategoria += ", Rekato";
+
+        if ((nazov.contains("ROYAL"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský"))&&!(kategoriaPovodna.contains("Skrinky a vitríny"))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("obývačky"))&&!(kategoriaPovodna.contains("Kúpeľňové"))&&!(kategoriaPovodna.contains("Predsieňové"))
+                &&!(kategoriaPovodna.contains("panely"))&&!(kategoriaPovodna.contains("Dolné skrinky"))&&!(kategoriaPovodna.contains("Dvierka"))
+                &&!(kategoriaPovodna.contains("Horné skrinky"))&&!(kategoriaPovodna.contains("Royal spálňa")))
+            kategoria += ", Royal spálňa";
+
+        if ((nazov.contains("SIRIUS"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Sirius")))
+            kategoria += ", Sirius";
+
+        if ((nazov.contains("TEDY"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Tedy dub")))
+            kategoria += ", Tedy dub";
+
+        if ((nazov.contains("VALERIA"))&&!(kategoriaPovodna.contains("TV stolíky"))&&!(nazov.contains("edálenský")&&!(nazov.contains("itrína")))
+                &&!(kategoriaPovodna.contains("Konferenčné stolíky"))&&!(kategoriaPovodna.contains("stoly"))&&!(kategoriaPovodna.contains("sedačky"))
+                &&!(kategoriaPovodna.contains("Valeria dub")))
+            kategoria += ", Valeria dub";
+
+
+//KUPELNA
+        if ((nazov.contains("GALENA"))&&!(kategoriaPovodna.contains("Galena")))
+            kategoria += ", Galena";
+
+        if ((nazov.contains("HENRY"))&&!(kategoriaPovodna.contains("Henry")))
+            kategoria += ", Henry";
+
+        if ((nazov.contains("KEIT"))&&!(kategoriaPovodna.contains("Keit")))
+            kategoria += ", Keit";
+
+        if ((nazov.contains("KIARA"))&&!(kategoriaPovodna.contains("Kiara")))
+            kategoria += ", Kiara";
+
+        if ((nazov.contains("LESSY"))&&!(kategoriaPovodna.contains("Lessy pololesk")))
+            kategoria += ", Lessy pololesk";
+
+        if ((nazov.contains("LYNATET"))&&!(kategoriaPovodna.contains("Lynatet extra lesk"))&&(kategoriaPovodna.contains("Kúpeľňové")))
+            kategoria += ", Lynatet extra lesk";
+        //Osvetlenie
+        if (kod.equals("0000064091"))
+            kategoria += ", Lynatet extra lesk";
+
+        if ((nazov.contains("OLIVIA"))&&!(kategoriaPovodna.contains("Olivia"))&&(kategoriaPovodna.contains("Kúpeľňové")))
+            kategoria += ", Olivia";
+        //Umyvadlo
+        if (kod.equals("0000087969"))
+            kategoria += ", Olivia";
 
         return kategoria;
     }
