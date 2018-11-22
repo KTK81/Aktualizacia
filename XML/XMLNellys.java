@@ -140,7 +140,7 @@ public class XMLNellys {
             e.printStackTrace();
         }
         writerSubor.close();
-        System.out.println("Vytvaram NELLYS - koniec");
+        System.out.println("Vytvaram Nellys - koniec");
         return nellysProdukty;
     }
 }

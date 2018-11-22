@@ -384,25 +384,54 @@ public class Met_CatZostavy {
 
 
 //DETSKA IZBA
-        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("EGO")))||(kod.equals("06021813"))||(kod.equals("06022132"))
-                ||(kod.equals("06022129"))||(kod.equals("06022130")))
-            kategoria += ", Ego fialová";
+//        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("EGO")))||(kod.equals("06021813"))||(kod.equals("06022132"))
+//                ||(kod.equals("06022129"))||(kod.equals("06022130")))
+//            kategoria += ", Ego fialová";
+//
+//        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("EMIO")))||(kod.equals("0000083798"))||(kod.equals("0000083797"))
+//                ||(kod.equals("0000083786")))
+//            kategoria += ", Emio biela";
+//
+//        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("LOBETE")))||(kod.equals("0000071583"))||(kod.equals("0000071580"))
+//                ||(kod.equals("0000071581"))||(kod.equals("0000071582")))
+//            kategoria += ", Lobete";
+//
+//        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("PIERE"))&&(nazov.contains("fialová")))||(kod.equals("0000087639"))
+//                ||(kod.equals("0000087638"))||(kod.equals("0000087634"))||(kod.equals("0000087632"))||(kod.equals("0000087630"))||(kod.equals("0000087631")))
+//            kategoria += ", Piere fialová";
+//
+//        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("SVEND")))||(kod.equals("0000185919"))||(kod.equals("0000185916"))
+//                ||(kod.equals("0000185923")))
+//            kategoria += ", Svend zelená, Svend červená";
 
-        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("EMIO")))||(kod.equals("0000083798"))||(kod.equals("0000083797"))
-                ||(kod.equals("0000083786")))
-            kategoria += ", Emio biela";
 
-        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("LOBETE")))||(kod.equals("0000071583"))||(kod.equals("0000071580"))
-                ||(kod.equals("0000071581"))||(kod.equals("0000071582")))
-            kategoria += ", Lobete";
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("EGO")))||(kod.equals("06024749"))||(kod.equals("06023898"))
+                ||(kod.equals("06023900"))||(kod.equals("06023901")))
+            kategoria += ", Ego zelená";
 
-        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("PIERE"))&&(nazov.contains("fialová")))||(kod.equals("0000087639"))
-                ||(kod.equals("0000087638"))||(kod.equals("0000087634"))||(kod.equals("0000087632"))||(kod.equals("0000087630"))||(kod.equals("0000087631")))
-            kategoria += ", Piere fialová";
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("EMIO")))||(kod.equals("0000083812"))||(kod.equals("0000083817")))
+            kategoria += ", Emio zelená";
 
-        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("SVEND")))||(kod.equals("0000185919"))||(kod.equals("0000185916"))
-                ||(kod.equals("0000185923")))
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("CHAMION"))))
+            kategoria += ", Chamion";
+
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("LOTTY")))||(kod.equals("0000185691"))||(kod.equals("0000185688"))
+                ||(kod.equals("0000185687"))||(kod.equals("0000185685")))
+            kategoria += ", Lotty";
+
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("ORESTES")))||(kod.equals("0000210481"))||(kod.equals("0000210480"))
+                ||(kod.equals("0000210486"))||(kod.equals("0000210485")))
+            kategoria += ", Orestes";
+
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("PIERE")))||(kod.equals("0000087639"))||(kod.equals("0000087638"))
+                ||(kod.equals("0000087634"))||(kod.equals("0000087648"))||(kod.equals("0000087646"))||(kod.equals("0000087647")))
+            kategoria += ", Piere zelená";
+
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("SVEND"))))
             kategoria += ", Svend zelená, Svend červená";
+
+        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("TIDY")))||(kod.equals("0000211361")))
+            kategoria += ", Tidy";
 
         return kategoria;
     }
