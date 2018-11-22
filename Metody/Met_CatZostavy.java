@@ -347,40 +347,62 @@ public class Met_CatZostavy {
 //            kategoria += ", Space";
 
 //KANCELARIA
-        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("bardolino")))
-            kategoria += ", ASISTENT NEW bardolino";
+//        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("bardolino")))
+//            kategoria += ", ASISTENT NEW bardolino";
+//
+//        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("buk")))
+//            kategoria += ", ASISTENT NEW buk";
+//
+//        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("čerešňa")))
+//            kategoria += ", ASISTENT NEW čerešňa";
+//
+//        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("sonoma")))
+//            kategoria += ", ASISTENT NEW dub sonoma";
+//
+//        if ((nazov.contains("GRAND"))&&!(kategoriaPovodna.contains("Jedálenské"))&&!(kategoriaPovodna.contains("postele"))
+//                &&!(kategoriaPovodna.contains("Nočné"))&&!(kategoriaPovodna.contains("Posuvné"))&&!(kategoriaPovodna.contains("sedačky"))
+//                &&!(kategoriaPovodna.contains("Rohové")))
+//            kategoria += ", Grand dub sonoma";
+//
+//        if ((nazov.contains("JOHAN"))&&(nazov.contains("slivka")))
+//            kategoria += ", Johan slivka";
+//
+//        if ((nazov.contains("JOHAN"))&&(nazov.contains("sonoma")))
+//            kategoria += ", Johan dub sonoma";
+//
+//        if ((nazov.contains("JOHAN"))&&(nazov.contains("biela"))&&!(nazov.contains("slivka"))&&!(nazov.contains("sonoma")))
+//            kategoria += ", Johan biela";
+//
+//        if (nazov.contains("MAURUS"))
+//            kategoria += ", Maurus New";
+//
+//        if (nazov.contains("OSCAR"))
+//            kategoria += ", Oscar";
+//
+//        if ((nazov.contains("TOFI"))&&!(kategoriaPovodna.contains("Dvierka")))
+//            kategoria += ", Tofi";
 
-        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("buk")))
-            kategoria += ", ASISTENT NEW buk";
 
-        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("čerešňa")))
-            kategoria += ", ASISTENT NEW čerešňa";
+//DETSKA IZBA
+        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("EGO")))||(kod.equals("06021813"))||(kod.equals("06022132"))
+                ||(kod.equals("06022129"))||(kod.equals("06022130")))
+            kategoria += ", Ego fialová";
 
-        if ((nazov.contains("TEMPO ASISTENT"))&&(nazov.contains("sonoma")))
-            kategoria += ", ASISTENT NEW dub sonoma";
+        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("EMIO")))||(kod.equals("0000083798"))||(kod.equals("0000083797"))
+                ||(kod.equals("0000083786")))
+            kategoria += ", Emio biela";
 
-        if ((nazov.contains("GRAND"))&&!(kategoriaPovodna.contains("Jedálenské"))&&!(kategoriaPovodna.contains("postele"))
-                &&!(kategoriaPovodna.contains("Nočné"))&&!(kategoriaPovodna.contains("Posuvné"))&&!(kategoriaPovodna.contains("sedačky"))
-                &&!(kategoriaPovodna.contains("Rohové")))
-            kategoria += ", Grand dub sonoma";
+        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("LOBETE")))||(kod.equals("0000071583"))||(kod.equals("0000071580"))
+                ||(kod.equals("0000071581"))||(kod.equals("0000071582")))
+            kategoria += ", Lobete";
 
-        if ((nazov.contains("JOHAN"))&&(nazov.contains("slivka")))
-            kategoria += ", Johan slivka";
+        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("PIERE"))&&(nazov.contains("fialová")))||(kod.equals("0000087639"))
+                ||(kod.equals("0000087638"))||(kod.equals("0000087634"))||(kod.equals("0000087632"))||(kod.equals("0000087630"))||(kod.equals("0000087631")))
+            kategoria += ", Piere fialová";
 
-        if ((nazov.contains("JOHAN"))&&(nazov.contains("sonoma")))
-            kategoria += ", Johan dub sonoma";
-
-        if ((nazov.contains("JOHAN"))&&(nazov.contains("biela"))&&!(nazov.contains("slivka"))&&!(nazov.contains("sonoma")))
-            kategoria += ", Johan biela";
-
-        if (nazov.contains("MAURUS"))
-            kategoria += ", Maurus New";
-
-        if (nazov.contains("OSCAR"))
-            kategoria += ", Oscar";
-
-        if ((nazov.contains("TOFI"))&&!(kategoriaPovodna.contains("Dvierka")))
-            kategoria += ", Tofi";
+        if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("SVEND")))||(kod.equals("0000185919"))||(kod.equals("0000185916"))
+                ||(kod.equals("0000185923")))
+            kategoria += ", Svend zelená, Svend červená";
 
         return kategoria;
     }
