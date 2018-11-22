@@ -403,7 +403,7 @@ public class Met_CatZostavy {
 
         if (((kategoriaOriginal.contains("Dievčenská izba"))&&(nazov.contains("SVEND")))||(kod.equals("0000185919"))||(kod.equals("0000185916"))
                 ||(kod.equals("0000185923")))
-            kategoria += ", Svend zelená, Svend červená";
+            kategoria += ", Svend zelená, Svend červená, Svend";
 //CHLAPCENSKA
 
         if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("EGO")))||(kod.equals("06024749"))||(kod.equals("06023898"))
@@ -427,9 +427,6 @@ public class Met_CatZostavy {
         if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("PIERE")))||(kod.equals("0000087639"))||(kod.equals("0000087638"))
                 ||(kod.equals("0000087634"))||(kod.equals("0000087648"))||(kod.equals("0000087646"))||(kod.equals("0000087647")))
             kategoria += ", Piere zelená";
-
-        if (((kategoriaOriginal.contains("Chlapčenská izba"))&&(nazov.contains("SVEND"))))
-            kategoria += ", Svend zelená, Svend červená, Svend";
 
         if (nazov.contains("TIDY"))
             kategoria += ", Tidy, Tidy biela";
