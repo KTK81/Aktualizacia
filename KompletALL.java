@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.io.*;
 import Metody.Produkt;
 import Metody.Premenne;
-import Metody.PrestaIDRead;
 
 public class KompletALL {
     public static void spustiProgram() throws Exception {
@@ -39,6 +38,10 @@ public class KompletALL {
                         String XMLDostupnost = produktyALL.get(s).getDostupnost();
                         String XMLVyrobca = produktyALL.get(s).getVyrobca();
                         String XMLCena = produktyALL.get(s).getMOC();
+
+//                        if (prestaNase.get(p).getKod().equals("81887701")) {
+//                            System.out.println("81887701;presta:"+prestaDostupnost+";XML:"+XMLDostupnost);
+//                        }
 
 
 // *** AKTIVITA ***
@@ -148,6 +151,12 @@ public class KompletALL {
                 writerVysledokPublicNew.println(docasnyArrayList.get(i).get(0).getVysledokOutput());
             }
         }
+        for (int i = 0; i < docasnyArrayList.size(); i++) {
+            if ((docasnyArrayList.get(i).get(0).getVyrobca().contains("NELLYS"))||(docasnyArrayList.get(i).get(0).getVyrobca().contains("NELLYS"))) {
+                writerVysledokPublicNew.println(docasnyArrayList.get(i).get(0).getVysledokOutput());
+            }
+        }
+
         for (int i = 0; i < docasnyArrayList.size(); i++) {
             if (docasnyArrayList.get(i).get(0).getVyrobca().contains("Tempo-Kondela")) {
                 writerVysledokPublicNew.println(docasnyArrayList.get(i).get(0).getVysledokOutput());

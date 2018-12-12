@@ -152,7 +152,7 @@ public class PrestaIDRead {
                         || vyrobca.contains("Drevona")|| vyrobca.contains("NELLYS")|| vyrobca.contains("SAMESKIN")) {
 
                     prestaIDlist.add(new Produkt(idPresta, kod, name, aktivny, MOC, vyrobca, kategoria, dostupnost));
-                    zapisPresta.println(idPresta+";"+kod+";"+name+";"+aktivny+";"+MOC+";"+vyrobca+";"+kategoria+";"+dostupnostOriginal
+                    zapisPresta.println(idPresta+";"+kod+";"+name+";"+aktivny+";"+MOC+";"+vyrobca+";"+kategoria+";"+dostupnost
                             +";"+farba+";"+sirka+";"+hlbka+";"+vyska+";"+sed+";"+rozkladanie+";"+material+";"+nosnost+";"+calunenie+";"+dlzka+";"+vaha);
                 }
             }

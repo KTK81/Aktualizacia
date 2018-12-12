@@ -14,35 +14,21 @@ public class Premenne {
     public static String cesta = "C:\\Users\\jano\\Disk Google\\JAVA\\subory\\";
 //    public static String cestaXML = "C:\\Users\\Jan\\Disk Google\\JAVA\\subory\\XML\\";
     public static String cestaZoznam = "C:\\Users\\jano\\Disk Google\\JAVA\\subory\\zoznamy\\";
-    public static String featureOzajSKL = "na sklade";
-    public static String featureSKL = "1 - 3 dni (skladom)";
+    public static String featureOzajSKL = "Skladom";
+    public static String featureSKL = "Skladom";
     public static String feature2tyzdne = "2 - 14 dní";
     public static String feature4tyzdne = "3 - 5 týždňov";
     public static String feature2mesiace = "6 - 8 týždňov";
     public static String featureObjednavka = "Na objednávku";
-    public static String featureMesiac = "viac ako mesiac";
-
-
-
-//    public static ArrayList<Produkt> prestaIDckaPremenne;
-//    static {
-//        try {
-//            System.out.println("Premenne - vytvaram PrestaIDcka");
-//            prestaIDckaPremenne = PrestaIdckaOnly.filePresta();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
+    public static String featureMesiac = "mesiac";
 
 
     public static ArrayList<Produkt> prestaIDPremenne;
+
     static {
         try {
-            System.out.println("Premenne - vytvaram PrestaID");
+            System.out.println("KROK 1");
             prestaIDPremenne = PrestaIDRead.filePresta();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,6 +38,8 @@ public class Premenne {
     public static ArrayList<Produkt> XMLTempoPremenne;
     static {
         try {
+            System.out.println("KROK 2");
+
             System.out.println("Premenne - vytvaram TempoXML");
             XMLTempoPremenne = XMLTempo.zapisProduktov();
         } catch (IOException e) {
@@ -62,15 +50,14 @@ public class Premenne {
     public static ArrayList<Produkt> XMLAutronicPremenne;
     static {
         try {
+            System.out.println("KROK 3");
+
             System.out.println("Premenne - vytvaram AutronicXML");
             XMLAutronicPremenne = XMLAutronic.zapisProduktov();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
 
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm");

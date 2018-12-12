@@ -22,7 +22,7 @@ public class NoveProdukty {
 		prestaSubor = Premenne.prestaIDPremenne;
 		vyrobkyDrevona = XMLDrevona2017.zapisProduktov();
 		vyrobkyTempo = XMLTempo.zapisProduktov();
-//		vyrobkyAutronic = XMLAutronic.zapisProduktov();
+		vyrobkyAutronic = XMLAutronic.zapisProduktov();
 		vyrobkyNellys = XMLNellys.zapisProduktov();
 
 	  writerVysledok.println("Kod;Nazov;Nazov upraveny;Popis;Kategoria;Obrazok;Vyrobca;CenaNakup;CenaPredaj;Vaha;Short;Activ;Feature;Farba;Šírka;Hĺbka;Výška;Dĺžka;Výška sedu;Rozkladanie;Materiál;Nosnosť;Čalúnenie");

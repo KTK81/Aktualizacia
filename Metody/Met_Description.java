@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Met_Description {
     public static String zistiPopis(String popis, String vyrobca) throws IOException {
         String description = popis;
+        description = Met_NahradZleZnaky.spustima(description);
         if (vyrobca.equals("DREVONA")) {
 //DESCRIPTION - na beznej www.drevona.sk je lepsi popis, ako z XML, takze kuk na beznu a ak tam najdem, dam ten
 //ale nie vzdy je uz vyrobok aj na maloobchode, vtedy pouzijem popis z XML
@@ -56,17 +57,7 @@ public class Met_Description {
         }
 
         if (vyrobca.contains("NELLYS")) {
-            //zas raz jeden popis, kde boli vsunute okom neviditelne NEW LINE znaky a robilo to brutal bordel
-            //Pretoze zaroven tam su <br /> <br /> znaky, na oddelenie riadkov, ale medzi nimi je hajzlik NEW LINE znak, ASCII kod 10
-            StringBuilder sb = new StringBuilder();
-            for (int k = 0; k < description.length(); k++) {
-                int asci = description.charAt(k);
-                if (description.charAt(k) == 10) {
-                    sb.append(' ');
-                } else
-                    sb.append(description.charAt(k));
-            }
-            description = sb.toString();
+//            description = Met_NahradZleZnaky.spustima(description);
             //par pravopisnych chyb
             description = description.replaceAll("Obľúbené tovaru!","Obľúbený tovar!");
             description = description.replaceAll("čvrtému","štvrtému");
@@ -75,9 +66,9 @@ public class Met_Description {
             description = description.replaceAll("Pohovky odosielame len kuriérom.","");
         }
 
-        if (vyrobca.equals("Tempo-Kondela")) {
-            description = description.replaceAll("\n", " , ").replaceAll(";", ",");
-        }
+//        if (vyrobca.equals("Tempo-Kondela")) {
+//            description = description.replaceAll("\n", " , ").replaceAll(";", ",");
+//        }
 
         return description;
     }

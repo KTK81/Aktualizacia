@@ -104,10 +104,12 @@ public class XMLTempo {
                         pomocnaPresta = "2";
                         if ((dostupnost.equals("Na sklade"))||(dostupnost.equals("Skladem")))
                             dostupnost = Premenne.featureSKL;
-                        if (dostupnost.equals("Na objednávku"))
+                        else if (dostupnost.equals("Na objednávku"))
                             dostupnost = Premenne.feature2mesiace;
-                        if (dostupnost.contains("vypreda"))
+                        else if (dostupnost.contains("vypreda"))
                             active = "0";
+                        else
+                            dostupnost = Premenne.featureMesiac;
                         break;
                     }
                 }

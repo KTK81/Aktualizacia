@@ -19,7 +19,7 @@ public class XMLNellys {
         ArrayList<Produkt> nellysProdukty = new ArrayList<>();
         ArrayList<Produkt> prestaIDlist;
         int p;
-        String pomocnaPresta, dostupnost = null, prestaID = null, sirka = null, vyska = null, dlzka = null, hlbka = null;
+        String pomocnaPresta, dostupnost = "viac ako mesiac", prestaID = null, sirka = null, vyska = null, dlzka = null, hlbka = null;
         String vyrobca = "NELLYS";
         prestaIDlist = Premenne.prestaIDPremenne;
 
@@ -100,17 +100,13 @@ public class XMLNellys {
                     }
                     if (pomocnaPresta.equals("0")) {
                         prestaID = "123456";
-//                    category = Met_Category.zistiKategoriu(category, "NELLYS", "", "");
+                        category = Met_Category.zistiKategoriu(category, "NELLYS", "", "");
                     }
 
-//cena, pokial sa v niecom lisi od normal, XML ceny z feedu
-//                price = Met_Price.zistiCenu(price, code);
-
                     if (stock.equals("0")) {
-                        if (delivery.equals("Skladom"))
-                            dostupnost = Premenne.featureMesiac; //skladom
+                            dostupnost = Premenne.feature2tyzdne; //skladom
                     } else
-                        dostupnost = Premenne.featureSKL; //1 - 3 dni (skladom)
+                        dostupnost = Premenne.featureOzajSKL; //1 - 3 dni (skladom)
 
                 ArrayList<Produkt> rozmery = Met_Dimensions.findDimensions(description, vyrobca);
                 sirka = rozmery.get(0).getSirka();
@@ -122,17 +118,11 @@ public class XMLNellys {
                     category = Met_Category.zistiKategoriu(category,"NELLYS","","");
 //                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
 
-//                    System.out.println(code+";"+description);
-
-
-                    //zadam len to, co ma zaujima. Maju asi patsto milionov produktov, je tam mrte balast pre mna.
-                    if (category.contains("Detská izba")) {
                         nellysProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
                                 productURL, IMGURL, "navod", "neurčená", "objem", farba, "rozmer", sirka, hlbka, vyska, dlzka));
 // Zapis produktov z XML do suboru
                         writerSubor.println(prestaID + ";" + code + ";" + name + ";" + name + ";" + farba + ";" + description + ";" + active + ";123456 ;"
                                 + price + ";" + stock + ";" + dostupnost + ";" + category + ";" + delivery + ";");
-                    }
                 }
         }
         }

@@ -120,7 +120,8 @@ import java.util.ArrayList;
 						}
 					}
 
-//					description = eElement.getElementsByTagName("Popis").item(0).getTextContent();
+					description = eElement.getElementsByTagName("Popis").item(0).getTextContent();
+					description = Met_NahradZleZnaky.spustima(description);
 					//obrazok + dalsie obrazky
 					if (eElement.getElementsByTagName("Obrazek").getLength()>0)
 						IMGURL = eElement.getElementsByTagName("Obrazek").item(0).getTextContent();
@@ -159,11 +160,7 @@ import java.util.ArrayList;
 							}
 						}
 //						if (nodeHodnota.contains("Výška (cm)"))
-
-
 					}
-//					System.out.println(code+";vyska:"+vyska+";sirka:"+sirka);
-//					System.out.println(code+";vyska:"+vyska+";sirka:"+sirka+";hlbka:"+hlbka);
 				}
 
 //nacitam PrestaID subor, z neho PrestaIDcka a Kategorie a to zapisem priamo do suboru
@@ -189,6 +186,7 @@ import java.util.ArrayList;
 					}
 				}
 				if (pomocnaPresta.equals("0")) {
+					name = Met_NahradZleZnaky.spustima(name);
 					prestaID = "123456";
 					priceString = priceXML;
 					category = Met_Category.zistiKategoriu(category, vyrobca, name, description);
@@ -211,7 +209,6 @@ import java.util.ArrayList;
 					}
 				}
 
-
 //				if (prestaID.equals("123456")&&(!(active).equals("9")))  {
 //					System.out.println("najdi description:"+code);
 //					description = Met_Spy.description(code,"hejnabytok");
@@ -219,7 +216,6 @@ import java.util.ArrayList;
 				color = Met_Color.zistiFarbu(code, vyrobca);  //z nazvu zisti farbu
 				nameUpravene = Met_Name.zistiNazov(code, category, name, "AUTRONIC", color);
 //				color = Premenne.complexReplace (Premenne.cesta+"Zoznam_farba.csv");
-
 
 				autroProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, "stock", priceString, "6666", name, nameUpravene,vyrobca, active, description,
 						"productURL",IMGURL,"navod",vaha,objem,color,rozmer, sirka ,vyska, hlbka, ""));
