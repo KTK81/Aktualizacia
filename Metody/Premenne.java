@@ -20,7 +20,7 @@ public class Premenne {
     public static String feature4tyzdne = "3 - 5 týždňov";
     public static String feature2mesiace = "6 - 8 týždňov";
     public static String featureObjednavka = "Na objednávku";
-    public static String featureMesiac = "mesiac";
+    public static String featureMesiac = "Viac ako mesiac";
 
 
     public static ArrayList<Produkt> prestaIDPremenne;

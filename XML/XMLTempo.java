@@ -108,8 +108,8 @@ public class XMLTempo {
                             dostupnost = Premenne.feature2mesiace;
                         else if (dostupnost.contains("vypreda"))
                             active = "0";
-                        else
-                            dostupnost = Premenne.featureMesiac;
+//                        else
+//                            dostupnost = Premenne.featureMesiac;
                         break;
                     }
                 }

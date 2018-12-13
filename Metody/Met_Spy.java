@@ -3,6 +3,7 @@ package Metody;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class Met_Spy {
         if (wwwStranka.equals("hejnabytok")) {
             wwwAdresa = "https://www.hejnabytok.sk/vyhledavani?controller=search&orderby=position&orderway=desc&search_query_cat=0&search_query="+kodNaHladanie+"&submit_search=";
         }
+
         //najprv NAJDEM produkt, takze stranka s vysledkom hladania, Odtial si stiahnem URL na dany produkt
         try {
             URL hladajProdukt = new URL(wwwAdresa);
@@ -77,4 +79,83 @@ public class Met_Spy {
         System.out.println(popisProduktu);
         return popisProduktu;
     }
+
+//som na stranke, je tam zoznam produktov, tak si vycucnem zoznam vsetkych produktov v danej kategorii
+    public static ArrayList<Produkt> zoznamProduktov (String oblast, String wwwStranka) throws IOException, InterruptedException {
+        ArrayList<Produkt> zoznamVysledok = new ArrayList<>();
+        String URLAdresa = null, URLProduktu = null, pocetTyzden = null, category = null, name=null, price=null;
+        PrintWriter writerSubor = new PrintWriter("C:\\Users\\jano\\Disk Google\\JAVA\\subory\\spySubor.csv", "UTF-8");
+        writerSubor.println("category;name;price;count");
+
+        if (wwwStranka.equals("Alza")) {
+            String alzaURL = "https://www.alza.sk";
+
+            if (oblast.equals("LEGO")) {
+                for (int i = 2; i < 4; i++) {
+                    boolean dacoNaslo = false;
+                    URLAdresa = "https://www.alza.sk/hracky/lego/18851136-p" + i + ".htm";
+                    URL hladajProdukt = new URL(URLAdresa);
+                    System.out.println("Aktualna URL :" + hladajProdukt);
+                    BufferedReader vysledokHladania = new BufferedReader(new InputStreamReader(hladajProdukt.openStream()));
+                    String riadokZdrojovehoKodu = null;
+                    while ((riadokZdrojovehoKodu = vysledokHladania.readLine()) != null)    //načíta URL source kód, kým sú riadky, tak ide
+                    {
+                        if (riadokZdrojovehoKodu.contains("name browsinglink")) {
+                            dacoNaslo = true;
+                            int zaciatok = riadokZdrojovehoKodu.indexOf("href=");
+                            int koniec = riadokZdrojovehoKodu.lastIndexOf(".htm");
+                            URLProduktu = alzaURL+riadokZdrojovehoKodu.substring(zaciatok + 6, koniec+4);
+//                            System.out.println("URL Produktu : " + URLProduktu);
+                            zoznamVysledok.add(new Produkt(URLProduktu, "test"));
+                        }
+                    }
+                    Thread.sleep(1000);
+                    if (dacoNaslo==false)
+                        break;
+                }
+
+                for (int j=0; j<zoznamVysledok.size(); j++) {
+//                    String URLAdresaProduktu = zoznamVysledok.get(j).getKod();
+                    URL hladajProdukt = new URL(zoznamVysledok.get(j).getKod());
+//                    System.out.println("stranka produktu :" + hladajProdukt);
+                    BufferedReader vysledokHladania = new BufferedReader(new InputStreamReader(hladajProdukt.openStream()));
+                    String riadokZdrojovehoKodu = null;
+                    while ((riadokZdrojovehoKodu = vysledokHladania.readLine()) != null)    //načíta URL source kód, kým sú riadky, tak ide
+                    {
+                        try {
+                            if (riadokZdrojovehoKodu.contains("data-msgs=")) {
+                                int zaciatok = riadokZdrojovehoKodu.indexOf("Tento týždeň");
+                                int koniec = riadokZdrojovehoKodu.indexOf("Tento tovar si práve prezerá");
+                                pocetTyzden = riadokZdrojovehoKodu.substring(zaciatok, koniec-1);
+//                                System.out.println("hned zranka "+pocetTyzden);
+                            }
+                        if (riadokZdrojovehoKodu.contains("'name':")) {
+                            int koniec = riadokZdrojovehoKodu.indexOf("',");
+                            name = riadokZdrojovehoKodu.substring(9, koniec);
+                        }
+                        if (riadokZdrojovehoKodu.contains("'category':")) {
+                            int koniec = riadokZdrojovehoKodu.indexOf("',");
+                            category = riadokZdrojovehoKodu.substring(13, koniec);
+                        }
+                        if (riadokZdrojovehoKodu.contains("'price':")) {
+                            int koniec = riadokZdrojovehoKodu.indexOf("})");
+                            price = riadokZdrojovehoKodu.substring(10, koniec-1);
+                        }
+                        }
+                        catch (StringIndexOutOfBoundsException siobe ) {
+                            System.out.println("zle cosi");
+                        }
+                    }
+
+                    System.out.println(category + ";" + name + ";" + price + ";" + pocetTyzden);
+                    writerSubor.println(category+";"+ name+";"+price+";"+ pocetTyzden);
+                    Thread.sleep(1000);
+                }
+            }
+        }
+        writerSubor.close();
+        return zoznamVysledok;
+    }
+
+
 }

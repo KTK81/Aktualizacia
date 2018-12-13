@@ -152,7 +152,8 @@ public class HLAVNA {
                 AutroCennikUpdate.spustiProgram();
                 break;
             case "hladaj":
-                Met_Spy.description("CT-393","hejnabytok");
+//                Met_Spy.description("CT-393","hejnabytok");
+                Met_Spy.zoznamProduktov("LEGO", "Alza");
                 break;
         }
         readerUser.close();
