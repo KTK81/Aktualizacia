@@ -91,7 +91,7 @@ public class Met_Spy {
             String alzaURL = "https://www.alza.sk";
 
             if (oblast.equals("LEGO")) {
-                for (int i = 2; i < 4; i++) {
+                for (int i = 1; i < 100; i++) {
                     boolean dacoNaslo = false;
                     URLAdresa = "https://www.alza.sk/hracky/lego/18851136-p" + i + ".htm";
                     URL hladajProdukt = new URL(URLAdresa);
@@ -126,7 +126,7 @@ public class Met_Spy {
                             if (riadokZdrojovehoKodu.contains("data-msgs=")) {
                                 int zaciatok = riadokZdrojovehoKodu.indexOf("Tento týždeň");
                                 int koniec = riadokZdrojovehoKodu.indexOf("Tento tovar si práve prezerá");
-                                pocetTyzden = riadokZdrojovehoKodu.substring(zaciatok, koniec-1);
+                                pocetTyzden = riadokZdrojovehoKodu.substring(zaciatok+22, koniec-12);
 //                                System.out.println("hned zranka "+pocetTyzden);
                             }
                         if (riadokZdrojovehoKodu.contains("'name':")) {

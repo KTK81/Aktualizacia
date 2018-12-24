@@ -15,7 +15,7 @@ public class Premenne {
 //    public static String cestaXML = "C:\\Users\\Jan\\Disk Google\\JAVA\\subory\\XML\\";
     public static String cestaZoznam = "C:\\Users\\jano\\Disk Google\\JAVA\\subory\\zoznamy\\";
     public static String featureOzajSKL = "Skladom";
-    public static String featureSKL = "Skladom";
+    public static String featureSKL = "2 - 14 dní";
     public static String feature2tyzdne = "2 - 14 dní";
     public static String feature4tyzdne = "3 - 5 týždňov";
     public static String feature2mesiace = "6 - 8 týždňov";

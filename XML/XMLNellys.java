@@ -115,7 +115,6 @@ public class XMLNellys {
                 dlzka = rozmery.get(0).getDlzka();
 
                     farba = Met_Color.zistiFarbu(farba,"NELLYS");
-                    category = Met_Category.zistiKategoriu(category,"NELLYS","","");
 //                    description ="popis"; //vycucava popis v HTML kode a chaosi z toho openOffice. Tych par vyrobkov nahadzem popis rucne.
 
                         nellysProdukty.add(new Produkt(prestaID, category, category, code, dostupnost, stock, price, priceVOC, name, name, vyrobca, active, description,
