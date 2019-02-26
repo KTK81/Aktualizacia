@@ -151,6 +151,9 @@ public class HLAVNA {
             case "konku":
                 AutroCennikUpdate.spustiProgram();
                 break;
+            case "sedak":
+                AutroCennikUpdate.sedaky();
+                break;
             case "hladaj":
 //                Met_Spy.description("CT-393","hejnabytok");
                 Met_Spy.zoznamProduktov("LEGO", "Alza");

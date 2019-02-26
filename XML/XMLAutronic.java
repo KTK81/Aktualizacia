@@ -87,9 +87,8 @@ import java.util.ArrayList;
 							String dostupnostXML = stockElement.getAttribute("Dostupnost").toString();
 							if (!skladXML.contains("Senec")) {
 								if (skladXML.contains("CZ")) {
-									if (dostupnostXML.contains("klad")) {
-										dostupnost = Premenne.feature2tyzdne;  //ORIGINAL pred vianocami
-										dostupnost = Premenne.feature4tyzdne;
+									if ((dostupnostXML.contains("klad"))||(dostupnostXML.contains("vailab"))) {
+										dostupnost = Premenne.feature2tyzdne;
 									} else {
 										dostupnost = ("nikde");
 										active = "0";
@@ -111,9 +110,8 @@ import java.util.ArrayList;
 									}
 									dostupnostModified = sb.toString();
 									double dostupnostPoruba = Met_Convert.stringToDouble(dostupnostModified);
-									if (dostupnostPoruba >= 3) {
-//										dostupnost = Premenne.featureOzajSKL; //ORIGINAL pred vianocami
-										dostupnost = Premenne.feature4tyzdne;
+									if (dostupnostPoruba >= 2) {
+										dostupnost = Premenne.featureOzajSKL; //ORIGINAL pred vianocami
 									} else if (dostupnost.contains("nikde")) {
 										active = "0";
 									}

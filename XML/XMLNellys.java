@@ -65,7 +65,7 @@ public class XMLNellys {
                     }
                     //cena. Vieme velkoobchodnu cenu, to je priceVOC, no a chceme si pridat 30%, lebo maloobchodnu cenu nevieme
                     Double priceDouble = Double.parseDouble(priceVOC);
-                    priceDouble = priceDouble*1.3;
+                    priceDouble = priceDouble*1.4;
                     priceDouble = (double)Math.round(priceDouble * 100d) / 100d;
                     price = priceDouble.toString();
                     delivery = eElement.getElementsByTagName("DELIVERY_TIME").item(0).getTextContent();

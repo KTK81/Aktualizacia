@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URL;
@@ -32,9 +33,22 @@ public class XMLTempo {
         String fileFinding = ("tempo_produkty");
         int fileNumber = Premenne.findLastModified(fileFinding, "XML\\tempo");
         PrintWriter writerSubor = new PrintWriter(Premenne.cesta + "XML\\tempo\\" + fileFinding + fileNumber + ".csv", "UTF-8");
-        writerSubor.println("PrestaID;Kod;Nazov;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina;Vaha;Navod");
+        writerSubor.println("PrestaID;Kod;Nazov;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina original;Skupina nasa;Vaha;Navod");
         PrintWriter zapisVysledku = new PrintWriter(Premenne.cesta + "pomocnySuborVysledok.csv", "UTF-8");
         zapisVysledku.println("id;kod;nazov;kategoria Tempo;kategoria;kategoria zmenena");
+
+
+        //***** DOCASNA cast kodu, za ucely navodu ku produktom
+        ArrayList<String>docasnyNaNavod = Premenne.simpleFileRead(Premenne.cesta+"nemaju_navod.csv");
+        ArrayList<String>bezDuplikatov = new ArrayList<>();
+        for (int l=0; l<docasnyNaNavod.size();l++) {
+            if (!bezDuplikatov.contains(docasnyNaNavod.get(l))) {
+                bezDuplikatov.add(docasnyNaNavod.get(l));
+            }
+        }
+        PrintWriter docasnyZapis = new PrintWriter(Premenne.cesta + "XML\\tempo\\docasnyNavod.csv", "UTF-8");
+        docasnyZapis.println("PrestaID;Kod;Nazov;Aktivita;VOC;MOC;Zasoba;Dostupnost;Skupina original;Skupina nasa;Vaha;Navod");
+
 
 
 
@@ -103,7 +117,7 @@ public class XMLTempo {
 
                         pomocnaPresta = "2";
                         if ((dostupnost.equals("Na sklade"))||(dostupnost.equals("Skladem")))
-                            dostupnost = Premenne.featureSKL;
+                            dostupnost = Premenne.featureOzajSKL;
                         else if (dostupnost.equals("Na objednávku"))
                             dostupnost = Premenne.feature2mesiace;
                         else if (dostupnost.contains("vypreda"))
@@ -138,6 +152,16 @@ public class XMLTempo {
 // Zapis produktov z XML do suboru
                 writerSubor.println(prestaID + ";" + code + ";" + name + ";" + active + ";123456 ;" + price + ";null;" +
                         dostupnost + ";" + categoryOriginal+";"+category + ";" + vaha + ";" + navod);
+
+
+
+                for (int m=0; m<bezDuplikatov.size();m++) {
+                    if (bezDuplikatov.get(m).contains(code))
+                    docasnyZapis.println(prestaID + ";" + code + ";" + name + ";" + active + ";123456 ;" + price + ";null;" +
+                            dostupnost + ";" + categoryOriginal+";"+category + ";" + vaha + ";" + navod);
+                }
+
+
             }
 
         } catch (Exception e) {

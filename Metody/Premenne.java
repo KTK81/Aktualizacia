@@ -15,7 +15,7 @@ public class Premenne {
 //    public static String cestaXML = "C:\\Users\\Jan\\Disk Google\\JAVA\\subory\\XML\\";
     public static String cestaZoznam = "C:\\Users\\jano\\Disk Google\\JAVA\\subory\\zoznamy\\";
     public static String featureOzajSKL = "Skladom";
-    public static String featureSKL = "2 - 14 dní";
+    public static String featureSKL = "1 - 3 dni";
     public static String feature2tyzdne = "2 - 14 dní";
     public static String feature4tyzdne = "3 - 5 týždňov";
     public static String feature2mesiace = "6 - 8 týždňov";
@@ -118,5 +118,31 @@ public class Premenne {
         return temp;
     }
 
+    public static ArrayList<Produkt> complexReplace3 (String filename) throws IOException {
+        ArrayList<Produkt> temp = new ArrayList<>();
+        FileInputStream fin = new FileInputStream(filename);
+        BufferedReader citac = new BufferedReader(new InputStreamReader(fin, "UTF-8"));
+        String riadok = citac.readLine();
+        while (riadok != null) {
+            riadok = citac.readLine();
+            if (riadok != null) {
+                int bodkociarka = riadok.indexOf(";");
+                int bodkociarka2 = riadok.indexOf(";", bodkociarka+1);
+//                int bodkociarka2 = riadok.indexOf(";", bodkociarka + 1);
+                String ID = riadok.substring(0, bodkociarka);
+                String value = riadok.substring(bodkociarka+1, bodkociarka2);
+                String value2 = riadok.substring(bodkociarka2+1);
+                temp.add(new Produkt(ID,value, value2));
+//                if (original.contains(ID)) {
+//                    temp = value;
+//                }
+//                if (filename.contains("meno")) {
+
+            }
+
+        }
+        citac.close();
+        return temp;
+    }
 
 }

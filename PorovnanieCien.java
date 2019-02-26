@@ -17,9 +17,12 @@ import Metody.PrestaIDRead;
 /**
  * Created by jano on 13.03.2017.
  */
+
+// ******** NEPOUZIVAM autronic_cennik.txt na zistenie cien, takze vysledok normalne rovno nacitaj cez import csv a zmen ceny vyrobkov, neries autronic cennik
 public class PorovnanieCien {
     public static void spusti() throws IOException, InterruptedException {
         ArrayList<Produkt> prestaNase = new ArrayList<>();
+        ArrayList<Produkt> sedakyCena = Premenne.complexReplace(Premenne.cestaZoznam + "autronic_sedaky.txt");
         prestaNase = PrestaIDRead.filePresta();
         PrintWriter writerSubor = new PrintWriter(Premenne.cesta + "porovnanieCien.csv", "UTF-8");
         writerSubor.println("PrestaID;Kod;Nasa cena;Spravna cena;Rozdiel;Spravna cena bez sedaka;Vyrobca;Stav");

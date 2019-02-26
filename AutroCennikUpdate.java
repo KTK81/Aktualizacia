@@ -44,5 +44,34 @@ public class AutroCennikUpdate {
             }
             writerSubor.close();
     }
+
+    public static void  sedaky() throws IOException {
+        //Ked dojde k zmene ceny u produktu, kde sa cena navysuje este o sedaky, tak treba zmenit cenu produktu v subore autronic_cennik_sedaky.txt
+        //Takze nacitam subor, nasledne nacitam zmeny v produktoch zo suboru autronic_cennik_sedaky_nove_ceny.txt a vyrobim subor
+        //autronic_cennik_sedaky_modify.txt
+        String code=null, priceKorpus=null, priceSedak=null;
+        PrintWriter writerSubor = new PrintWriter(Premenne.cestaZoznam+"autronic_cennik_sedaky_modify.txt", "UTF-8");
+        ArrayList<Produkt> sedakOriginal = Premenne.complexReplace3(Premenne.cestaZoznam + "autronic_cennik_sedaky.txt");
+        ArrayList<Produkt> spravnaCena = Premenne.complexReplace(Premenne.cestaZoznam + "autronic_cennik_sedaky_nove_ceny.txt");
+
+//nacitanie autroCenniku
+        for (int i = 0; i < sedakOriginal.size(); i++) {
+            code = sedakOriginal.get(i).getSkupina();
+            priceKorpus = sedakOriginal.get(i).getKod();
+            priceSedak = sedakOriginal.get(i).getDostupnost();
+            System.out.println("1 autro kod:"+code+";korpus:"+priceKorpus+";sedak:"+priceSedak);
+            for (int j=0; j<spravnaCena.size(); j++) {
+                if (spravnaCena.get(j).getKod().equals(code)) {
+                    priceKorpus = spravnaCena.get(j).getMOC();
+                    System.out.println("2 konku kod:"+spravnaCena.get(j).getKod()+";price:"+priceKorpus);
+                    break;
+                }
+            }
+            System.out.println("3 kod konecny:"+code+"cena konecna:"+priceKorpus);
+            writerSubor.println(code+";"+priceKorpus+";"+priceSedak);
+        }
+        writerSubor.close();
+    }
+
 }
 

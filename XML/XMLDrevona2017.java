@@ -94,7 +94,7 @@ public class XMLDrevona2017 {
                         dostupnost = Premenne.featureMesiac; // viac, ako mesiac
                 }
                 else
-                    dostupnost = Premenne.feature4tyzdne; //1 - 3 dni (skladom) //na Vianoce som to zmenil na 2-14 dní
+                    dostupnost = Premenne.featureSKL; //1 - 3 dni (skladom)
 
 
 //popis, cucam z XML
