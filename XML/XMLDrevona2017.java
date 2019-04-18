@@ -20,7 +20,7 @@ public class XMLDrevona2017 {
         int i, p, s;
         String pomocnaPresta, dostupnost, prestaID = null, sirka = null, vyska = null, dlzka = null, hlbka = null;
         String vyrobca = "DREVONA";
-        prestaIDlist = Premenne.prestaIDPremenne;
+        prestaIDlist = Nacitanie_metod.prestaIDPremenne;
 
 
 //zapis XMLDrevona do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
@@ -81,6 +81,11 @@ public class XMLDrevona2017 {
 
 //cena, pokial sa v niecom lisi od normal, XML ceny z feedu
                 price = Met_Price.zistiCenu(price, code);
+                //všetky ceny sú o ničom, hrozne nízke
+                Double priceDouble = Double.parseDouble(price);
+                priceDouble = priceDouble * 1.2;
+                price = priceDouble.toString();
+
 
 //povodne som tam mal cely text, ze "1 - 3 dni (skladom)", ale ani za boha sa to nevedelo sparovat s textom z PrestaID, tak som to zradikalizoval
                 if (stock.equals("0") || stock.equals("1")) {

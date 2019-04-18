@@ -21,7 +21,7 @@ public class XMLNellys {
         int p;
         String pomocnaPresta, dostupnost = "viac ako mesiac", prestaID = null, sirka = null, vyska = null, dlzka = null, hlbka = null;
         String vyrobca = "NELLYS";
-        prestaIDlist = Premenne.prestaIDPremenne;
+        prestaIDlist = Nacitanie_metod.prestaIDPremenne;
 
 //zapis XMLNellys do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
         String fileFinding = ("nellys_produkty");
@@ -64,8 +64,9 @@ public class XMLNellys {
                         }
                     }
                     //cena. Vieme velkoobchodnu cenu, to je priceVOC, no a chceme si pridat 30%, lebo maloobchodnu cenu nevieme
+                    //zmenil som na 40%, nasledne na 50%, skoro nulove navysenie, osrat za menej
                     Double priceDouble = Double.parseDouble(priceVOC);
-                    priceDouble = priceDouble*1.4;
+                    priceDouble = priceDouble*1.5;
                     priceDouble = (double)Math.round(priceDouble * 100d) / 100d;
                     price = priceDouble.toString();
                     delivery = eElement.getElementsByTagName("DELIVERY_TIME").item(0).getTextContent();

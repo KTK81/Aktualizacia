@@ -21,11 +21,11 @@ import java.util.ArrayList;
 		ArrayList<Produkt>autroAkciaKategoria=new ArrayList<>();
 		ArrayList<Produkt>prestaIDlist;
 		int i, p, vahaInt = 1;
-		String vyrobca = "AUTRONIC", pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", color, category = null, active,
-				nameUpravene = null, size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,description = null, priceString = null,
-				priceXML= null, vyska = null, sirka = null, hlbka = null, dlzka = null, priceVOC = null;
+		String vyrobca = "AUTRONIC", pomocnaPresta,prestaID = null, code = null, name = null, dostupnost = "nikde", dostupnostXML = null, color,
+				category = null, active, nameUpravene = null, size = null, vaha = null, IMGURL = null,rozmer = null,objem = null,
+				description = null, priceString = null, priceXML= null, vyska = null, sirka = null, hlbka = null, dlzka = null, priceVOC = null;
 
-		prestaIDlist = Premenne.prestaIDPremenne;
+		prestaIDlist = Nacitanie_metod.prestaIDPremenne;
 
 //zapis XMLAutronic do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru
 		String fileFinding = ("autronic_produkty");
@@ -66,6 +66,7 @@ import java.util.ArrayList;
 					rozmer = eElement.getElementsByTagName("Rozmer").item(0).getTextContent();
 //					objem = eElement.getElementsByTagName("Objem").item(0).getTextContent();
 					priceXML = (eElement.getElementsByTagName("DoporucenaCenaSDph").item(0).getTextContent()).trim();
+					dostupnostXML = (eElement.getElementsByTagName("Dostupnost").item(0).getTextContent()).trim();
 					if (eElement.getElementsByTagName("Hmotnost").getLength()>0) {
 						vaha = eElement.getElementsByTagName("Hmotnost").item(0).getTextContent();
 						vaha = vaha.replaceAll(",", ".");
@@ -84,28 +85,28 @@ import java.util.ArrayList;
 						if (stockNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element stockElement = (Element) stockNode;
 							String skladXML = stockElement.getAttribute("Sklad");
-							String dostupnostXML = stockElement.getAttribute("Dostupnost").toString();
+							String dostupnostXMLSklady = stockElement.getAttribute("Dostupnost").toString();
 							if (!skladXML.contains("Senec")) {
 								if (skladXML.contains("CZ")) {
-									if ((dostupnostXML.contains("klad"))||(dostupnostXML.contains("vailab"))) {
+									if ((dostupnostXMLSklady.contains("klad"))||(dostupnostXMLSklady.contains("vailab"))||(dostupnostXML.contains("SKL"))) {
 										dostupnost = Premenne.feature2tyzdne;
 									} else {
-										dostupnost = ("nikde");
+										dostupnost = ("nikdeeeee");
 										active = "0";
 									}
 								}
 
 								if (skladXML.contains("oruba")) {
 									active = "1";
-									dostupnostXML = stockElement.getAttribute("Dostupnost").toString();
+									dostupnostXMLSklady = stockElement.getAttribute("Dostupnost").toString();
 									StringBuilder sb = new StringBuilder();
-									for (int k = 0; k < dostupnostXML.length(); k++) {
-										int asci = dostupnostXML.charAt(k);
+									for (int k = 0; k < dostupnostXMLSklady.length(); k++) {
+										int asci = dostupnostXMLSklady.charAt(k);
 										if (asci < 127) {
-											if (dostupnostXML.charAt(k) == ',') {
+											if (dostupnostXMLSklady.charAt(k) == ',') {
 												sb.append('.');
 											} else
-												sb.append(dostupnostXML.charAt(k));
+												sb.append(dostupnostXMLSklady.charAt(k));
 										}
 									}
 									dostupnostModified = sb.toString();

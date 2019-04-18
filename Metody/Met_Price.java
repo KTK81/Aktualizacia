@@ -12,7 +12,7 @@ public class Met_Price {
     public static String zistiCenu(String priceOriginal, String code) throws IOException {
         String price = priceOriginal;
         ArrayList<Produkt> prestaIDlist;
-        prestaIDlist = Premenne.prestaIDPremenne;
+        prestaIDlist = Nacitanie_metod.prestaIDPremenne;
 
 //nacitanie cenyOff - sucasnu cenu nahradi cenou nastavenou v subore cenaOff = cenou, aka by mala byt podla feedu
         FileInputStream fin = new FileInputStream(Premenne.cestaZoznam+"cena_off.txt");

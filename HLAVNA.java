@@ -1,3 +1,4 @@
+import Metody.Met_Marcus;
 import XML.*;
 import Metody.Met_Spy;
 
@@ -158,6 +159,8 @@ public class HLAVNA {
 //                Met_Spy.description("CT-393","hejnabytok");
                 Met_Spy.zoznamProduktov("LEGO", "Alza");
                 break;
+            case "mar":
+                Met_Marcus.produkty();
         }
         readerUser.close();
     }

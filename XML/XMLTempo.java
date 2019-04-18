@@ -26,7 +26,7 @@ public class XMLTempo {
         double priceInt = 0;
         String pomocnaPresta, vahaString, prestaID = null;
         String vyrobca = "Tempo-Kondela", nameUpravene = null, sirka=null, vyska=null, hlbka=null, dlzka=null, obrazkyAll = null;
-        prestaIDlist = Premenne.prestaIDPremenne;
+        prestaIDlist = Nacitanie_metod.prestaIDPremenne;
 //        prestaIDlist = PrestaIDRead.filePresta();
 
 //zapis XMLTempo do suboru, prva cast kodu najde posledny modifikovany subor a vrati o jedno vyssie cislo, na konci suboru

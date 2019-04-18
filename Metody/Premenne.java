@@ -35,17 +35,17 @@ public class Premenne {
     }
 
 
-    public static ArrayList<Produkt> XMLTempoPremenne;
-    static {
-        try {
-            System.out.println("KROK 2");
-
-            System.out.println("Premenne - vytvaram TempoXML");
-            XMLTempoPremenne = XMLTempo.zapisProduktov();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static ArrayList<Produkt> XMLTempoPremenne;
+//    static {
+//        try {
+//            System.out.println("KROK 2");
+//
+//            System.out.println("Premenne - vytvaram TempoXML");
+//            XMLTempoPremenne = XMLTempo.zapisProduktov();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static ArrayList<Produkt> XMLAutronicPremenne;
     static {

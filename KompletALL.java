@@ -1,3 +1,4 @@
+import Metody.Nacitanie_metod;
 import XML.*;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -15,11 +16,15 @@ public class KompletALL {
         PrintWriter writerVysledokPublicNew = new PrintWriter(Premenne.cesta + "aktualizacia_new.csv", "UTF-8");
 
 //        produktyALL.addAll(XMLTempo.zapisProduktov());
-        produktyALL.addAll(Premenne.XMLTempoPremenne);
-        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
-        produktyALL.addAll(Premenne.XMLAutronicPremenne);
-        produktyALL.addAll(XMLNellys.zapisProduktov());
-        prestaNase = Premenne.prestaIDPremenne;
+//        produktyALL.addAll(Nacitanie_metod.XMLTempoPremenne);
+//        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
+//        produktyALL.addAll(Nacitanie_metod.XMLDrevonaPremenne);
+//        produktyALL.addAll(XMLAutronic.zapisProduktov());
+        produktyALL.addAll(Nacitanie_metod.XMLAutronicPremenne);
+//        produktyALL.addAll(XMLNellys.zapisProduktov());
+//        produktyALL.addAll(Nacitanie_metod.XMLNellysNacitanie);
+//        prestaNase = Premenne.prestaIDPremenne;
+        prestaNase = Nacitanie_metod.prestaIDPremenne;
 
 // HOTOVO, konečné porovnanie suborov a zapisanie vysledkov
 //        writerVysledokPublic.println("PrestaID;Kod;Nazov;Kategoria;Vyrobca;Cena;Short;Activ;Feature;Operacia;Stary udaj");
