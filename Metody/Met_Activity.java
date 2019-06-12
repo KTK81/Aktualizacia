@@ -11,6 +11,8 @@ public class Met_Activity {
     public static String zistiAktivitu(String category, String code, String name, String original, String vyrobca) throws IOException {
         String active = "1";
         String subor = null;
+        if (vyrobca.equals("NELLYS"))
+            subor = "vyhodene_kategorie_nellys.txt";
         if (vyrobca.equals("DREVONA"))
             subor = "vyhodene_kategorie_drevona.txt";
         //kategoriu "Koberce" neriesim, davam rovno activitu na "9" /vyhodene produkty, ignore/

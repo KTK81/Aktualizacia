@@ -16,13 +16,13 @@ public class KompletALL {
         PrintWriter writerVysledokPublicNew = new PrintWriter(Premenne.cesta + "aktualizacia_new.csv", "UTF-8");
 
 //        produktyALL.addAll(XMLTempo.zapisProduktov());
-//        produktyALL.addAll(Nacitanie_metod.XMLTempoPremenne);
+        produktyALL.addAll(Nacitanie_metod.XMLTempoPremenne);
 //        produktyALL.addAll(XMLDrevona2017.zapisProduktov());
-//        produktyALL.addAll(Nacitanie_metod.XMLDrevonaPremenne);
+        produktyALL.addAll(Nacitanie_metod.XMLDrevonaPremenne);
 //        produktyALL.addAll(XMLAutronic.zapisProduktov());
         produktyALL.addAll(Nacitanie_metod.XMLAutronicPremenne);
 //        produktyALL.addAll(XMLNellys.zapisProduktov());
-//        produktyALL.addAll(Nacitanie_metod.XMLNellysNacitanie);
+        produktyALL.addAll(Nacitanie_metod.XMLNellysNacitanie);
 //        prestaNase = Premenne.prestaIDPremenne;
         prestaNase = Nacitanie_metod.prestaIDPremenne;
 
@@ -133,14 +133,14 @@ public class KompletALL {
 //vyhodenie produktov, deaktivacia. Ak ich mame v ponuke, ale nenaslo ich, tak im hodim Aktivitu = 0, no a nabuduce uz nebudu v PrestaID
                     if ((pomocnyAktivity.equals("0")) && (prestaNase.get(p).getAktivita().contains("1"))) {
                         docasnyArrayList.add(prestaNase.get(p).getVysledokInput("vyhodene", "", ""));
-                        if (prestaNase.get(p).getKod().equals("C30634")) {
-                            System.out.println("3-KompletAll;existuje vnutri pomocnyAktivity");
-                            for (int i=0; i<docasnyArrayList.size(); i++) {
-                                System.out.print(i+";kod" + docasnyArrayList.get(i).get(0).getKod());
-                                System.out.print(";aktivita:" + docasnyArrayList.get(i).get(0).getAktivita());
-                                System.out.println(";vyrobca:" + docasnyArrayList.get(i).get(0).getVyrobca());
-                            }
-                        }
+//                        if (prestaNase.get(p).getKod().equals("C30634")) {
+//                            System.out.println("3-KompletAll;existuje vnutri pomocnyAktivity");
+//                            for (int i=0; i<docasnyArrayList.size(); i++) {
+//                                System.out.print(i+";kod:" + docasnyArrayList.get(i).get(0).getKod());
+//                                System.out.print(";aktivita:" + docasnyArrayList.get(i).get(0).getAktivita());
+//                                System.out.println(";vyrobca:" + docasnyArrayList.get(i).get(0).getVyrobca());
+//                            }
+//                        }
                     }
             }
         }

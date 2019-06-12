@@ -37,7 +37,7 @@ public class XMLDrevona2017 {
 
         try {
             String farba=null;
-            URL url = new URL("http://www.rea-nabytok.sk/heurekaSK.xml");
+            URL url = new URL("https://www.rea-nabytok.sk/heurekaSK.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url.openStream());
@@ -81,10 +81,10 @@ public class XMLDrevona2017 {
 
 //cena, pokial sa v niecom lisi od normal, XML ceny z feedu
                 price = Met_Price.zistiCenu(price, code);
-                //všetky ceny sú o ničom, hrozne nízke
-                Double priceDouble = Double.parseDouble(price);
-                priceDouble = priceDouble * 1.2;
-                price = priceDouble.toString();
+                //všetky ceny sú o ničom, hrozne nízke, tak ich dviham o 20%
+//                Double priceDouble = Double.parseDouble(price);
+//                priceDouble = priceDouble * 1.2;
+//                price = priceDouble.toString();
 
 
 //povodne som tam mal cely text, ze "1 - 3 dni (skladom)", ale ani za boha sa to nevedelo sparovat s textom z PrestaID, tak som to zradikalizoval

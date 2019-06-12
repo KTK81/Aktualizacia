@@ -47,17 +47,17 @@ public class Premenne {
 //        }
 //    }
 
-    public static ArrayList<Produkt> XMLAutronicPremenne;
-    static {
-        try {
-            System.out.println("KROK 3");
-
-            System.out.println("Premenne - vytvaram AutronicXML");
-            XMLAutronicPremenne = XMLAutronic.zapisProduktov();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static ArrayList<Produkt> XMLAutronicPremenne;
+//    static {
+//        try {
+//            System.out.println("KROK 3");
+//
+//            System.out.println("Premenne - vytvaram AutronicXML");
+//            XMLAutronicPremenne = XMLAutronic.zapisProduktov();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH.mm");

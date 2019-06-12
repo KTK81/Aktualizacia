@@ -83,6 +83,7 @@ public class XMLNellys {
                     description = eElement.getElementsByTagName("DESCRIPTION").item(0).getTextContent();
                     description = Met_Description.zistiPopis(description, "NELLYS");
                     active = "1";
+                    active = Met_Activity.zistiAktivitu(category, code, name, active,"NELLYS");
                 }
 
 //zaujimaju ma z celej ponuky niekolko tisic vyrobkov len pohovky a kresielka, takze obmedzim sa len na tie

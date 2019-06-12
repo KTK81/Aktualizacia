@@ -22,15 +22,15 @@ public class Nacitanie_metod {
         }
     }
 
-//    public static ArrayList<Produkt> XMLTempoPremenne;
-//    static {
-//        try {
-//            System.out.println("*** Nacitanie XML Tempo");
-//            XMLTempoPremenne = XMLTempo.zapisProduktov();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static ArrayList<Produkt> XMLTempoPremenne;
+    static {
+        try {
+            System.out.println("*** Nacitanie XML Tempo");
+            XMLTempoPremenne = XMLTempo.zapisProduktov();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<Produkt> XMLAutronicPremenne;
     static {
@@ -42,24 +42,24 @@ public class Nacitanie_metod {
         }
     }
 
-//    public static ArrayList<Produkt> XMLDrevonaPremenne;
-//    static {
-//        try {
-//            System.out.println("*** Nacitanie XML Drevona");
-//            XMLDrevonaPremenne = XMLDrevona2017.zapisProduktov();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static ArrayList<Produkt> XMLDrevonaPremenne;
+    static {
+        try {
+            System.out.println("*** Nacitanie XML Drevona");
+            XMLDrevonaPremenne = XMLDrevona2017.zapisProduktov();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-//    public static ArrayList<Produkt> XMLNellysNacitanie;
-//    static {
-//        try {
-//            System.out.println("*** Nacitanie XML NELLYS");
-//            XMLNellysNacitanie = XMLNellys.zapisProduktov();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static ArrayList<Produkt> XMLNellysNacitanie;
+    static {
+        try {
+            System.out.println("*** Nacitanie XML NELLYS");
+            XMLNellysNacitanie = XMLNellys.zapisProduktov();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

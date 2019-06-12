@@ -123,9 +123,9 @@ import java.util.ArrayList;
 
 					description = eElement.getElementsByTagName("Popis").item(0).getTextContent();
 					description = Met_NahradZleZnaky.spustima(description);
-					//obrazok + dalsie obrazky
-					if (eElement.getElementsByTagName("Obrazek").getLength()>0)
-						IMGURL = eElement.getElementsByTagName("Obrazek").item(0).getTextContent();
+					//obrazok + dalsie obrazkycenaAutronicSedaky
+					if (eElement.getElementsByTagName("ObrazekHi").getLength()>0)
+						IMGURL = eElement.getElementsByTagName("ObrazekHi").item(0).getTextContent();
 					NodeList obrazkyAllNode = eElement.getElementsByTagName("Obrazek");
 					for (int ob=0; ob<obrazkyAllNode.getLength();ob++) {
 						Node stockNodeCategory = obrazkyAllNode.item(ob);
@@ -133,7 +133,7 @@ import java.util.ArrayList;
 							Element stockElement = (Element) stockNodeCategory;
 							if (ob>0)
 								IMGURL+=", ";
-							IMGURL +=stockElement.getAttribute("Url");
+							IMGURL +=stockElement.getAttribute("UrlHi");
 						}
 					}
 //					System.out.println("kod:"+code+";obrazok:" + IMGURL);
